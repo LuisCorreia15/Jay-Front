@@ -22,7 +22,7 @@
 .span-lnd {
   color: var(--purple);
 }
-.h1-lnd{
+.h1-lnd {
   font-size: 250px;
   font-weight: 700;
   color: var(--comment);
@@ -31,7 +31,6 @@
 .h2-lnd {
   font-size: 50px;
   font-weight: 100;
-  margin-top: 15%;
 }
 .btn-lnd {
   background-color: var(--purple);

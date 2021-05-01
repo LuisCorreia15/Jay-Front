@@ -5,6 +5,9 @@ import "../../App.css";
 const Menu = () => {
   return (
     <div>
+      <div>
+        <h1 className="h1-menu">Jay</h1>
+      </div>
       <ul className="nav">
         <Link to="/">
           <li>Home</li>
