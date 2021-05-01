@@ -8,13 +8,10 @@ export const LandingPage = () => {
   return (
     <div>
       <Menu></Menu>
-      <h2 className='h2-lnd'>Seja Bem Vindo ao</h2>
-      <h1 className='h1-lnd'>
-        Food<span className='span-lnd'>Able</span>
+      <h2 className="h2-lnd">Olá, meu nome é</h2>
+      <h1 className="h1-lnd">
+        Jay
       </h1>
-      <button className='btn-lnd' onClick={() => history.push(`/pratos`)}>
-        Ver Cardápio
-      </button>
     </div>
   );
 };

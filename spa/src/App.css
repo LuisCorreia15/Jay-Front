@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 :root {
-  --purple: rgb(104, 42, 233);
+  --purple: #e8eaed;
   --red: rgb(192, 0, 0);
   --light: #dbdbdb;
-  --bg: #0e1212;
+  --bg: #ffffff;
   --comment: #555;
   --font: "Poppins", sans-serif;
 }
@@ -40,7 +40,7 @@
   margin-top: 25px;
   font-weight: 300;
   font-size: 24px;
-  box-shadow: 10px 10px 80px rgba(104, 42, 233, 1);
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, .1);
   transition: all 0.3s ease;
 }
 .tb:hover {
@@ -194,7 +194,7 @@ h2 {
   height: 44px;
   padding: 0 25px !important;
   margin: 0 !important;
-  box-shadow: 10px 10px 80px rgba(104, 42, 233, 1);
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, .1);
   color: white;
   border-radius: 10px 0px 0px 10px;
   background-color: var(--bg);
@@ -206,7 +206,7 @@ h2 {
 }
 .bb {
   background-color: var(--bg);
-  box-shadow: 0px 0px 200px rgba(104, 42, 233, 1) inset;
+  box-shadow: 0px 0px 200px rgba(0, 0, 0, 1) inset;
   font-size: 12px;
   font-weight: 900;
   color: var(--light);
