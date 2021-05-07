@@ -139,13 +139,6 @@ const PratoList = (props) => {
     <div className="container">
       <Menu></Menu>
       {renderConfirmDelete()}
-      <h2>Lista de Pratos</h2>
-      <button className="btn-page" onClick={handleGerar}>
-        Gerar Pratos
-      </button>
-      <button className="btn-page lixo" onClick={handleExcluirTodos}>
-        Excluir Todos
-      </button>
       <form className="pd">
         <input
           className="cb"
@@ -156,6 +149,13 @@ const PratoList = (props) => {
         />
         <button className="bb">Pesquisar</button>
       </form>
+      <button className="btn-page" onClick={handleGerar}>
+        Gerar Pratos
+      </button>
+      <button className="btn-page lixo" onClick={handleExcluirTodos}>
+        Excluir Todos
+      </button>
+
       <div className="tb-cnt">{tableData}</div>
       <button className="btn" onClick={() => history.push("/pratos/novo")}>
         Criar Novo Prato
