@@ -1,4 +1,4 @@
-package br.jordaoqualho.back.pedidos;
+package br.jordaoqualho.back.inspecao;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -15,7 +15,7 @@ import lombok.Setter;
 
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Pedido {
+public class Inspecao {
     @Getter
     @Id
     @EqualsAndHashCode.Include
@@ -32,11 +32,11 @@ public class Pedido {
     private BigDecimal valorTotal;
     
 
-    public Pedido() {
+    public Inspecao() {
         this.id = UUID.randomUUID().toString();
     }
 
-    public Pedido(String nomeDoCliente, LocalDate lancadoEm, BigDecimal valorTotal) {
+    public Inspecao(String nomeDoCliente, LocalDate lancadoEm, BigDecimal valorTotal) {
         this();
         this.nomeDoCliente = nomeDoCliente;
         this.lancadoEm = lancadoEm;

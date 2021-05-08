@@ -1,0 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+:root {
+  --purple: #e8eaed;
+  --red: rgb(192, 0, 0);
+  --light: #dbdbdb;
+  --bg: #ffffff;
+  --comment: #555;
+  --font: "Poppins", sans-serif;
+}
+
+.menu-container {
+  min-height: 100vh;
+  max-height: 100%;
+  box-shadow: 2px -10px 15px rgba(0, 0, 0, 0.1) inset;
+}
+.h1-menu {
+  color: var(--comment);
+  padding-left: 20px;
+}
+.nav {
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 0 20px;
+  list-style: none;
+}
+.nav a {
+  text-decoration: none;
+  padding-right: 20px;
+  font-weight: 300;
+  list-style: none;
+  font-size: 24px;
+  color: var(--light);
+  transition: 0.3s ease;
+}
+.nav a:hover {
+  color: var(--comment);
+}

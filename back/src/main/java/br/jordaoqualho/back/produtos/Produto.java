@@ -1,4 +1,4 @@
-package br.jordaoqualho.back.pratos;
+package br.jordaoqualho.back.produtos;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -14,14 +14,14 @@ import lombok.Setter;
 
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Prato {
+public class Produto {
     @Getter
     @Id
     @EqualsAndHashCode.Include
     private String id;
     @Getter
     @Setter
-    private String nomeDoPrato;    
+    private String nomeDoProduto;    
     @Getter
     @Setter
     @Column(scale = 2)
@@ -31,13 +31,13 @@ public class Prato {
     private Integer estoque;
     
 
-    public Prato() {
+    public Produto() {
         this.id = UUID.randomUUID().toString();
     }
 
-    public Prato(String nomeDoPrato, BigDecimal preco, Integer estoque) {
+    public Produto(String nomeDoProduto, BigDecimal preco, Integer estoque) {
         this();
-        this.nomeDoPrato = nomeDoPrato;
+        this.nomeDoProduto = nomeDoProduto;
         this.preco = preco;
         this.estoque = estoque;
     }    

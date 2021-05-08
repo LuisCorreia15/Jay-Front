@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../../App.css";
+import "./menu.css";
 
 const Menu = () => {
   return (
-    <div>
+    <div className="menu-container">
       <div>
         <h1 className="h1-menu">Jay</h1>
       </div>
@@ -13,10 +13,10 @@ const Menu = () => {
           <li>Home</li>
         </Link>
         <Link to="/pratos">
-          <li>Pratos</li>
+          <li>Produtos</li>
         </Link>
         <Link to="/pedidos">
-          <li>Pedidos</li>
+          <li>Inspeção</li>
         </Link>
       </ul>
     </div>

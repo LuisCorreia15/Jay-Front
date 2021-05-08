@@ -92,6 +92,7 @@
 }
 .container {
   width: 100%;
+  padding-left: 20px;
 }
 .container {
   margin-bottom: 100px;
@@ -129,7 +130,7 @@ input:required:invalid {
   background-color: var(--bg);
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
   color: var(--light);
@@ -186,9 +187,9 @@ h2 {
 .pd {
   display: flex;
   justify-content: space-between;
-  margin-top: 50px;
+  margin-top: 20px;
+  padding-right: 20px;
 }
-
 .cb {
   height: 44px;
   padding: 0 25px !important;
@@ -204,11 +205,11 @@ h2 {
   color: var(--comment);
 }
 .bb {
-  background-color: var(--bg);
-  box-shadow: 0px 0px 200px rgba(0, 0, 0, 1) inset;
-  font-size: 12px;
+  background-color: var(--comment);
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
   font-weight: 900;
-  color: var(--light);
+  color: var(--bg);
   cursor: pointer;
   height: 50px !important;
   padding: 0px 40px;
@@ -219,36 +220,8 @@ h2 {
   transition: all 0.3s ease;
 }
 .bb:hover {
-  box-shadow: 0px 0px 30px rgba(104, 42, 233, 1) inset;
-
-  color: white;
-}
-.holder {
-  display: flex;
-  flex-direction: row;
-}
-
-.h1-menu {
+  background-color: #fff;
   color: var(--comment);
-  padding-left: 20px;
-}
-.nav {
-  display: flex;
-  flex-direction: column;
-  padding: 0 0 0 20px;
-  list-style: none;
-}
-.nav a {
-  text-decoration: none;
-  padding-right: 20px;
-  font-weight: 300;
-  list-style: none;
-  font-size: 24px;
-  color: var(--light);
-  transition: 0.3s ease;
-}
-.nav a:hover {
-  color: var(--purple);
 }
 .btn-page {
   background-color: var(--bg);

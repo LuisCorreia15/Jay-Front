@@ -136,47 +136,49 @@ const PratoList = (props) => {
   };
 
   return (
-    <div className="container">
+    <>
       <Menu></Menu>
-      {renderConfirmDelete()}
-      <form className="pd">
-        <input
-          className="cb"
-          type="text"
-          value={statusPesquisa.termoDePesquisa}
-          placeholder="O que deseja buscar?"
-          onChange={handleSearchInputChange}
-        />
-        <button className="bb">Pesquisar</button>
-      </form>
-      <button className="btn-page" onClick={handleGerar}>
-        Gerar Pratos
-      </button>
-      <button className="btn-page lixo" onClick={handleExcluirTodos}>
-        Excluir Todos
-      </button>
+      <div className="container">
+        {renderConfirmDelete()}
+        <form className="pd">
+          <input
+            className="cb"
+            type="text"
+            value={statusPesquisa.termoDePesquisa}
+            placeholder="O que deseja buscar?"
+            onChange={handleSearchInputChange}
+          />
+          <button className="bb">Pesquisar</button>
+        </form>
+        <button className="btn-page" onClick={handleGerar}>
+          Gerar Pratos
+        </button>
+        <button className="btn-page lixo" onClick={handleExcluirTodos}>
+          Excluir Todos
+        </button>
 
-      <div className="tb-cnt">{tableData}</div>
-      <button className="btn" onClick={() => history.push("/pratos/novo")}>
-        Criar Novo Prato
-      </button>
-      <button
-        className="btn-page"
-        onClick={() => requestPage(pratos.pageable.pageNumber - 1)}
-      >
-        {"<"}
-      </button>
-      <span>
-        Página {pratos.totalPages > 0 ? pratos.pageable.pageNumber + 1 : 0} de{" "}
-        {pratos.totalPages}
-      </span>
-      <button
-        className="btn-page"
-        onClick={() => requestPage(pratos.pageable.pageNumber + 1)}
-      >
-        {">"}
-      </button>
-    </div>
+        <div className="tb-cnt">{tableData}</div>
+        <button className="btn" onClick={() => history.push("/pratos/novo")}>
+          Criar Novo Prato
+        </button>
+        <button
+          className="btn-page"
+          onClick={() => requestPage(pratos.pageable.pageNumber - 1)}
+        >
+          {"<"}
+        </button>
+        <span>
+          Página {pratos.totalPages > 0 ? pratos.pageable.pageNumber + 1 : 0} de{" "}
+          {pratos.totalPages}
+        </span>
+        <button
+          className="btn-page"
+          onClick={() => requestPage(pratos.pageable.pageNumber + 1)}
+        >
+          {">"}
+        </button>
+      </div>
+    </>
   );
 };
 

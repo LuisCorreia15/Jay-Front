@@ -1,4 +1,4 @@
-package br.jordaoqualho.back.pedidos;
+package br.jordaoqualho.back.inspecao;
 
 
 
@@ -16,38 +16,38 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/pedidos")
-public class PedidoController {
+@RequestMapping("/api/Inspecaos")
+public class InspecaoController {
     @Autowired
-    private PedidoService service; 
+    private InspecaoService service; 
    
 
     @GetMapping
-    public Page<Pedido> get(Pageable pageRequest,  @RequestParam(name = "termo",required = false) String termo) {
+    public Page<Inspecao> get(Pageable pageRequest,  @RequestParam(name = "termo",required = false) String termo) {
         System.out.println(">>>> [" + termo + "]");
         return service.obterTodos(pageRequest, termo);
     }
  
     @GetMapping("/{idParaEditar}")
-    public Pedido getById(@PathVariable("idParaEditar") String idParaEditar) {
+    public Inspecao getById(@PathVariable("idParaEditar") String idParaEditar) {
         return service.obterPeloId(idParaEditar);
     }
 
     @PutMapping("/{id}")
-    public void put(@PathVariable String id, @RequestBody Pedido pedidoEditado) {
-        service.salvar(pedidoEditado);
+    public void put(@PathVariable String id, @RequestBody Inspecao InspecaoEditado) {
+        service.salvar(InspecaoEditado);
     }
 
-    @PostMapping("/gerar-pedidos")
-    public String postGerarPedidos() {
-        service.gerarPedidos();
-        return "Pedidos gerados com sucesso!";
+    @PostMapping("/gerar-Inspecaos")
+    public String postGerarInspecaos() {
+        service.gerarInspecaos();
+        return "Inspecaos gerados com sucesso!";
     }
 
     @PostMapping
-    public String post(@RequestBody Pedido novo) {
-        Pedido pedidoSalvo = service.salvar(novo);
-        return pedidoSalvo.getId();
+    public String post(@RequestBody Inspecao novo) {
+        Inspecao InspecaoSalvo = service.salvar(novo);
+        return InspecaoSalvo.getId();
     }
 
 

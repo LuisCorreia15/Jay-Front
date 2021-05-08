@@ -1,4 +1,4 @@
-package br.jordaoqualho.back.pratos;
+package br.jordaoqualho.back.produtos;
 
 
 import java.math.BigDecimal;
@@ -14,20 +14,20 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Transactional
-public class PratoService {
+public class ProdutoService {
     @Autowired
-    private PratoRepository repository;
+    private ProdutoRepository repository;
       Faker faker = new Faker();
 
-    public Page<Prato> obterTodos(Pageable pageRequest, String termo) {
+    public Page<Produto> obterTodos(Pageable pageRequest, String termo) {
         if (termo == null || termo.trim().length() == 0) {
              return repository.findAll(pageRequest);            
         }
-        return repository.findBynomeDoPratoLike(pageRequest, "%" + termo + "%");
+        return repository.findBynomeDoProdutoLike(pageRequest, "%" + termo + "%");
     }  
 
-    public Prato obterPeloId(String id) {
-        return repository.findById(id).orElseGet(Prato::new);
+    public Produto obterPeloId(String id) {
+        return repository.findById(id).orElseGet(Produto::new);
     }
 
     public void excluirPeloId(String id) {
@@ -39,16 +39,16 @@ public class PratoService {
     }
 
 
-    public Prato salvar(Prato prato) {
-        return repository.save(prato);
+    public Produto salvar(Produto Produto) {
+        return repository.save(Produto);
     }    
 
-    public void gerarPratos(){     
+    public void gerarProdutos(){     
         for (int i = 0; i < 10; i++) {
             String name = faker.food().dish();
             Double price = faker.number().randomDouble(1, 2, 6);
             int estoque = faker.number().numberBetween(100, 1000);
-            Prato novo = new Prato(name, new BigDecimal(price), estoque);
+            Produto novo = new Produto(name, new BigDecimal(price), estoque);
             repository.save(novo);
         }     
     }

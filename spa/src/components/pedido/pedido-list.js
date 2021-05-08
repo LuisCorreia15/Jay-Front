@@ -136,7 +136,7 @@ const PedidoList = (props) => {
   };
 
   return (
-    <div className="container">
+    <>
       <Menu></Menu>
       {renderConfirmDelete()}
       <h2>Pedidos Feitos</h2>
@@ -176,7 +176,7 @@ const PedidoList = (props) => {
       >
         {">"}
       </button>
-    </div>
+    </>
   );
 };
 
