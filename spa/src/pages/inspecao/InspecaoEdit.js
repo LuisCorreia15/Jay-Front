@@ -3,12 +3,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useHistory, useParams } from "react-router-dom";
-import tempAlert from "../alert/alert";
+import tempAlert from "../../components/alert/Alert";
 
-const PedidoEdit = () => {
+const InspecaoEdit = () => {
   const history = useHistory();
   const { idParaEditar } = useParams();
-  const [pedido, setPedido] = useState({
+  const [Inspecao, setInspecao] = useState({
     nomeDoCliente: "",
     lancadoEm: new Date(),
     valorTotal: 0.0,
@@ -16,8 +16,8 @@ const PedidoEdit = () => {
 
 
   const doGetById = async () => {
-    const response = await axios.get(`/api/pedidos/${idParaEditar}`, pedido);
-    setPedido(response.data);
+    const response = await axios.get(`/api/inspecao/${idParaEditar}`, Inspecao);
+    setInspecao(response.data);
   };
 
   useEffect(() => {
@@ -25,9 +25,9 @@ const PedidoEdit = () => {
   }, []);
 
   const doPut = async () => {
-    await axios.put(`/api/pedidos/${idParaEditar}`, pedido);
-    tempAlert(`${pedido.nomeDoCliente} alterado com sucesso!`, 5000);
-    history.push("/pedidos");
+    await axios.put(`/api/inspecao/${idParaEditar}`, Inspecao);
+    tempAlert(`${Inspecao.nomeDoCliente} alterado com sucesso!`, 5000);
+    history.push("/inspecao");
   };
 
   const handleSubmit = (event) => {
@@ -36,13 +36,13 @@ const PedidoEdit = () => {
   };
 
   const handleChange = (event) => {
-    const novopedido = { ...pedido, [event.target.name]: event.target.value };
-    setPedido(novopedido);
+    const novoInspecao = { ...Inspecao, [event.target.name]: event.target.value };
+    setInspecao(novoInspecao);
   };
 
   return (
     <div>
-      <h2>Edição de Pedido</h2>
+      <h2>Edição de Inspecao</h2>
       <form onSubmit={handleSubmit}>
         <div>
           Nome Do Cliente
@@ -51,7 +51,7 @@ const PedidoEdit = () => {
             name="nomeDoCliente"
             required
             onChange={handleChange}
-            value={pedido.nomeDoCliente}
+            value={Inspecao.nomeDoCliente}
           ></input>
         </div>
         <div>
@@ -61,7 +61,7 @@ const PedidoEdit = () => {
             name="lancadoEm"
             required
             onChange={handleChange}
-            value={pedido.lancadoEm}
+            value={Inspecao.lancadoEm}
           ></input>
         </div>
         <div>
@@ -71,11 +71,11 @@ const PedidoEdit = () => {
             name="valorTotal"
             required
             onChange={handleChange}
-            value={pedido.valorTotal}
+            value={Inspecao.valorTotal}
           ></input>
         </div>
         <button className="btn">Enviar</button>
-        <button className="btn-cancel" onClick={() => history.push("/pedidos")}>
+        <button className="btn-cancel" onClick={() => history.push("/Inspecao")}>
           Cancelar
         </button>
       </form>
@@ -83,4 +83,4 @@ const PedidoEdit = () => {
   );
 };
 
-export default PedidoEdit;
+export default InspecaoEdit;

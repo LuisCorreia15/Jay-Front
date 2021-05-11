@@ -3,15 +3,14 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
+import Menu from "components/menu/menu";
+import tempAlert from "components/alert/Alert";
+import DeleteConfirm from "components/alert/DeleteConfirm";
 
-import Menu from "../menu/menu";
-import tempAlert from "../alert/alert";
-import DeleteConfirm from "../alert/deleteConfirm";
-
-const PedidoList = (props) => {
+const InspecaoList = (props) => {
   const { statusPesquisa, setStatusPesquisa } = props;
   const history = useHistory();
-  const [pedidos, setPedidos] = useState({
+  const [Inspecao, setInspecao] = useState({
     content: [],
     pageable: { pageNumber: 0 },
     totalPages: 0,
@@ -20,29 +19,29 @@ const PedidoList = (props) => {
   const [tempNome, setTempNome] = useState("");
   const [tempId, setTempId] = useState("");
 
-  const doGetPedidos = async (páginaRequerida, termoDePesquisa) => {
+  const doGetInspecao = async (páginaRequerida, termoDePesquisa) => {
     const response = await axios.get(
-      `/api/pedidos?termo=${termoDePesquisa}&page=${páginaRequerida}`
+      `/api/inspecao?termo=${termoDePesquisa}&page=${páginaRequerida}`
     );
-    setPedidos(response.data);
+    setInspecao(response.data);
   };
 
   useEffect(() => {
-    doGetPedidos(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
+    doGetInspecao(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const doExcluirPedidos = async (id, name) => {
-    await axios.delete(`/api/pedidos/${id}`);
-    if (pedidos.content.length === 1) {
-      doGetPedidos(
+  const doExcluirInspecao = async (id, name) => {
+    await axios.delete(`/api/inspecao/${id}`);
+    if (Inspecao.content.length === 1) {
+      doGetInspecao(
         statusPesquisa.páginaAtual - 1,
         statusPesquisa.termoDePesquisa
       );
     } else {
-      doGetPedidos(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
+      doGetInspecao(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
     }
-    tempAlert("Pedido de " + name + " excluído!", 5000);
+    tempAlert("Inspecao de " + name + " excluído!", 5000);
     setConfirmState(false);
   };
 
@@ -61,35 +60,35 @@ const PedidoList = (props) => {
   };
 
   useEffect(() => {
-    doGetPedidos(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
+    doGetInspecao(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [statusPesquisa.termoDePesquisa]);
 
-  const doGerarPedidos = async () => {
-    await axios.post(`/api/pedidos/gerar-pedidos`);
-    tempAlert("10 Pedidos gerados!", 5000);
-    doGetPedidos(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
+  const doGerarInspecao = async () => {
+    await axios.post(`/api/Inspecao/gerar-Inspecao`);
+    tempAlert("10 Inspecao gerados!", 5000);
+    doGetInspecao(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
   };
 
   const handleGerar = () => {
-    doGerarPedidos();
+    doGerarInspecao();
   };
 
-  const doExcluirTodosPedidos = async () => {
-    await axios.delete(`/api/pedidos/excluir-todos`);
-    tempAlert("Todos Pedidos excluídos!", 5000);
-    doGetPedidos(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
+  const doExcluirTodosInspecao = async () => {
+    await axios.delete(`/api/Inspecao/excluir-todos`);
+    tempAlert("Todos Inspecao excluídos!", 5000);
+    doGetInspecao(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
   };
 
   const handleExcluirTodos = () => {
-    doExcluirTodosPedidos();
+    doExcluirTodosInspecao();
   };
 
   const renderConfirmDelete = () => {
     return (
       <DeleteConfirm
         estado={confirmState}
-        doExcluirPratos={doExcluirPedidos}
+        doExcluirPratos={doExcluirInspecao}
         id={tempId}
         nome={tempNome}
         setConfirmState={setConfirmState}
@@ -98,10 +97,10 @@ const PedidoList = (props) => {
   };
 
   const tableData =
-    pedidos.content.length === 0 ? (
+    Inspecao.content.length === 0 ? (
       <p>Nada encontrado!</p>
     ) : (
-      pedidos.content.map((row) => {
+      Inspecao.content.map((row) => {
         return (
           <div className="tb" key={row.id}>
             <div className="tb-title">
@@ -109,7 +108,9 @@ const PedidoList = (props) => {
               <h2>{row.nomeDoCliente}</h2> <p>{row.lancadoEm}</p>
             </div>
             <div className="tb-price">
-              <button onClick={() => history.push(`/pedidos/editar/${row.id}`)}>
+              <button
+                onClick={() => history.push(`/Inspecao/editar/${row.id}`)}
+              >
                 <FontAwesomeIcon icon={faEdit} />
               </button>
               <button
@@ -129,19 +130,19 @@ const PedidoList = (props) => {
     if (requestedPage <= 0) {
       requestedPage = 0;
     }
-    if (requestedPage >= pedidos.totalPages) {
-      requestedPage = pedidos.totalPages - 1;
+    if (requestedPage >= Inspecao.totalPages) {
+      requestedPage = Inspecao.totalPages - 1;
     }
-    doGetPedidos(requestedPage, statusPesquisa.termoDePesquisa);
+    doGetInspecao(requestedPage, statusPesquisa.termoDePesquisa);
   };
 
   return (
     <>
       <Menu></Menu>
       {renderConfirmDelete()}
-      <h2>Pedidos Feitos</h2>
+      <h2>Inspecao Feitos</h2>
       <button className="btn-page" onClick={handleGerar}>
-        Gerar Pedidos
+        Gerar Inspecao
       </button>
       <button className="btn-page lixo" onClick={handleExcluirTodos}>
         Excluir Todos
@@ -157,22 +158,22 @@ const PedidoList = (props) => {
         <button className="bb">Pesquisar</button>
       </form>
       <div className="tb-cnt">{tableData}</div>
-      <button className="btn" onClick={() => history.push("/pedidos/novo")}>
-        Criar Novo Pedido
+      <button className="btn" onClick={() => history.push("/Inspecao/novo")}>
+        Criar Novo Inspecao
       </button>
       <button
         className="btn-page"
-        onClick={() => requestPage(pedidos.pageable.pageNumber - 1)}
+        onClick={() => requestPage(Inspecao.pageable.pageNumber - 1)}
       >
         {"<"}
       </button>
       <span>
-        Página {pedidos.totalPages > 0 ? pedidos.pageable.pageNumber + 1 : 0} de{" "}
-        {pedidos.totalPages}
+        Página {Inspecao.totalPages > 0 ? Inspecao.pageable.pageNumber + 1 : 0}{" "}
+        de {Inspecao.totalPages}
       </span>
       <button
         className="btn-page"
-        onClick={() => requestPage(pedidos.pageable.pageNumber + 1)}
+        onClick={() => requestPage(Inspecao.pageable.pageNumber + 1)}
       >
         {">"}
       </button>
@@ -180,4 +181,4 @@ const PedidoList = (props) => {
   );
 };
 
-export default PedidoList;
+export default InspecaoList;

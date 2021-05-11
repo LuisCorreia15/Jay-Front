@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/Produtos")
+@RequestMapping("/api/produto")
 public class ProdutoController {
     @Autowired
     private ProdutoService service; 
@@ -38,7 +38,7 @@ public class ProdutoController {
         service.salvar(ProdutoEditado);
     }
 
-    @PostMapping("/gerar-Produtos")
+    @PostMapping("/gerar-produto")
     public String postGerarProdutos() {
         service.gerarProdutos();
         return "Produtos gerados com sucesso!";

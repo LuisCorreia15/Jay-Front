@@ -1,6 +1,6 @@
 import React from "react";
-import Menu from "../menu/menu";
-import "./landing.css";
+import Menu from "../../components/menu/menu";
+import "./Landing.css";
 
 export const LandingPage = () => {
   return (

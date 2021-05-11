@@ -3,20 +3,20 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useHistory, useParams } from "react-router-dom";
-import tempAlert from "../alert/alert";
+import tempAlert from "../../components/alert/Alert";
 
-const PratoEdit = () => {
+const ProdutoEdit = () => {
   const history = useHistory();
   const { idParaEditar } = useParams();
-  const [prato, setPrato] = useState({
-    nomeDoPrato: "",
+  const [Produto, setProduto] = useState({
+    nomeDoProduto: "",
     preco: 0.0,
     estoque: 0,
   });
 
   const doGetById = async () => {
-    const response = await axios.get(`/api/pratos/${idParaEditar}`, prato);
-    setPrato(response.data);
+    const response = await axios.get(`/api/produto/${idParaEditar}`, Produto);
+    setProduto(response.data);
   };
 
   useEffect(() => {
@@ -24,9 +24,9 @@ const PratoEdit = () => {
   }, []);
 
   const doPut = async () => {
-    await axios.put(`/api/pratos/${idParaEditar}`, prato);
-    tempAlert(`${prato.nomeDoPrato} alterado com sucesso!`, 5000);
-    history.push("/pratos");
+    await axios.put(`/api/produto/${idParaEditar}`, Produto);
+    tempAlert(`${Produto.nomeDoProduto} alterado com sucesso!`, 5000);
+    history.push("/produto");
   };
 
   const handleSubmit = (event) => {
@@ -35,22 +35,22 @@ const PratoEdit = () => {
   };
 
   const handleChange = (event) => {
-    const novoprato = { ...prato, [event.target.name]: event.target.value };
-    setPrato(novoprato);
+    const novoProduto = { ...Produto, [event.target.name]: event.target.value };
+    setProduto(novoProduto);
   };
 
   return (
     <div>
-      <h2>Edição de Prato</h2>
+      <h2>Edição de Produto</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          Nome Do Prato
+          Nome Do Produto
           <input
             type="text"
-            name="nomeDoPrato"
+            name="nomeDoProduto"
             required
             onChange={handleChange}
-            value={prato.nomeDoPrato}
+            value={Produto.nomeDoProduto}
           ></input>
         </div>
         <div>
@@ -60,7 +60,7 @@ const PratoEdit = () => {
             name="preco"
             required
             onChange={handleChange}
-            value={prato.preco}
+            value={Produto.preco}
           ></input>
         </div>
         <div>
@@ -70,11 +70,11 @@ const PratoEdit = () => {
             name="estoque"
             required
             onChange={handleChange}
-            value={prato.estoque}
+            value={Produto.estoque}
           ></input>
         </div>
         <button className="btn">Enviar</button>
-        <button className="btn-cancel" onClick={() => history.push("/pratos")}>
+        <button className="btn-cancel" onClick={() => history.push("/Produto")}>
           Cancelar
         </button>
       </form>
@@ -82,4 +82,4 @@ const PratoEdit = () => {
   );
 };
 
-export default PratoEdit;
+export default ProdutoEdit;

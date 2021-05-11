@@ -4,14 +4,14 @@ import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 
-import Menu from "../menu/menu";
-import tempAlert from "../alert/alert";
-import DeleteConfirm from "../alert/deleteConfirm";
+import Menu from "components/menu/menu";
+import tempAlert from "components/alert/Alert";
+import DeleteConfirm from "components/alert/DeleteConfirm";
 
-const PratoList = (props) => {
+const ProdutoList = (props) => {
   const { statusPesquisa, setStatusPesquisa } = props;
   const history = useHistory();
-  const [pratos, setPratos] = useState({
+  const [Produto, setProduto] = useState({
     content: [],
     pageable: { pageNumber: 0 },
     totalPages: 0,
@@ -20,15 +20,15 @@ const PratoList = (props) => {
   const [tempNome, setTempNome] = useState("");
   const [tempId, setTempId] = useState("");
 
-  const doGetPratos = async (páginaRequerida, termoDePesquisa) => {
+  const doGetProduto = async (páginaRequerida, termoDePesquisa) => {
     const response = await axios.get(
-      `/api/pratos?termo=${termoDePesquisa}&page=${páginaRequerida}`
+      `/api/produto?termo=${termoDePesquisa}&page=${páginaRequerida}`
     );
-    setPratos(response.data);
+    setProduto(response.data);
   };
 
   useEffect(() => {
-    doGetPratos(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
+    doGetProduto(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -41,31 +41,31 @@ const PratoList = (props) => {
   };
 
   useEffect(() => {
-    doGetPratos(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
+    doGetProduto(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [statusPesquisa.termoDePesquisa]);
 
-  const doGerarPratos = async () => {
-    await axios.post(`/api/pratos/gerar-pratos`);
-    tempAlert("10 Pratos gerados!", 5000);
-    doGetPratos(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
+  const doGerarProduto = async () => {
+    await axios.post(`/api/Produto/gerar-Produto`);
+    tempAlert("10 Produto gerados!", 5000);
+    doGetProduto(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
   };
 
   const handleGerar = () => {
-    doGerarPratos();
+    doGerarProduto();
   };
 
-  const doExcluirPratos = async (id, name) => {
-    await axios.delete(`/api/pratos/${id}`);
-    if (pratos.content.length === 1) {
-      doGetPratos(
+  const doExcluirProduto = async (id, name) => {
+    await axios.delete(`/api/Produto/${id}`);
+    if (Produto.content.length === 1) {
+      doGetProduto(
         statusPesquisa.páginaAtual - 1,
         statusPesquisa.termoDePesquisa
       );
     } else {
-      doGetPratos(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
+      doGetProduto(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
     }
-    tempAlert("Prato de " + name + " excluído!", 5000);
+    tempAlert("Produto de " + name + " excluído!", 5000);
     setConfirmState(false);
   };
 
@@ -75,21 +75,21 @@ const PratoList = (props) => {
     setTempNome(name);
   };
 
-  const doExcluirTodosPratos = async () => {
-    await axios.delete(`/api/pratos/excluir-todos`);
-    tempAlert("Todos Pratos excluídos!", 5000);
-    doGetPratos(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
+  const doExcluirTodosProduto = async () => {
+    await axios.delete(`/api/Produto/excluir-todos`);
+    tempAlert("Todos Produto excluídos!", 5000);
+    doGetProduto(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
   };
 
   const handleExcluirTodos = () => {
-    doExcluirTodosPratos();
+    doExcluirTodosProduto();
   };
 
   const renderConfirmDelete = () => {
     return (
       <DeleteConfirm
         estado={confirmState}
-        doExcluirPratos={doExcluirPratos}
+        doExcluirProduto={doExcluirProduto}
         id={tempId}
         nome={tempNome}
         setConfirmState={setConfirmState}
@@ -98,23 +98,23 @@ const PratoList = (props) => {
   };
 
   const tableData =
-    pratos.content.length === 0 ? (
+    Produto.content.length === 0 ? (
       <p>Nada encontrado!</p>
     ) : (
-      pratos.content.map((row) => {
+      Produto.content.map((row) => {
         return (
           <div className="tb" key={row.id}>
             <div className="tb-title">
               <p>{row.id}</p>
-              <h2>{row.nomeDoPrato}</h2> <p>{row.estoque} no estoque</p>
+              <h2>{row.nomeDoProduto}</h2> <p>{row.estoque} no estoque</p>
             </div>
             <div className="tb-price">
-              <button onClick={() => history.push(`/pratos/editar/${row.id}`)}>
+              <button onClick={() => history.push(`/Produto/editar/${row.id}`)}>
                 <FontAwesomeIcon icon={faEdit} />
               </button>
               <button
                 className="i-lixo"
-                onClick={() => handleExcluir(row.id, row.nomeDoPrato)}
+                onClick={() => handleExcluir(row.id, row.nomeDoProduto)}
               >
                 <FontAwesomeIcon icon={faTrash} />
               </button>
@@ -129,10 +129,10 @@ const PratoList = (props) => {
     if (requestedPage <= 0) {
       requestedPage = 0;
     }
-    if (requestedPage >= pratos.totalPages) {
-      requestedPage = pratos.totalPages - 1;
+    if (requestedPage >= Produto.totalPages) {
+      requestedPage = Produto.totalPages - 1;
     }
-    doGetPratos(requestedPage, statusPesquisa.termoDePesquisa);
+    doGetProduto(requestedPage, statusPesquisa.termoDePesquisa);
   };
 
   return (
@@ -151,29 +151,29 @@ const PratoList = (props) => {
           <button className="bb">Pesquisar</button>
         </form>
         <button className="btn-page" onClick={handleGerar}>
-          Gerar Pratos
+          Gerar Produto
         </button>
         <button className="btn-page lixo" onClick={handleExcluirTodos}>
           Excluir Todos
         </button>
 
         <div className="tb-cnt">{tableData}</div>
-        <button className="btn" onClick={() => history.push("/pratos/novo")}>
-          Criar Novo Prato
+        <button className="btn" onClick={() => history.push("/Produto/novo")}>
+          Criar Novo Produto
         </button>
         <button
           className="btn-page"
-          onClick={() => requestPage(pratos.pageable.pageNumber - 1)}
+          onClick={() => requestPage(Produto.pageable.pageNumber - 1)}
         >
           {"<"}
         </button>
         <span>
-          Página {pratos.totalPages > 0 ? pratos.pageable.pageNumber + 1 : 0} de{" "}
-          {pratos.totalPages}
+          Página {Produto.totalPages > 0 ? Produto.pageable.pageNumber + 1 : 0}{" "}
+          de {Produto.totalPages}
         </span>
         <button
           className="btn-page"
-          onClick={() => requestPage(pratos.pageable.pageNumber + 1)}
+          onClick={() => requestPage(Produto.pageable.pageNumber + 1)}
         >
           {">"}
         </button>
@@ -182,4 +182,4 @@ const PratoList = (props) => {
   );
 };
 
-export default PratoList;
+export default ProdutoList;

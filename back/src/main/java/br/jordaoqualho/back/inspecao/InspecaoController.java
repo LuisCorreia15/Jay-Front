@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/Inspecaos")
+@RequestMapping("/api/inspecao")
 public class InspecaoController {
     @Autowired
     private InspecaoService service; 
@@ -38,10 +38,10 @@ public class InspecaoController {
         service.salvar(InspecaoEditado);
     }
 
-    @PostMapping("/gerar-Inspecaos")
+    @PostMapping("/gerar-inspecao")
     public String postGerarInspecaos() {
         service.gerarInspecaos();
-        return "Inspecaos gerados com sucesso!";
+        return "Inspecão gerada com sucesso!";
     }
 
     @PostMapping

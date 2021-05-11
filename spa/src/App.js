@@ -1,10 +1,10 @@
+import ProdutoManter from "pages/produto/ProdutoManter";
 import React from "react";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 
 import "./App.css";
-import LandingPage from "./components/landing/landing-page";
-import PedidoManter from "./components/pedido/pedido-manter";
-import PratoManter from "./components/prato/prato-manter";
+import InspecaoManter from "./pages/inspecao/InspecaoManter";
+import LandingPage from "./pages/landing/LadingPage";
 
 function App() {
   return (
@@ -15,8 +15,8 @@ function App() {
             <Route exact path="/">
               <LandingPage></LandingPage>
             </Route>            
-            <Route path="/pedidos" component={PedidoManter}></Route>
-            <Route path="/pratos" component={PratoManter}></Route>
+            <Route path="/inspecao" component={InspecaoManter}></Route>
+            <Route path="/produto" component={ProdutoManter}></Route>
           </Switch>
         </Router>
       </header>

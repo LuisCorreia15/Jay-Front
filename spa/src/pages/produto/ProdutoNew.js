@@ -2,24 +2,24 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-import "../../App.css";
-import tempAlert from "../alert/alert";
+import "App.css";
+import tempAlert from "components/alert/Alert";
 
 /* rafc  - comando para criar um component arrow*/
 
-const PedidoNew = () => {
+const ProdutoNew = () => {
   const history = useHistory();
-  const [pedido, setPedido] = useState({
-    nomeDoCliente: "",
-    lancadoEm: new Date(),
-    valorTotal: 0.0,
+  const [Produto, setProduto] = useState({
+    nomeDoProduto: "",
+    preco: 0.0,
+    estoque: 1000,
   });
 
   // nfn - comando para criar função anonima
   const doPost = async () => {
-    await axios.post("/api/pedidos", pedido);
-    tempAlert(`Pedido adicionado com sucesso!`,5000);
-    history.push("/pedidos");
+    await axios.post("/api/produto", Produto);
+    tempAlert(`Produto adicionado com sucesso!`, 5000);
+    history.push("/produto");
   };
 
   const handleSubmit = (event) => {
@@ -28,43 +28,46 @@ const PedidoNew = () => {
   };
 
   const handleChange = (event) => {
-    const novoPedido = { ...pedido, [event.target.name]: event.target.value };
-    setPedido(novoPedido);
+    const novoProduto = { ...Produto, [event.target.name]: event.target.value };
+    setProduto(novoProduto);
   };
 
   return (
     <div>
-      <h3>Cadastro de Pedido</h3>
+      <h3>Cadastro de Produto</h3>
       <form onSubmit={handleSubmit}>
         <div>
-          Nome Do Cliente
+          Nome Do Produto
           <input
             type="text"
+            name="nomeDoProduto"
             required
-            name="nomeDoCliente"
             onChange={handleChange}
+            value={Produto.nomeDoProduto}
           ></input>
         </div>
         <div>
-          Lançado em
+          Preço
           <input
-            type="date"
+            type="text"
+            name="preco"
             required
-            name="lancadoEm"
             onChange={handleChange}
+            value={Produto.preco}
           ></input>
         </div>
         <div>
-          Valor Total
+          Estoque
           <input
             type="text"
+            name="estoque"
             required
-            name="valorTotal"
             onChange={handleChange}
+            value={Produto.estoque}
           ></input>
         </div>
         <button className="btn">Enviar</button>
-        <button className="btn-cancel" onClick={() => history.push("/pedidos")}>
+        <button className="btn-cancel" onClick={() => history.push("/Produto")}>
           Cancelar
         </button>
       </form>
@@ -72,4 +75,4 @@ const PedidoNew = () => {
   );
 };
 
-export default PedidoNew;
+export default ProdutoNew;

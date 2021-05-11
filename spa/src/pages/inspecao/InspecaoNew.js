@@ -1,26 +1,23 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-
-import "../../App.css";
-import tempAlert from "../alert/alert";
+import tempAlert from "components/alert/Alert";
 
 /* rafc  - comando para criar um component arrow*/
 
-const PratoNew = () => {
-  console.log("oi");
+const inspecaoNew = () => {
   const history = useHistory();
-  const [prato, setPrato] = useState({
-    nomeDoPrato: "",
-    preco: 0.0,
-    estoque: 1000,
+  const [inspecao, setInspecao] = useState({
+    nomeDoCliente: "",
+    lancadoEm: new Date(),
+    valorTotal: 0.0,
   });
 
   // nfn - comando para criar função anonima
   const doPost = async () => {
-    await axios.post("/api/pratos", prato);
-    tempAlert(`Prato adicionado com sucesso!`, 5000);
-    history.push("/pratos");
+    await axios.post("/api/inspecao", inspecao);
+    tempAlert(`Inspecao adicionada com sucesso!`, 5000);
+    history.push("/inspecao");
   };
 
   const handleSubmit = (event) => {
@@ -29,46 +26,49 @@ const PratoNew = () => {
   };
 
   const handleChange = (event) => {
-    const novoPrato = { ...prato, [event.target.name]: event.target.value };
-    setPrato(novoPrato);
+    const novoinspecao = {
+      ...inspecao,
+      [event.target.name]: event.target.value,
+    };
+    setInspecao(novoinspecao);
   };
 
   return (
     <div>
-      <h3>Cadastro de Prato</h3>
+      <h3>Cadastro de inspecao</h3>
       <form onSubmit={handleSubmit}>
         <div>
-          Nome Do Prato
+          Nome Do Cliente
           <input
             type="text"
-            name="nomeDoPrato"
             required
+            name="nomeDoCliente"
             onChange={handleChange}
-            value={prato.nomeDoPrato}
           ></input>
         </div>
         <div>
-          Preço
+          Lançado em
           <input
-            type="text"
-            name="preco"
+            type="date"
             required
+            name="lancadoEm"
             onChange={handleChange}
-            value={prato.preco}
           ></input>
         </div>
         <div>
-          Estoque
+          Valor Total
           <input
             type="text"
-            name="estoque"
             required
+            name="valorTotal"
             onChange={handleChange}
-            value={prato.estoque}
           ></input>
         </div>
         <button className="btn">Enviar</button>
-        <button className="btn-cancel" onClick={() => history.push("/pratos")}>
+        <button
+          className="btn-cancel"
+          onClick={() => history.push("/inspecaos")}
+        >
           Cancelar
         </button>
       </form>
@@ -76,4 +76,4 @@ const PratoNew = () => {
   );
 };
 
-export default PratoNew;
+export default inspecaoNew;
