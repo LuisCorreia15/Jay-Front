@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Alerts.css";
+import "./Alert.css";
 
 const DeleteConfirm = (props) => {
   const { estado, doExcluirPratos, setConfirmState, id, nome } = props;

@@ -12,10 +12,10 @@ const Menu = () => {
         <Link to="/">
           <li>Home</li>
         </Link>
-        <Link to="/pratos">
+        <Link to="/produto">
           <li>Produtos</li>
         </Link>
-        <Link to="/pedidos">
+        <Link to="/inspecao">
           <li>Inspeção</li>
         </Link>
       </ul>

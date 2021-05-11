@@ -5,7 +5,7 @@ import tempAlert from "components/alert/Alert";
 
 /* rafc  - comando para criar um component arrow*/
 
-const inspecaoNew = () => {
+const InspecaoNew = () => {
   const history = useHistory();
   const [inspecao, setInspecao] = useState({
     nomeDoCliente: "",
@@ -76,4 +76,4 @@ const inspecaoNew = () => {
   );
 };
 
-export default inspecaoNew;
+export default InspecaoNew;
