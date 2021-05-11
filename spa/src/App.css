@@ -4,7 +4,7 @@
   --red: rgb(192, 0, 0);
   --light: #dbdbdb;
   --bg: #ffffff;
-  --comment: #555;
+  --comment: #000000;
   --font: "Poppins", sans-serif;
 }
 
@@ -99,6 +99,7 @@
 }
 .container {
   min-height: 100vh;
+  background-color: var(--BG);
   width: 100%;
   padding: 0 20px;
 }
