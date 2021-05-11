@@ -150,15 +150,19 @@ const ProdutoList = (props) => {
           <button className="bb">Pesquisar</button>
         </form>
         <button className="btn-page" onClick={handleGerar}>
-          Gerar Produto
+          Gerar 10 Produtos
+        </button>
+        <button
+          className="btn-page novo"
+          onClick={() => history.push("/Produto/novo")}
+        >
+          Novo Produto
         </button>
         <button className="btn-page lixo" onClick={handleExcluirTodos}>
           Excluir Todos
         </button>
+        
         <div className="tb-cnt">{tableData}</div>
-        <button className="btn" onClick={() => history.push("/Produto/novo")}>
-          Criar Novo Produto
-        </button>
         <button
           className="btn-page"
           onClick={() => requestPage(Produto.pageable.pageNumber - 1)}
