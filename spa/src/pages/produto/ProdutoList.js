@@ -3,7 +3,6 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
-
 import Menu from "components/menu/menu";
 import tempAlert from "components/alert/Alert";
 import DeleteConfirm from "components/alert/DeleteConfirm";
@@ -46,7 +45,7 @@ const ProdutoList = (props) => {
   }, [statusPesquisa.termoDePesquisa]);
 
   const doGerarProduto = async () => {
-    await axios.post(`/api/Produto/gerar-Produto`);
+    await axios.post(`/api/produto/gerar-Produto`);
     tempAlert("10 Produto gerados!", 5000);
     doGetProduto(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
   };
@@ -56,7 +55,7 @@ const ProdutoList = (props) => {
   };
 
   const doExcluirProduto = async (id, name) => {
-    await axios.delete(`/api/Produto/${id}`);
+    await axios.delete(`/api/produto/${id}`);
     if (Produto.content.length === 1) {
       doGetProduto(
         statusPesquisa.páginaAtual - 1,
@@ -156,7 +155,6 @@ const ProdutoList = (props) => {
         <button className="btn-page lixo" onClick={handleExcluirTodos}>
           Excluir Todos
         </button>
-
         <div className="tb-cnt">{tableData}</div>
         <button className="btn" onClick={() => history.push("/Produto/novo")}>
           Criar Novo Produto

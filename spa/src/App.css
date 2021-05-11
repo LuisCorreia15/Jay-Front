@@ -29,6 +29,11 @@
   font-family: var(--font);
   outline: none;
 }
+.tb-cnt {
+  margin-top: 100px;
+  font-weight: 300;
+  font-size: 24px;
+}
 .tb {
   border-radius: 20px;
   cursor: default;
@@ -92,7 +97,7 @@
 }
 .container {
   width: 100%;
-  padding-left: 20px;
+  padding: 0 20px;
 }
 .container {
   margin-bottom: 100px;
@@ -144,11 +149,12 @@ h2 {
   background-color: var(--bg);
   font-size: 15px;
   font-weight: 900;
+  border: none;
   color: var(--light);
   margin-top: 50px;
   cursor: pointer;
   text-transform: uppercase;
-  border: 1px solid var(--purple);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
   padding: 18px 0px;
   margin-bottom: 20px;
   width: 100%;
@@ -158,8 +164,8 @@ h2 {
   transition: all 0.3s ease;
 }
 .btn:hover {
-  color: var(--light);
-  background-color: var(--purple);
+  color: var(--bg);
+  background-color: var(--comment);
 }
 
 .btn-cancel {
@@ -188,17 +194,15 @@ h2 {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
-  padding-right: 20px;
 }
 .cb {
   height: 44px;
   padding: 0 25px !important;
   margin: 0 !important;
-  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
-  color: white;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
+  color: var(--comment);
   border-radius: 10px 0px 0px 10px;
   background-color: var(--bg);
-  padding: 5px 20px;
 }
 .cb::placeholder {
   font-weight: 300;
@@ -206,7 +210,7 @@ h2 {
 }
 .bb {
   background-color: var(--comment);
-  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
   font-size: 16px;
   font-weight: 900;
   color: var(--bg);
@@ -227,8 +231,9 @@ h2 {
   background-color: var(--bg);
   font-size: 15px;
   font-weight: 900;
+  border: none;
   color: var(--light);
-  border: 1px solid var(--purple);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
   cursor: pointer;
   text-transform: uppercase;
   padding: 10px 30px;
@@ -238,19 +243,17 @@ h2 {
   transition: all 0.3s ease;
 }
 .btn-page:hover {
-  background-color: var(--purple);
-  color: var(--light);
+  background-color: var(--comment);
+  color: var(--bg);
 }
 .lixo {
   margin-left: 50px;
 }
 .lixo:hover {
   background-color: var(--red) !important;
-  border: 1px solid var(--red);
 }
 span {
   font-size: 18px;
   padding: 10px 30px;
-
   font-weight: 500;
 }
