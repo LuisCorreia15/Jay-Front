@@ -1,13 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
-:root {
-  --purple: #e8eaed;
-  --red: rgb(192, 0, 0);
-  --light: #dbdbdb;
-  --bg: #ffffff;
-  --comment: #555;
-  --font: "Poppins", sans-serif;
-}
-
 .confirm {
   width: 100%;
   height: 100%;

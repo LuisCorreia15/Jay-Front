@@ -45,7 +45,7 @@ const ProdutoList = (props) => {
   }, [statusPesquisa.termoDePesquisa]);
 
   const doGerarProduto = async () => {
-    await axios.post(`/api/produto/gerar-Produto`);
+    await axios.post(`/api/produto/gerar-produto`);
     tempAlert("10 Produto gerados!", 5000);
     doGetProduto(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
   };
@@ -108,7 +108,7 @@ const ProdutoList = (props) => {
               <h2>{row.nomeDoProduto}</h2> <p>{row.estoque} no estoque</p>
             </div>
             <div className="tb-price">
-              <button onClick={() => history.push(`/Produto/editar/${row.id}`)}>
+              <button onClick={() => history.push(`/produto/editar/${row.id}`)}>
                 <FontAwesomeIcon icon={faEdit} />
               </button>
               <button
@@ -154,7 +154,7 @@ const ProdutoList = (props) => {
         </button>
         <button
           className="btn-page novo"
-          onClick={() => history.push("/Produto/novo")}
+          onClick={() => history.push("/produto/novo")}
         >
           Novo Produto
         </button>
