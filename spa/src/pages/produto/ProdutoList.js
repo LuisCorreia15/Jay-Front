@@ -145,6 +145,7 @@ const ProdutoList = (props) => {
             type="text"
             value={statusPesquisa.termoDePesquisa}
             placeholder="O que deseja buscar?"
+            autoFocus
             onChange={handleSearchInputChange}
           />
           <button className="bb">Pesquisar</button>
@@ -161,7 +162,7 @@ const ProdutoList = (props) => {
         <button className="btn-page lixo" onClick={handleExcluirTodos}>
           Excluir Todos
         </button>
-        
+
         <div className="tb-cnt">{tableData}</div>
         <button
           className="btn-page"

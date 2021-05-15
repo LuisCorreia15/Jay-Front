@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 :root {
   --purple: #e8eaed;
-  --red: rgb(192, 0, 0);
+  --red: #ea4335;
   --light: #dbdbdb;
   --bg: #ffffff;
   --comment: #555;
@@ -44,16 +44,18 @@
   padding: 20px 50px;
   break-before: 5px;
   margin-top: 25px;
+  color: var(--comment);
   font-weight: 300;
   font-size: 24px;
   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  cursor: pointer;
 }
 .tb:hover {
-  background-color: var(--purple);
+  background-color: var(--comment);
+  color: var(--bg);
 }
 .tb:hover p {
-  color: var(--light);
+  color: var(--bg);
 }
 .tb:hover button {
   color: var(--light);

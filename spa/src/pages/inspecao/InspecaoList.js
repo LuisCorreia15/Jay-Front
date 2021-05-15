@@ -65,8 +65,8 @@ const InspecaoList = (props) => {
   }, [statusPesquisa.termoDePesquisa]);
 
   const doGerarInspecao = async () => {
-    await axios.post(`/api/Inspecao/gerar-Inspecao`);
-    tempAlert("10 Inspecao gerados!", 5000);
+    await axios.post(`/api/inspecao/gerar-inspecao`);
+    tempAlert("10 Inspecões geradas!", 5000);
     doGetInspecao(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
   };
 
@@ -75,8 +75,8 @@ const InspecaoList = (props) => {
   };
 
   const doExcluirTodosInspecao = async () => {
-    await axios.delete(`/api/Inspecao/excluir-todos`);
-    tempAlert("Todos Inspecao excluídos!", 5000);
+    await axios.delete(`/api/inspecao/excluir-todos`);
+    tempAlert("Todas Inspecões excluídas!", 5000);
     doGetInspecao(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
   };
 
@@ -109,7 +109,7 @@ const InspecaoList = (props) => {
             </div>
             <div className="tb-price">
               <button
-                onClick={() => history.push(`/Inspecao/editar/${row.id}`)}
+                onClick={() => history.push(`/inspecao/editar/${row.id}`)}
               >
                 <FontAwesomeIcon icon={faEdit} />
               </button>
@@ -139,44 +139,50 @@ const InspecaoList = (props) => {
   return (
     <>
       <Menu></Menu>
-      {renderConfirmDelete()}
-      <h2>Inspecao Feitos</h2>
-      <button className="btn-page" onClick={handleGerar}>
-        Gerar Inspecao
-      </button>
-      <button className="btn-page lixo" onClick={handleExcluirTodos}>
-        Excluir Todos
-      </button>
-      <form className="pd">
-        <input
-          className="cb"
-          type="text"
-          value={statusPesquisa.termoDePesquisa}
-          placeholder="O que deseja buscar?"
-          onChange={handleSearchInputChange}
-        />
-        <button className="bb">Pesquisar</button>
-      </form>
-      <div className="tb-cnt">{tableData}</div>
-      <button className="btn" onClick={() => history.push("/Inspecao/novo")}>
-        Criar Novo Inspecao
-      </button>
-      <button
-        className="btn-page"
-        onClick={() => requestPage(Inspecao.pageable.pageNumber - 1)}
-      >
-        {"<"}
-      </button>
-      <span>
-        Página {Inspecao.totalPages > 0 ? Inspecao.pageable.pageNumber + 1 : 0}{" "}
-        de {Inspecao.totalPages}
-      </span>
-      <button
-        className="btn-page"
-        onClick={() => requestPage(Inspecao.pageable.pageNumber + 1)}
-      >
-        {">"}
-      </button>
+      <div className="container">
+        {renderConfirmDelete()}
+        <form className="pd">
+          <input
+            className="cb"
+            type="text"
+            value={statusPesquisa.termoDePesquisa}
+            placeholder="O que deseja buscar?"
+            autoFocus
+            onChange={handleSearchInputChange}
+          />
+          <button className="bb">Pesquisar</button>
+        </form>
+        <button className="btn-page" onClick={handleGerar}>
+          Gerar 10 Inspecões
+        </button>
+        <button
+          className="btn-page novo"
+          onClick={() => history.push("/inspecao/novo")}
+        >
+          Nova Inspecão
+        </button>
+        <button className="btn-page lixo" onClick={handleExcluirTodos}>
+          Excluir Todas
+        </button>
+        <div className="tb-cnt">{tableData}</div>
+        <button
+          className="btn-page"
+          onClick={() => requestPage(Inspecao.pageable.pageNumber - 1)}
+        >
+          {"<"}
+        </button>
+        <span>
+          Página{" "}
+          {Inspecao.totalPages > 0 ? Inspecao.pageable.pageNumber + 1 : 0} de{" "}
+          {Inspecao.totalPages}
+        </span>
+        <button
+          className="btn-page"
+          onClick={() => requestPage(Inspecao.pageable.pageNumber + 1)}
+        >
+          {">"}
+        </button>
+      </div>
     </>
   );
 };
