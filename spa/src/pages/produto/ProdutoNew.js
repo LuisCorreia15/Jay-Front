@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-
-import "App.css";
 import tempAlert from "components/alert/Alert";
+import Menu from "components/menu/menu";
+import "./Produto.css";
 
 /* rafc  - comando para criar um component arrow*/
 
@@ -33,45 +33,52 @@ const ProdutoNew = () => {
   };
 
   return (
-    <div>
-      <h3>Cadastro de Produto</h3>
-      <form onSubmit={handleSubmit}>
-        <div>
-          Nome Do Produto
-          <input
-            type="text"
-            name="nomeDoProduto"
-            required
-            onChange={handleChange}
-            value={Produto.nomeDoProduto}
-          ></input>
-        </div>
-        <div>
-          Preço
-          <input
-            type="text"
-            name="preco"
-            required
-            onChange={handleChange}
-            value={Produto.preco}
-          ></input>
-        </div>
-        <div>
-          Estoque
-          <input
-            type="text"
-            name="estoque"
-            required
-            onChange={handleChange}
-            value={Produto.estoque}
-          ></input>
-        </div>
-        <button className="btn">Enviar</button>
-        <button className="btn-cancel" onClick={() => history.push("/Produto")}>
-          Cancelar
-        </button>
-      </form>
-    </div>
+    <>
+      <Menu></Menu>
+      <div className="container">
+        <h3 className="pg-title">Cadastro de Produto</h3>
+        <form onSubmit={handleSubmit} className="pg-form">
+          <div>
+            Nome Do Produto
+            <input
+              type="text"
+              autoFocus
+              name="nomeDoProduto"
+              required
+              onChange={handleChange}
+              value={Produto.nomeDoProduto}
+            ></input>
+          </div>
+          <div>
+            Preço
+            <input
+              type="text"
+              name="preco"
+              required
+              onChange={handleChange}
+              value={Produto.preco}
+            ></input>
+          </div>
+          <div>
+            Estoque
+            <input
+              type="text"
+              name="estoque"
+              required
+              onChange={handleChange}
+              value={Produto.estoque}
+            ></input>
+          </div>
+          <button className="btn-page pg-btn">Enviar</button>
+          <button
+            className="btn-page lixo pg-btn"
+            onClick={() => history.push("/produto")}
+          >
+            Cancelar
+          </button>
+        </form>
+      </div>
+    </>
   );
 };
 

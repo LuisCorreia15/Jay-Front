@@ -1,0 +1,22 @@
+.pg-title {
+  color: black;
+  font-size: 50px;
+  color: var(--comment);
+  font-weight: 700;
+  margin: 10px 0 0 0;
+}
+.pg-form {
+  width: 50%;
+  margin: 10px 0 0 0;
+}
+.pg-form input {
+  color: black;
+  margin: 0 0 20px 0;
+  padding: 10px 10px;
+}
+
+.pg-btn {
+  width: 100%;
+  margin: 0 0 20px 0 !important;
+  padding: 20px 0 !important;
+}

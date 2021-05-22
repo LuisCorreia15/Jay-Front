@@ -75,8 +75,8 @@ const ProdutoList = (props) => {
   };
 
   const doExcluirTodosProduto = async () => {
-    await axios.delete(`/api/Produto/excluir-todos`);
-    tempAlert("Todos Produto excluídos!", 5000);
+    await axios.delete(`/api/produto/excluir-todos`);
+    tempAlert("Todos Produtos excluídos!", 5000);
     doGetProduto(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
   };
 
