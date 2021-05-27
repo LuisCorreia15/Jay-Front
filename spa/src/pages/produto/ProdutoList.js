@@ -27,6 +27,8 @@ const ProdutoList = (props) => {
   };
 
   useEffect(() => {
+    document.addEventListener("keydown", keydownHandler);
+
     doGetProduto(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -133,6 +135,12 @@ const ProdutoList = (props) => {
     }
     doGetProduto(requestedPage, statusPesquisa.termoDePesquisa);
   };
+
+  function keydownHandler(e) {
+    if (e.keyCode === 115) {
+      history.push("/produto/novo");
+    }
+  }
 
   return (
     <>
