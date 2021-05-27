@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Alert.css";
 
 const DeleteConfirm = (props) => {
-  const { estado, doExcluirPratos, setConfirmState, id, nome } = props;
+  const { estado, doExcluirProduto, setConfirmState, id, nome } = props;
   const [open, setOpen] = useState(true);
 
   useEffect(() => {
@@ -19,7 +19,6 @@ const DeleteConfirm = (props) => {
     } else {
       document.getElementById("box").style.display = "none";
       setOpen(true);
-      console.log("entou");
     }
   }
 
@@ -30,12 +29,12 @@ const DeleteConfirm = (props) => {
           <div className="al-title">
             Deseja realmente excluir <span>{nome}</span>?
           </div>
-          <div className="al-buttons">
+          <div className="al-buttons" >
             <button
               className="cnf"
               onClick={() => {
                 mostrarConfirmação();
-                doExcluirPratos(id, nome);
+                doExcluirProduto(id, nome);
               }}
             >
               Confirmar

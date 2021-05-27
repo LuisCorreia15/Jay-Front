@@ -4,8 +4,8 @@
   display: none;
   top: 0;
   left: 0;
-  background-color: rgba(13, 17, 17, 0.3);
-  -webkit-backdrop-filter: blur(5px);
+  background-color: rgba(13, 17, 17, 0.05);
+  -webkit-backdrop-filter: blur(15px);
   backdrop-filter: blur(5px);
   position: fixed;
 }
@@ -13,8 +13,8 @@
 .al-container {
   width: 425px;
   border-radius: 10px;
-  border: 1px solid var(--purple);
-  padding: 10px 20px;
+  border: 1px solid var(--bg);
+  padding: 15px 25px;
   height: auto;
   position: absolute;
   top: 50%;
@@ -29,9 +29,10 @@
   font-size: 40px;
   font-weight: 500;
   margin-bottom: 40px;
+  color: var(--comment);
 }
 .al-title span {
-  color: var(--purple);
+  color: var(--comment);
   margin: 0;
   padding: 0;
   font-size: 40px;
@@ -44,20 +45,22 @@
 }
 .al-buttons button {
   background-color: transparent;
-  border: 1px solid var(--purple);
-  color: var(--light);
+  border: none;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+  color: var(--comment);
   transition: all 0.3s ease;
   border-radius: 10px;
   cursor: pointer;
   font-size: 20px;
   font-weight: 500;
   padding: 15px 40px;
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
 }
 .cnf:hover {
-  background-color: var(--purple);
+  background-color: var(--comment);
+  color: var(--bg);
 }
 .can:hover {
   background-color: var(--red);
-  border: 1px solid var(--red);
+  color: var(--bg);
 }

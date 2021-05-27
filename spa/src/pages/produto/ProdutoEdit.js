@@ -45,7 +45,7 @@ const ProdutoEdit = () => {
       <Menu></Menu>
       <div className="container">
         <h2 className='pg-title'>Edição de Produto</h2>
-        <form onSubmit={handleSubmit} className='pg-form'>
+        <form onSubmit={handleSubmit} className='pg-for'>
           <div>
             Nome Do Produto
             <input
