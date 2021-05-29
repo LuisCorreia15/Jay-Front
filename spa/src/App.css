@@ -41,9 +41,9 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 20px 50px;
+  padding: 0px 50px;
   break-before: 5px;
-  margin-top: 25px;
+  margin-top: 20px;
   color: var(--comment);
   font-weight: 300;
   font-size: 24px;
@@ -54,50 +54,18 @@
   background-color: var(--comment);
   color: var(--bg);
 }
-.tb:hover p {
-  color: var(--bg);
-}
-.tb:hover button {
-  color: var(--light);
-}
-
-.tb h2,
-.tb p {
-  margin: 0;
-  transition: all 0.3s ease;
-  margin-bottom: 1px solid var(--red);
-}
-.tb p {
-  font-size: 14px;
-  color: var(--comment);
+.tb-title h2 {
+  font-size: 32px;
+  font-weight: 500;
 }
 .tb-price {
   text-align: right;
   list-style: none;
 }
-.tb-price button {
-  margin-left: 20px;
-}
 .tb-price h2 {
-  margin-top: -10px;
+  font-size: 32px;
 }
-.tb-price button {
-  border: none;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  padding: 0;
-  background-color: transparent;
-  margin-left: 20px;
-  font-size: 20px;
-  color: var(--comment);
-  transition: 0.3s ease;
-}
-.tb-price button:hover {
-  color: var(--bg);
-}
-.tb-price .i-lixo:hover {
-  color: var(--red);
-}
+
 .container {
   min-height: 100vh;
   box-shadow: 2px -10px 15px rgba(0, 0, 0, 0.1);

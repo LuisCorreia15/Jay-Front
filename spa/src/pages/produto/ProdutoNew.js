@@ -11,8 +11,8 @@ const ProdutoNew = () => {
   const history = useHistory();
   const [Produto, setProduto] = useState({
     nomeDoProduto: "",
-    preco: 0.0,
-    estoque: 1000,
+    preco: 2.2,
+    vendidos: 0,
   });
 
   // nfn - comando para criar função anonima
@@ -57,16 +57,6 @@ const ProdutoNew = () => {
               required
               onChange={handleChange}
               value={Produto.preco}
-            ></input>
-          </div>
-          <div>
-            Estoque
-            <input
-              type="text"
-              name="estoque"
-              required
-              onChange={handleChange}
-              value={Produto.estoque}
             ></input>
           </div>
           <button className="btn-page pg-btn">Enviar</button>

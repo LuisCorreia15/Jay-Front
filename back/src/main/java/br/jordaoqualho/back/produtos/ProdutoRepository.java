@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ProdutoRepository extends JpaRepository<Produto, String> {   
     
-    Page<Produto> findBynomeDoProdutoLike(Pageable pageRequest, String nomeDoProduto);
+    Page<Produto> findBynomeDoProdutoLikeIgnoreCase(Pageable pageRequest, String nomeDoProduto);
 
 }

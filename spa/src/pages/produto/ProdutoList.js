@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 import Menu from "components/menu/menu";
 import tempAlert from "components/alert/Alert";
 import DeleteConfirm from "components/alert/DeleteConfirm";
@@ -28,7 +26,6 @@ const ProdutoList = (props) => {
 
   useEffect(() => {
     document.addEventListener("keydown", keydownHandler);
-
     doGetProduto(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -104,22 +101,16 @@ const ProdutoList = (props) => {
     ) : (
       Produto.content.map((row) => {
         return (
-          <div className="tb" key={row.id}>
+          <div
+            className="tb"
+            key={row.id}
+            onClick={() => history.push(`/produto/editar/${row.id}`)}
+          >
             <div className="tb-title">
-              <p>{row.id}</p>
-              <h2>{row.nomeDoProduto}</h2> <p>{row.estoque} no estoque</p>
+              <h2>{row.nomeDoProduto}</h2>
             </div>
             <div className="tb-price">
-              <button onClick={() => history.push(`/produto/editar/${row.id}`)}>
-                <FontAwesomeIcon icon={faEdit} />
-              </button>
-              <button
-                className="i-lixo"
-                onClick={() => handleExcluir(row.id, row.nomeDoProduto)}
-              >
-                <FontAwesomeIcon icon={faTrash} />
-              </button>
-              <h2>R$ {row.preco}0</h2>
+              <h2>R$ {row.preco}</h2>
             </div>
           </div>
         );

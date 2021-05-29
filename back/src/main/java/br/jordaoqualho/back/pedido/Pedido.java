@@ -1,6 +1,7 @@
-package br.jordaoqualho.back.produtos;
+package br.jordaoqualho.back.pedido;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -14,32 +15,32 @@ import lombok.Setter;
 
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Produto {
+public class Pedido {
     @Getter
     @Id
     @EqualsAndHashCode.Include
     private String id;
     @Getter
     @Setter
-    private String nomeDoProduto;    
+    private String nomeDoCliente;
     @Getter
     @Setter
-    @Column(scale = 3)
-    private BigDecimal preco;
+    private LocalDate lancadoEm;
     @Getter
     @Setter
-    private Integer vendidos;
+    @Column(scale = 2)
+    private BigDecimal valorTotal;
     
 
-    public Produto() {
+    public Pedido() {
         this.id = UUID.randomUUID().toString();
     }
 
-    public Produto(String nomeDoProduto, BigDecimal preco, Integer estoque) {
+    public Pedido(String nomeDoCliente, LocalDate lancadoEm, BigDecimal valorTotal) {
         this();
-        this.nomeDoProduto = nomeDoProduto;
-        this.preco = preco;
-        this.vendidos = estoque;
+        this.nomeDoCliente = nomeDoCliente;
+        this.lancadoEm = lancadoEm;
+        this.valorTotal = valorTotal;
     }    
    
     

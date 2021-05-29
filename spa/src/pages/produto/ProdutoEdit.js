@@ -44,12 +44,13 @@ const ProdutoEdit = () => {
     <>
       <Menu></Menu>
       <div className="container">
-        <h2 className='pg-title'>Edição de Produto</h2>
-        <form onSubmit={handleSubmit} className='pg-for'>
+        <h2 className="pg-title">Edição de Produto</h2>
+        <form onSubmit={handleSubmit} className="pg-form">
           <div>
-            Nome Do Produto
+            Nome
             <input
               type="text"
+              autoFocus
               name="nomeDoProduto"
               required
               onChange={handleChange}
@@ -64,16 +65,6 @@ const ProdutoEdit = () => {
               required
               onChange={handleChange}
               value={Produto.preco}
-            ></input>
-          </div>
-          <div>
-            Estoque
-            <input
-              type="text"
-              name="estoque"
-              required
-              onChange={handleChange}
-              value={Produto.estoque}
             ></input>
           </div>
           <button className="btn-page pg-btn ">Enviar</button>

@@ -23,7 +23,7 @@ public class ProdutoService {
         if (termo == null || termo.trim().length() == 0) {
              return repository.findAll(pageRequest);            
         }
-        return repository.findBynomeDoProdutoLike(pageRequest, "%" + termo + "%");
+        return repository.findBynomeDoProdutoLikeIgnoreCase(pageRequest, "%" + termo + "%");
     }  
 
     public Produto obterPeloId(String id) {
