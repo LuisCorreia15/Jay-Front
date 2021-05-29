@@ -14,6 +14,6 @@ public interface InspecaoRepository extends JpaRepository<Inspecao, String> {
 
     // List<Inspecao> findBynomeDoClienteLike(String nomeDoCliente);
     
-    Page<Inspecao> findBynomeDoClienteLike(Pageable pageRequest, String nomeDoCliente);
+    Page<Inspecao> findBynomeDoClienteLikeIgnoreCase(Pageable pageRequest, String nomeDoCliente);
 
 }

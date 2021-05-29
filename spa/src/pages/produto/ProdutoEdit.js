@@ -12,7 +12,7 @@ const ProdutoEdit = () => {
   const [Produto, setProduto] = useState({
     nomeDoProduto: "",
     preco: 0.0,
-    estoque: 0,
+    vendidos: 0,
   });
 
   const doGetById = async () => {
@@ -44,15 +44,15 @@ const ProdutoEdit = () => {
     <>
       <Menu></Menu>
       <div className="container">
-        <h2 className="pg-title">Edição de Produto</h2>
-        <form onSubmit={handleSubmit} className="pg-form">
+        <h2 className='pg-title'>Edição de Produto</h2>
+        <form onSubmit={handleSubmit} className='pg-form'>
           <div>
-            Nome
+            Nome 
             <input
               type="text"
-              autoFocus
               name="nomeDoProduto"
               required
+              autoFocus
               onChange={handleChange}
               value={Produto.nomeDoProduto}
             ></input>
@@ -65,6 +65,16 @@ const ProdutoEdit = () => {
               required
               onChange={handleChange}
               value={Produto.preco}
+            ></input>
+          </div>
+          <div>
+            Vendidos
+            <input
+              type="text"
+              name="vendidos"
+              required
+              onChange={handleChange}
+              value={Produto.vendidos}
             ></input>
           </div>
           <button className="btn-page pg-btn ">Enviar</button>

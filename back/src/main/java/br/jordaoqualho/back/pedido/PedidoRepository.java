@@ -14,6 +14,6 @@ public interface PedidoRepository extends JpaRepository<Pedido, String> {
 
     // List<Inspecao> findBynomeDoClienteLike(String nomeDoCliente);
     
-    Page<Pedido> findBynomeDoClienteLike(Pageable pageRequest, String nomeDoCliente);
+    Page<Pedido> findBynomeDoClienteLikeIgnoreCase(Pageable pageRequest, String nomeDoCliente);
 
 }

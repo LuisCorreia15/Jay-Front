@@ -24,7 +24,7 @@ public class PedidoService {
         if (termo == null || termo.trim().length() == 0) {
              return repository.findAll(pageRequest);            
         }
-        return repository.findBynomeDoClienteLike(pageRequest, "%" + termo + "%");
+        return repository.findBynomeDoClienteLikeIgnoreCase(pageRequest, "%" + termo + "%");
     }  
 
     public Pedido obterPeloId(String id) {

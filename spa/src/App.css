@@ -177,7 +177,7 @@ h2 {
 }
 .cb::placeholder {
   font-weight: 300;
-  color: var(--comment);
+  color: var(--light);
 }
 .bb {
   background-color: var(--comment);

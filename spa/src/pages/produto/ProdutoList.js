@@ -110,7 +110,7 @@ const ProdutoList = (props) => {
               <h2>{row.nomeDoProduto}</h2>
             </div>
             <div className="tb-price">
-              <h2>R$ {row.preco}</h2>
+              <h2>R$ {row.preco.toFixed(2)}</h2>
             </div>
           </div>
         );
@@ -130,6 +130,9 @@ const ProdutoList = (props) => {
   function keydownHandler(e) {
     if (e.keyCode === 115) {
       history.push("/produto/novo");
+    }
+    if (e.keyCode === 27) {
+      history.goBack();
     }
   }
 
