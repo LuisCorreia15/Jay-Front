@@ -117,6 +117,10 @@ const ProdutoList = (props) => {
       })
     );
 
+    const pgControl = Produto.totalPages === 0 ? (<div></div>) : ( ()
+      
+    )
+
   const requestPage = (requestedPage) => {
     if (requestedPage <= 0) {
       requestedPage = 0;
@@ -166,22 +170,10 @@ const ProdutoList = (props) => {
         </button>
 
         <div className="tb-cnt">{tableData}</div>
-        <button
-          className="btn-page"
-          onClick={() => requestPage(Produto.pageable.pageNumber - 1)}
-        >
-          {"<"}
-        </button>
-        <span>
-          Página {Produto.totalPages > 0 ? Produto.pageable.pageNumber + 1 : 0}{" "}
-          de {Produto.totalPages}
-        </span>
-        <button
-          className="btn-page"
-          onClick={() => requestPage(Produto.pageable.pageNumber + 1)}
-        >
-          {">"}
-        </button>
+        <div className="page-control"> 
+
+        {pgControl}
+        </div>
       </div>
     </>
   );
