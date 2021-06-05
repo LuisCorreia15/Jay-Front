@@ -51,7 +51,7 @@ const ProdutoNew = () => {
               value={Produto.nomeDoProduto}
             ></input>
           </div>
-          <div>
+          <div className='sl-icon'>
             Tipo do Produto
             <select
               className="pg-select"
@@ -69,7 +69,7 @@ const ProdutoNew = () => {
               <option value="Ingredientes">Ingrediente</option>
             </select>
           </div>
-          <div>
+          <div className='sl-icon'>
             Medida
             <select
               defaultValue=""

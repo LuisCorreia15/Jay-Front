@@ -32,8 +32,20 @@
 .pg-select {
   width: 759px;
   cursor: pointer;
+  appearance: none;
 }
-
-.sl-placeholder {
-  color: red;
+.sl-icon {
+  position: relative;
+  width: fit-content;
+}
+.sl-icon::after {
+  content: ">";
+  font-weight: 500;
+  transform: rotate(90deg);
+  color: black;
+  pointer-events: none;
+  font-size: 20px;
+  right: 20px;
+  bottom: 30px;
+  position: absolute;
 }
