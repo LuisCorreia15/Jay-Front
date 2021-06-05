@@ -107,6 +107,7 @@ const ProdutoList = (props) => {
             onClick={() => history.push(`/produto/editar/${row.id}`)}
           >
             <div className="tb-title">
+              <p>{row.tipoDoProduto}</p>
               <h2>{row.nomeDoProduto}</h2>
             </div>
             <div className="tb-price">

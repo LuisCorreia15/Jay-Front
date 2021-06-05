@@ -58,6 +58,11 @@
   font-size: 32px;
   font-weight: 500;
 }
+.tb-title p {
+  font-size: 14px;
+  color: var(--light);
+  margin-bottom: -30px;
+}
 .tb-price {
   text-align: right;
   list-style: none;
@@ -76,7 +81,8 @@ form {
   margin: 50px 0;
 }
 
-input {
+input,
+select {
   padding: 15px 0px 15px 15px;
   font-size: 18px;
   margin-bottom: 40px;
@@ -89,15 +95,18 @@ input {
   border: 3px solid transparent;
 }
 
-input:required:valid {
+input:required:valid,
+select:required:valid {
   border: 3px solid var(--purple) !important;
 }
-input::placeholder {
+input::placeholder,
+select::placeholder {
   font-size: 18px;
   font-weight: 700;
   color: var(--comment);
 }
-input:required:invalid {
+input:required:invalid,
+select:required:invalid {
   border: 3px solid var(--comment);
 }
 

@@ -9,8 +9,10 @@
   width: 50%;
   margin: 10px 0 0 0;
 }
-.pg-form input {
+.pg-form input,
+.pg-select {
   color: black;
+  border-radius: 5px;
   margin: 0 0 20px 0;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
   padding: 10px 10px;
@@ -20,4 +22,8 @@
   width: 100%;
   margin: 0 0 20px 0 !important;
   padding: 20px 0 !important;
+}
+.pg-select {
+  width: 759px;
+  cursor: pointer;
 }

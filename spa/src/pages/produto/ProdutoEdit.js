@@ -13,6 +13,7 @@ const ProdutoEdit = () => {
     nomeDoProduto: "",
     preco: 0.0,
     vendidos: 0,
+    tipoDoProduto: "",
   });
 
   const doGetById = async () => {
@@ -44,10 +45,10 @@ const ProdutoEdit = () => {
     <>
       <Menu></Menu>
       <div className="container">
-        <h2 className='pg-title'>Edição de Produto</h2>
-        <form onSubmit={handleSubmit} className='pg-form'>
+        <h2 className="pg-title">Edição de Produto</h2>
+        <form onSubmit={handleSubmit} className="pg-form">
           <div>
-            Nome 
+            Nome
             <input
               type="text"
               name="nomeDoProduto"
@@ -55,6 +56,17 @@ const ProdutoEdit = () => {
               autoFocus
               onChange={handleChange}
               value={Produto.nomeDoProduto}
+            ></input>
+          </div>
+          <div>
+            Tipo do Produto
+            <input
+              type="text"
+              name="tipoDoProduto"
+              required
+              autoFocus
+              onChange={handleChange}
+              value={Produto.tipoDoProduto}
             ></input>
           </div>
           <div>

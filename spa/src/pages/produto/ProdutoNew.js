@@ -13,6 +13,7 @@ const ProdutoNew = () => {
     nomeDoProduto: "",
     preco: 2.2,
     vendidos: 0,
+    tipoDoProduto: "",
   });
 
   // nfn - comando para criar função anonima
@@ -48,6 +49,20 @@ const ProdutoNew = () => {
               onChange={handleChange}
               value={Produto.nomeDoProduto}
             ></input>
+          </div>
+          <div>
+            Tipo do Produto
+            <select
+              className="pg-select"
+              name="tipoDoProduto"
+              required
+              onChange={handleChange}
+            >
+              <option value="Doce">Doce</option>
+              <option value="Salgado">Salgado</option>
+              <option value="Bolo">Bolo</option>
+              <option value="Ingredientes">Ingrediente</option>
+            </select>
           </div>
           <div>
             Preço

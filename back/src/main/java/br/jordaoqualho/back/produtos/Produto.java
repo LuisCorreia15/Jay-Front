@@ -29,17 +29,21 @@ public class Produto {
     @Getter
     @Setter
     private Integer vendidos;
+    @Getter
+    @Setter
+    private String tipoDoProduto;
     
 
     public Produto() {
         this.id = UUID.randomUUID().toString();
     }
 
-    public Produto(String nomeDoProduto, BigDecimal preco, Integer estoque) {
+    public Produto(String nomeDoProduto, BigDecimal preco, Integer vendidos, String tipoDoProduto) {
         this();
         this.nomeDoProduto = nomeDoProduto;
         this.preco = preco;
-        this.vendidos = estoque;
+        this.vendidos = vendidos;
+        this.tipoDoProduto = tipoDoProduto;
     }    
    
     
