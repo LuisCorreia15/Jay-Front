@@ -5,6 +5,7 @@ import axios from "axios";
 import { useHistory, useParams } from "react-router-dom";
 import tempAlert from "../../components/alert/Alert";
 import Menu from "components/menu/menu";
+import DeleteConfirm from "components/alert/DeleteConfirm";
 
 const ProdutoEdit = () => {
   const history = useHistory();
@@ -16,6 +17,7 @@ const ProdutoEdit = () => {
     tipoDoProduto: "",
     vendidoPor: "",
   });
+  const [confirmState, setConfirmState] = useState(false);
 
   const doGetById = async () => {
     const response = await axios.get(`/api/produto/${idParaEditar}`, produto);
@@ -25,6 +27,29 @@ const ProdutoEdit = () => {
   useEffect(() => {
     doGetById();
   }, []);
+
+  const doExcluirProduto = async (id, name) => {
+    await axios.delete(`/api/produto/${id}`);
+    tempAlert(name + " excluído!", 5000);
+    setConfirmState(false);
+    history.push("/produto");
+  };
+
+  const handleExcluir = () => {
+    setConfirmState(true);
+  };
+
+  const renderConfirmDelete = () => {
+    return (
+      <DeleteConfirm
+        estado={confirmState}
+        doExcluirProduto={doExcluirProduto}
+        id={idParaEditar}
+        nome={produto.nomeDoProduto}
+        setConfirmState={setConfirmState}
+      ></DeleteConfirm>
+    );
+  };
 
   const doPut = async () => {
     await axios.put(`/api/produto/${idParaEditar}`, produto);
@@ -45,8 +70,13 @@ const ProdutoEdit = () => {
   return (
     <>
       <Menu></Menu>
+      {renderConfirmDelete()}
       <div className="container">
         <h2 className="pg-title">Edição de Produto</h2>
+        <button className="pg-excluir" onClick={() => handleExcluir()}>
+          excluir produto
+        </button>
+      
         <form onSubmit={handleSubmit} className="pg-form">
           <div>
             Nome
@@ -114,7 +144,7 @@ const ProdutoEdit = () => {
           <button className="btn-page pg-btn ">Concluir </button>
           <button
             className="btn-page bt-lixo pg-btn"
-            onClick={() => history.push("/Produto")}
+            onClick={() => history.push("/produto")}
           >
             Cancelar
           </button>

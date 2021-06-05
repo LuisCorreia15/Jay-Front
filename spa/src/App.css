@@ -96,7 +96,7 @@ select {
   font-weight: 500;
   background-color: #fff;
   outline: none;
-  width: 760px;
+  width: 100%;
   border: 3px solid transparent;
 }
 

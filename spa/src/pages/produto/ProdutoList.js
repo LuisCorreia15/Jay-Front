@@ -3,7 +3,6 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Menu from "components/menu/menu";
 import tempAlert from "components/alert/Alert";
-import DeleteConfirm from "components/alert/DeleteConfirm";
 
 const ProdutoList = (props) => {
   const { statusPesquisa, setStatusPesquisa } = props;
@@ -13,9 +12,7 @@ const ProdutoList = (props) => {
     pageable: { pageNumber: 0 },
     totalPages: 0,
   });
-  const [confirmState, setConfirmState] = useState(false);
-  const [tempNome, setTempNome] = useState("");
-  const [tempId, setTempId] = useState("");
+  
 
   const doGetProduto = async (páginaRequerida, termoDePesquisa) => {
     const response = await axios.get(
@@ -53,26 +50,6 @@ const ProdutoList = (props) => {
     doGerarProduto();
   };
 
-  const doExcluirProduto = async (id, name) => {
-    await axios.delete(`/api/produto/${id}`);
-    if (Produto.content.length === 1) {
-      doGetProduto(
-        statusPesquisa.páginaAtual - 1,
-        statusPesquisa.termoDePesquisa
-      );
-    } else {
-      doGetProduto(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
-    }
-    tempAlert("Produto de " + name + " excluído!", 5000);
-    setConfirmState(false);
-  };
-
-  const handleExcluir = (id, name) => {
-    setConfirmState(true);
-    setTempId(id);
-    setTempNome(name);
-  };
-
   const doExcluirTodosProduto = async () => {
     await axios.delete(`/api/produto/excluir-todos`);
     tempAlert("Todos Produtos excluídos!", 5000);
@@ -83,17 +60,6 @@ const ProdutoList = (props) => {
     doExcluirTodosProduto();
   };
 
-  const renderConfirmDelete = () => {
-    return (
-      <DeleteConfirm
-        estado={confirmState}
-        doExcluirProduto={doExcluirProduto}
-        id={tempId}
-        nome={tempNome}
-        setConfirmState={setConfirmState}
-      ></DeleteConfirm>
-    );
-  };
 
   const tableData =
     Produto.content.length === 0 ? (
@@ -142,7 +108,6 @@ const ProdutoList = (props) => {
     <>
       <Menu></Menu>
       <div className="container">
-        {renderConfirmDelete()}
         <form className="pd">
           <input
             className="cb"

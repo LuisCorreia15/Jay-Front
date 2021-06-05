@@ -67,7 +67,7 @@ const ProdutoNew = () => {
               <option value="Doce">Doce</option>
               <option value="Salgado">Salgado</option>
               <option value="Bolo">Bolo</option>
-              <option value="Ingredientes">Ingrediente</option>
+              <option value="Ingrediente">Ingrediente</option>
             </select>
           </div>
           <div className="sl-icon">
