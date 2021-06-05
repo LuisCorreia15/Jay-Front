@@ -29,6 +29,9 @@
 .bt-lixo {
   background-color: var(--red) !important;
 }
+.pg-input {
+  width: 730px !important;
+}
 .pg-select {
   width: 759px;
   cursor: pointer;

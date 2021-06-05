@@ -52,6 +52,7 @@ const ProdutoEdit = () => {
             Nome
             <input
               type="text"
+              className="pg-input"
               name="nomeDoProduto"
               required
               autoFocus
@@ -96,12 +97,14 @@ const ProdutoEdit = () => {
               required
               onChange={handleChange}
               value={produto.preco}
+              className="pg-input"
             ></input>
           </div>
           <div>
             Vendidos
             <input
               type="text"
+              className="pg-input"
               name="vendidos"
               required
               onChange={handleChange}

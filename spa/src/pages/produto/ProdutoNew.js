@@ -46,12 +46,13 @@ const ProdutoNew = () => {
               type="text"
               autoFocus
               name="nomeDoProduto"
+              className="pg-input"
               required
               onChange={handleChange}
               value={Produto.nomeDoProduto}
             ></input>
           </div>
-          <div className='sl-icon'>
+          <div className="sl-icon">
             Tipo do Produto
             <select
               className="pg-select"
@@ -69,7 +70,7 @@ const ProdutoNew = () => {
               <option value="Ingredientes">Ingrediente</option>
             </select>
           </div>
-          <div className='sl-icon'>
+          <div className="sl-icon">
             Medida
             <select
               defaultValue=""
@@ -93,6 +94,7 @@ const ProdutoNew = () => {
               type="text"
               name="preco"
               required
+              className="pg-input"
               onChange={handleChange}
               value={Produto.preco}
             ></input>
