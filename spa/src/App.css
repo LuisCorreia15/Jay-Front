@@ -62,6 +62,7 @@
   font-size: 14px;
   color: var(--light);
   margin-bottom: -30px;
+  margin-top: 20px;
 }
 .tb-price {
   text-align: right;
@@ -69,6 +70,14 @@
 }
 .tb-price h2 {
   font-size: 32px;
+  margin-top: 30px;
+}
+.tb-price p {
+  font-size: 16px;
+  margin-bottom: 00px;
+  color: var(--light);
+  font-weight: 300;
+  margin-top: -40px;
 }
 .container {
   min-height: 100vh;
@@ -83,30 +92,31 @@ form {
 
 input,
 select {
-  padding: 15px 0px 15px 15px;
   font-size: 18px;
-  margin-bottom: 40px;
   font-weight: 500;
-  color: var(--bg);
   background-color: #fff;
   outline: none;
-  width: calc(100% - 20px);
-  border-radius: 10px;
+  width: 760px;
   border: 3px solid transparent;
 }
 
-input:required:valid,
+/* input:required:valid,
 select:required:valid {
-  border: 3px solid var(--purple) !important;
-}
+  border: 3px solid var(--comment) !important;
+} */
 input::placeholder,
 select::placeholder {
   font-size: 18px;
   font-weight: 700;
   color: var(--comment);
 }
-input:required:invalid,
+/* input:required:invalid,
 select:required:invalid {
+  border: 3px solid var(--light);
+  color: var(--light);
+} */
+select:focus,
+input:focus {
   border: 3px solid var(--comment);
 }
 

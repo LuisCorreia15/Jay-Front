@@ -112,6 +112,7 @@ const ProdutoList = (props) => {
             </div>
             <div className="tb-price">
               <h2>R$ {row.preco.toFixed(2)}</h2>
+              <p>{row.vendidoPor}</p>
             </div>
           </div>
         );

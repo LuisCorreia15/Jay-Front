@@ -49,7 +49,7 @@ public class ProdutoService {
             System.out.println(name);
             Double price = faker.number().randomDouble(1, 2, 6);
             int estoque = faker.number().numberBetween(100, 1000);
-            Produto novo = new Produto(name, new BigDecimal(price), estoque, "não definido");
+            Produto novo = new Produto(name, new BigDecimal(price), estoque, "não definido", "não definido");
             repository.save(novo);
         }     
     }

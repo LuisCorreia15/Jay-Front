@@ -12,7 +12,7 @@
 .pg-form input,
 .pg-select {
   color: black;
-  border-radius: 5px;
+  border-radius: 10px;
   margin: 0 0 20px 0;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
   padding: 10px 10px;
@@ -22,8 +22,18 @@
   width: 100%;
   margin: 0 0 20px 0 !important;
   padding: 20px 0 !important;
+  background-color: var(--comment) !important;
+  color: var(--bg) !important;
+  width: 760px;
+}
+.bt-lixo {
+  background-color: var(--red) !important;
 }
 .pg-select {
   width: 759px;
   cursor: pointer;
+}
+
+.sl-placeholder {
+  color: red;
 }

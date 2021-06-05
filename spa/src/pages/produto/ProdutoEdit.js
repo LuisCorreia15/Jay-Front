@@ -9,15 +9,16 @@ import Menu from "components/menu/menu";
 const ProdutoEdit = () => {
   const history = useHistory();
   const { idParaEditar } = useParams();
-  const [Produto, setProduto] = useState({
+  const [produto, setProduto] = useState({
     nomeDoProduto: "",
     preco: 0.0,
     vendidos: 0,
     tipoDoProduto: "",
+    vendidoPor: "",
   });
 
   const doGetById = async () => {
-    const response = await axios.get(`/api/produto/${idParaEditar}`, Produto);
+    const response = await axios.get(`/api/produto/${idParaEditar}`, produto);
     setProduto(response.data);
   };
 
@@ -26,8 +27,8 @@ const ProdutoEdit = () => {
   }, []);
 
   const doPut = async () => {
-    await axios.put(`/api/produto/${idParaEditar}`, Produto);
-    tempAlert(`${Produto.nomeDoProduto} alterado com sucesso!`, 5000);
+    await axios.put(`/api/produto/${idParaEditar}`, produto);
+    tempAlert(`${produto.nomeDoProduto} alterado com sucesso!`, 5000);
     history.push("/produto");
   };
 
@@ -37,7 +38,7 @@ const ProdutoEdit = () => {
   };
 
   const handleChange = (event) => {
-    const novoProduto = { ...Produto, [event.target.name]: event.target.value };
+    const novoProduto = { ...produto, [event.target.name]: event.target.value };
     setProduto(novoProduto);
   };
 
@@ -55,19 +56,37 @@ const ProdutoEdit = () => {
               required
               autoFocus
               onChange={handleChange}
-              value={Produto.nomeDoProduto}
+              value={produto.nomeDoProduto}
             ></input>
           </div>
           <div>
             Tipo do Produto
-            <input
-              type="text"
+            <select
+              className="pg-select"
               name="tipoDoProduto"
               required
-              autoFocus
+              defaultValue={produto.tipoDoProduto}
               onChange={handleChange}
-              value={Produto.tipoDoProduto}
-            ></input>
+            >
+              <option value="Doce">Doce</option>
+              <option value="Salgado">Salgado</option>
+              <option value="Bolo">Bolo</option>
+              <option value="Ingredientes">Ingrediente</option>
+            </select>
+          </div>
+          <div>
+            Medida
+            <select
+              defaultValue={produto.vendidoPor}
+              className="pg-select"
+              name="vendidoPor"
+              required
+              onChange={handleChange}
+            >
+              <option value="a unidade">a unidade</option>
+              <option value="o Kg">o Kg</option>
+              <option value="o grama">o grama</option>
+            </select>
           </div>
           <div>
             Preço
@@ -76,7 +95,7 @@ const ProdutoEdit = () => {
               name="preco"
               required
               onChange={handleChange}
-              value={Produto.preco}
+              value={produto.preco}
             ></input>
           </div>
           <div>
@@ -86,12 +105,12 @@ const ProdutoEdit = () => {
               name="vendidos"
               required
               onChange={handleChange}
-              value={Produto.vendidos}
+              value={produto.vendidos}
             ></input>
           </div>
-          <button className="btn-page pg-btn ">Enviar</button>
+          <button className="btn-page pg-btn ">Concluir </button>
           <button
-            className="btn-page lixo pg-btn"
+            className="btn-page bt-lixo pg-btn"
             onClick={() => history.push("/Produto")}
           >
             Cancelar
