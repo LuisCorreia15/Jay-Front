@@ -1,4 +1,4 @@
-package br.jordaoqualho.back.pedido;
+package br.jordaoqualho.back.cliente;
 
 
 
@@ -16,32 +16,32 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/pedido")
-public class PedidoController {
+@RequestMapping("/api/cliente")
+public class ClienteController {
     @Autowired
-    private PedidoService service; 
+    private ClienteService service; 
    
 
     @GetMapping
-    public Page<Pedido> get(Pageable pageRequest,  @RequestParam(name = "termo",required = false) String termo) {
+    public Page<Cliente> get(Pageable pageRequest,  @RequestParam(name = "termo",required = false) String termo) {
         return service.obterTodos(pageRequest, termo);
     }
  
     @GetMapping("/{idParaEditar}")
-    public Pedido getById(@PathVariable("idParaEditar") String idParaEditar) {
+    public Cliente getById(@PathVariable("idParaEditar") String idParaEditar) {
         return service.obterPeloId(idParaEditar);
     }
 
     @PutMapping("/{id}")
-    public void put(@PathVariable String id, @RequestBody Pedido InspecaoEditado) {
+    public void put(@PathVariable String id, @RequestBody Cliente InspecaoEditado) {
         service.salvar(InspecaoEditado);
     }
 
 
     @PostMapping
-    public String post(@RequestBody Pedido novo) {
-        Pedido InspecaoSalvo = service.salvar(novo);
-        return InspecaoSalvo.getId();
+    public String post(@RequestBody Cliente novo) {
+        Cliente ClienteSalvo = service.salvar(novo);
+        return ClienteSalvo.getId();
     }
 
 

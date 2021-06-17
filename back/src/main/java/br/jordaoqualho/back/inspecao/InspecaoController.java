@@ -24,7 +24,6 @@ public class InspecaoController {
 
     @GetMapping
     public Page<Inspecao> get(Pageable pageRequest,  @RequestParam(name = "termo",required = false) String termo) {
-        System.out.println(">>>> [" + termo + "]");
         return service.obterTodos(pageRequest, termo);
     }
  
@@ -36,12 +35,6 @@ public class InspecaoController {
     @PutMapping("/{id}")
     public void put(@PathVariable String id, @RequestBody Inspecao InspecaoEditado) {
         service.salvar(InspecaoEditado);
-    }
-
-    @PostMapping("/gerar-inspecao")
-    public String postGerarInspecaos() {
-        service.gerarInspecaos();
-        return "Inspecão gerada com sucesso!";
     }
 
     @PostMapping

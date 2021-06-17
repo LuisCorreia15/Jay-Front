@@ -1,4 +1,5 @@
-package br.jordaoqualho.back.pedido;
+package br.jordaoqualho.back.cliente;
+
 
 import javax.transaction.Transactional;
 
@@ -11,20 +12,20 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Transactional
-public class PedidoService {
+public class ClienteService {
     @Autowired
-    private PedidoRepository repository;
+    private ClienteRepository repository;
       Faker faker = new Faker();
 
-    public Page<Pedido> obterTodos(Pageable pageRequest, String termo) {
+    public Page<Cliente> obterTodos(Pageable pageRequest, String termo) {
         if (termo == null || termo.trim().length() == 0) {
              return repository.findAll(pageRequest);            
         }
         return repository.findBynomeDoClienteLikeIgnoreCase(pageRequest, "%" + termo + "%");
     }  
 
-    public Pedido obterPeloId(String id) {
-        return repository.findById(id).orElseGet(Pedido::new);
+    public Cliente obterPeloId(String id) {
+        return repository.findById(id).orElseGet(Cliente::new);
     }
 
     public void excluirPeloId(String id) {
@@ -36,9 +37,8 @@ public class PedidoService {
     }
 
 
-    public Pedido salvar(Pedido Inspecao) {
+    public Cliente salvar(Cliente Inspecao) {
         return repository.save(Inspecao);
     }    
-
    
 }

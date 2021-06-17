@@ -22,7 +22,7 @@ public class Inspecao {
     private String id;
     @Getter
     @Setter
-    private String nomeDoCliente;
+    private int numeroDaInspecao;
     @Getter
     @Setter
     private LocalDate lancadoEm;
@@ -36,9 +36,9 @@ public class Inspecao {
         this.id = UUID.randomUUID().toString();
     }
 
-    public Inspecao(String nomeDoCliente, LocalDate lancadoEm, BigDecimal valorTotal) {
+    public Inspecao(Integer numeroDaInspecao, LocalDate lancadoEm, BigDecimal valorTotal) {
         this();
-        this.nomeDoCliente = nomeDoCliente;
+        this.numeroDaInspecao = numeroDaInspecao;
         this.lancadoEm = lancadoEm;
         this.valorTotal = valorTotal;
     }    

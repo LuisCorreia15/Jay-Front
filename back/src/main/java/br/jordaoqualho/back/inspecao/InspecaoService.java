@@ -1,9 +1,5 @@
 package br.jordaoqualho.back.inspecao;
 
-
-import java.math.BigDecimal;
-import java.time.LocalDate;
-
 import javax.transaction.Transactional;
 
 import com.github.javafaker.Faker;
@@ -24,7 +20,7 @@ public class InspecaoService {
         if (termo == null || termo.trim().length() == 0) {
              return repository.findAll(pageRequest);            
         }
-        return repository.findBynomeDoClienteLikeIgnoreCase(pageRequest, "%" + termo + "%");
+        return repository.findBynumeroDaInspecaoLike(pageRequest, "%" + termo + "%");
     }  
 
     public Inspecao obterPeloId(String id) {
@@ -44,15 +40,6 @@ public class InspecaoService {
         return repository.save(Inspecao);
     }    
 
-    public void gerarInspecaos(){             
-        for (int i = 0; i < 10; i++) {
-            String nome = faker.name().fullName();            
-            LocalDate localDate = LocalDate.now();  
-           
-            int preco = faker.number().numberBetween(100, 1000);
-            Inspecao novo = new Inspecao(nome, localDate, new BigDecimal(preco));
-            repository.save(novo);            
-        }        
-    }
+
    
 }

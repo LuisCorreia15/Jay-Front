@@ -24,7 +24,6 @@ public class ProdutoController {
 
     @GetMapping
     public Page<Produto> get(Pageable pageRequest,  @RequestParam(name = "termo",required = false) String termo) {
-        System.out.println(">>>> [" + termo + "]");
         return service.obterTodos(pageRequest, termo);
     }
  
