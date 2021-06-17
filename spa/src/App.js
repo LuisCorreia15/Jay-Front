@@ -4,7 +4,7 @@ import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import "./App.css";
 import InspecaoManter from "./pages/inspecao/InspecaoManter";
 import PedidoManter from "pages/pedido/PedidoManter";
-
+import ProdutoManter from "pages/produto/ProdutoManter";
 import LandingPage from "./pages/landing/LadingPage";
 
 function App() {
