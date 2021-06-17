@@ -1,9 +1,10 @@
-import ProdutoManter from "pages/produto/ProdutoManter";
 import React from "react";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 
 import "./App.css";
 import InspecaoManter from "./pages/inspecao/InspecaoManter";
+import PedidoManter from "pages/pedido/PedidoManter";
+
 import LandingPage from "./pages/landing/LadingPage";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
             </Route>
             <Route path="/inspecao" component={InspecaoManter}></Route>
             <Route path="/produto" component={ProdutoManter}></Route>
+            <Route path="/pedido" component={PedidoManter}></Route>
           </Switch>
         </Router>
       </header>
