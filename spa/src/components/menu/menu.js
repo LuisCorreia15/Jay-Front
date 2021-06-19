@@ -7,6 +7,7 @@ const Menu = (props) => {
   useEffect(() => {
     if (ativo) {
       document.getElementById(ativo).style.color = "#555";
+      document.getElementById(ativo).style.fontWeight = "500";
     }
   }, []);
 
