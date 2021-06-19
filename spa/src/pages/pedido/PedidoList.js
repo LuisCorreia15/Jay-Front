@@ -99,7 +99,7 @@ const PedidoList = (props) => {
           <button className="bb">Pesquisar</button>
         </form>
         <button
-          className="btn-page novo"
+          className="btn-page novo only-new"
           onClick={() => history.push("/pedido/novo")}
         >
           Novo Pedido
