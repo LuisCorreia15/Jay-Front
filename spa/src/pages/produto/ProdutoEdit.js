@@ -71,16 +71,15 @@ const ProdutoEdit = () => {
   return (
     <>
       <LoadingScreen></LoadingScreen>
-      <Menu></Menu>
+      <Menu ativo="produto"></Menu>
       {renderConfirmDelete()}
       <div className="container">
         <h2 className="pg-title">Edição de Produto</h2>
         <button className="pg-excluir" onClick={() => handleExcluir()}>
           excluir produto
         </button>
-
         <form onSubmit={handleSubmit} className="pg-form">
-          <div>
+          <div className="flex-column">
             Nome
             <input
               type="text"
@@ -92,7 +91,7 @@ const ProdutoEdit = () => {
               value={produto.nomeDoProduto}
             ></input>
           </div>
-          <div className="sl-icon">
+          <div className="sl-icon flex-column">
             Tipo do Produto
             <select
               className="pg-select"
@@ -107,21 +106,21 @@ const ProdutoEdit = () => {
               <option value="Ingredientes">Ingrediente</option>
             </select>
           </div>
-          <div className="sl-icon">
+          <div className="sl-icon flex-column">
             Medida
             <select
-              defaultValue={produto.vendidoPor}
+              defaultValue={produto.medida}
               className="pg-select"
               name="vendidoPor"
               required
               onChange={handleChange}
             >
-              <option value="a unidade">a unidade</option>
-              <option value="o Kg">o Kg</option>
-              <option value="o grama">o grama</option>
+              <option value="/un">a unidade</option>
+              <option value="/Kg">o kilo</option>
+              <option value="/g">o grama</option>
             </select>
           </div>
-          <div>
+          <div className="flex-column">
             Preço
             <input
               type="text"
@@ -132,7 +131,7 @@ const ProdutoEdit = () => {
               className="pg-input"
             ></input>
           </div>
-          <div>
+          <div className="flex-column">
             Vendidos
             <input
               type="text"

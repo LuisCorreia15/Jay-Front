@@ -29,6 +29,10 @@
   font-family: var(--font);
   outline: none;
 }
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
 .tb-cnt {
   margin-top: 50px;
   font-weight: 300;
