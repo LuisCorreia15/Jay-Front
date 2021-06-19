@@ -33,8 +33,8 @@ public class ClienteController {
     }
 
     @PutMapping("/{id}")
-    public void put(@PathVariable String id, @RequestBody Cliente InspecaoEditado) {
-        service.salvar(InspecaoEditado);
+    public void put(@PathVariable String id, @RequestBody Cliente ClienteEditado) {
+        service.salvar(ClienteEditado);
     }
 
 

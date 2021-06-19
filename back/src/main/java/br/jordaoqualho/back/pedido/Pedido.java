@@ -2,17 +2,11 @@ package br.jordaoqualho.back.pedido;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
-import br.jordaoqualho.back.cliente.Cliente;
-import br.jordaoqualho.back.item.Item;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,15 +28,8 @@ public class Pedido {
     private BigDecimal valorTotal;
     @Getter
     @Setter
-    @ManyToOne
-    private Cliente cliente;
-    @Getter
-    @Setter
-    @OneToMany
-    private List<Item> itemList;
-    @Getter
-    @Setter
-    private String nomeDoCliente;
+    @EqualsAndHashCode.Include
+    private String clienteId;
 
     public Pedido() {
         this.id = UUID.randomUUID().toString();
@@ -52,7 +39,7 @@ public class Pedido {
         this();
         this.lancadoEm = lancadoEm;
         this.valorTotal = valorTotal;
-        this.nomeDoCliente = nomeDoCliente;
+        this.clienteId = nomeDoCliente;
     }    
    
     

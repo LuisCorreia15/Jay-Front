@@ -1,6 +1,6 @@
 import React from "react";
 import Menu from "components/menu/menu";
-import LoadingScreen from "components/loading/Loading";
+import LoadingScreen from "components/loader/Loading";
 import "./Landing.css";
 
 export const LandingPage = () => {

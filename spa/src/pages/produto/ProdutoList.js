@@ -3,7 +3,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Menu from "components/menu/menu";
 import tempAlert from "components/alert/Alert";
-import LoadingScreen from "components/loading/Loading";
+import LoadingScreen from "components/loader/Loading";
 
 const ProdutoList = (props) => {
   const { statusPesquisa, setStatusPesquisa } = props;

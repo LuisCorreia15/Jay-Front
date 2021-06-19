@@ -6,7 +6,7 @@ import { useHistory, useParams } from "react-router-dom";
 import tempAlert from "../../components/alert/Alert";
 import Menu from "components/menu/menu";
 import DeleteConfirm from "components/alert/DeleteConfirm";
-import LoadingScreen from "components/loading/Loading";
+import LoadingScreen from "components/loader/Loading";
 
 const ProdutoEdit = () => {
   const history = useHistory();

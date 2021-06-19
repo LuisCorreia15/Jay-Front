@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ItemRepository extends JpaRepository<Item, String> {
 
-    Page<Item> findBynomeDoItemLikeIgnoreCase(Pageable pageRequest, String nomeDoCliente);
+    Page<Item> findByIdLike(Pageable pageRequest, String nomeDoCliente);
 
 }
