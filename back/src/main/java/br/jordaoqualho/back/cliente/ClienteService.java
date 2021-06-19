@@ -37,8 +37,14 @@ public class ClienteService {
     }
 
 
-    public Cliente salvar(Cliente Inspecao) {
-        return repository.save(Inspecao);
-    }    
+    public Cliente salvar(Cliente Cliente) {
+        return repository.save(Cliente);
+    }   
+    
+     public void gerarCliente(){     
+        for (int i = 0; i < 10; i++) {            
+            repository.save(new Cliente(faker.name().fullName(), faker.phoneNumber().cellPhone(), faker.address().fullAddress()));
+        }     
+    }
    
 }

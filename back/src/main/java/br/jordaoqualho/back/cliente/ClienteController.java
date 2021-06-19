@@ -37,6 +37,13 @@ public class ClienteController {
         service.salvar(ClienteEditado);
     }
 
+    
+    @PostMapping("/gerar")
+    public String postGerarCliente() {
+        service.gerarCliente();
+        return "Clientes gerados com sucesso!";
+    }
+
 
     @PostMapping
     public String post(@RequestBody Cliente novo) {

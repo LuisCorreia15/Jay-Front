@@ -9,7 +9,8 @@
 - [ ] Adicionar filtro a busca "Doces/Bolos/Salgados/Outros"
 - [ ] Produto Edit não trazendo as categorias para edição!
 - [ ] Verificar Relações das entidades com
-- [ ] Finalizar front do Pedido com os itens funcioanndo
+- [ ] Finalizar front do Pedido com os itens funcionando
+- [ ] Colocar o locale do faker para 'pt-BR'
 
 ## LongTerm
 - [ ] Colocar Banco de dados (Mongo), API e Spa Online

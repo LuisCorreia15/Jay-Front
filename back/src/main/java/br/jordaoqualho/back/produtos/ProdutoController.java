@@ -37,7 +37,7 @@ public class ProdutoController {
         service.salvar(ProdutoEditado);
     }
 
-    @PostMapping("/gerar-produto")
+    @PostMapping("/gerar")
     public String postGerarProdutos() {
         service.gerarProdutos();
         return "Produtos gerados com sucesso!";

@@ -5,25 +5,25 @@ import Menu from "components/menu/menu";
 import tempAlert from "components/alert/Alert";
 import LoadingScreen from "components/loader/Loading";
 
-const ProdutoList = (props) => {
+const ClienteList = (props) => {
   const { statusPesquisa, setStatusPesquisa } = props;
   const history = useHistory();
-  const [produto, setProduto] = useState({
+  const [cliente, setCliente] = useState({
     content: [],
     pageable: { pageNumber: 0 },
     totalPages: 0,
   });
 
-  const doGetProduto = async (páginaRequerida, termoDePesquisa) => {
+  const doGetCliente = async (páginaRequerida, termoDePesquisa) => {
     const response = await axios.get(
-      `/api/produto?termo=${termoDePesquisa}&page=${páginaRequerida}`
+      `/api/cliente?termo=${termoDePesquisa}&page=${páginaRequerida}`
     );
-    setProduto(response.data);
+    setCliente(response.data);
   };
 
   useEffect(() => {
     document.addEventListener("keydown", keydownHandler);
-    doGetProduto(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
+    doGetCliente(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -36,48 +36,44 @@ const ProdutoList = (props) => {
   };
 
   useEffect(() => {
-    doGetProduto(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
+    doGetCliente(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [statusPesquisa.termoDePesquisa]);
 
-  const doGerarProduto = async () => {
-    await axios.post(`/api/produto/gerar`);
-    tempAlert("10 Produto gerados!", 5000);
-    doGetProduto(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
+  const doGerarCliente = async () => {
+    await axios.post(`/api/cliente/gerar`);
+    tempAlert("10 Clientes gerados!", 5000);
+    doGetCliente(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
   };
 
   const handleGerar = () => {
-    doGerarProduto();
+    doGerarCliente();
   };
 
-  const doExcluirTodosProduto = async () => {
-    await axios.delete(`/api/produto/excluir-todos`);
-    tempAlert("Todos Produtos excluídos!", 5000);
-    doGetProduto(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
+  const doExcluirTodosCliente = async () => {
+    await axios.delete(`/api/cliente/excluir-todos`);
+    tempAlert("Todos Clientes excluídos!", 5000);
+    doGetCliente(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
   };
 
   const handleExcluirTodos = () => {
-    doExcluirTodosProduto();
+    doExcluirTodosCliente();
   };
 
   const tableData =
-    produto.content.length === 0 ? (
+    cliente.content.length === 0 ? (
       <p>Nada encontrado!</p>
     ) : (
-      produto.content.map((row) => {
+      cliente.content.map((row) => {
         return (
           <div
             className="tb"
             key={row.id}
-            onClick={() => history.push(`/produto/editar/${row.id}`)}
+            onClick={() => history.push(`/cliente/editar/${row.id}`)}
           >
             <div className="tb-title">
-              <p>{row.tipoDoProduto}</p>
-              <h2>{row.nomeDoProduto}</h2>
-            </div>
-            <div className="tb-price">
-              <h2>R$ {row.preco.toFixed(2)}</h2>
-              <p>{row.vendidoPor}</p>
+              <p>{row.celular}</p>
+              <h2>{row.nomeDoCliente}</h2>
             </div>
           </div>
         );
@@ -88,15 +84,15 @@ const ProdutoList = (props) => {
     if (requestedPage <= 0) {
       requestedPage = 0;
     }
-    if (requestedPage >= produto.totalPages) {
-      requestedPage = produto.totalPages - 1;
+    if (requestedPage >= cliente.totalPages) {
+      requestedPage = cliente.totalPages - 1;
     }
-    doGetProduto(requestedPage, statusPesquisa.termoDePesquisa);
+    doGetCliente(requestedPage, statusPesquisa.termoDePesquisa);
   };
 
   function keydownHandler(e) {
     if (e.keyCode === 115) {
-      history.push("/produto/novo");
+      history.push("/cliente/novo");
     }
     if (e.keyCode === 27) {
       history.goBack();
@@ -106,7 +102,7 @@ const ProdutoList = (props) => {
   return (
     <>
       <LoadingScreen></LoadingScreen>
-      <Menu ativo="produto"></Menu>
+      <Menu ativo="cliente"></Menu>
       <div className="container">
         <form className="pd">
           <input
@@ -120,35 +116,35 @@ const ProdutoList = (props) => {
           <button className="bb">Pesquisar</button>
         </form>
         <button className="btn-page" onClick={handleGerar}>
-          Gerar 10 Produtos
+          Gerar 10 Clientes
         </button>
         <button
           className="btn-page novo"
-          onClick={() => history.push("/produto/novo")}
+          onClick={() => history.push("/cliente/novo")}
         >
-          Novo Produto
+          Novo Cliente
         </button>
         <button className="btn-page lixo" onClick={handleExcluirTodos}>
           Excluir Todos
         </button>
 
         <div className="tb-cnt">{tableData}</div>
-        {produto.totalPages > 1 ? (
+        {cliente.totalPages > 1 ? (
           <div className="page-control">
             <button
               className="btn-page"
-              onClick={() => requestPage(produto.pageable.pageNumber - 1)}
+              onClick={() => requestPage(cliente.pageable.pageNumber - 1)}
             >
               {"<"}
             </button>
             <span>
               Página{" "}
-              {produto.totalPages > 0 ? produto.pageable.pageNumber + 1 : 0} de{" "}
-              {produto.totalPages}
+              {cliente.totalPages > 0 ? cliente.pageable.pageNumber + 1 : 0} de{" "}
+              {cliente.totalPages}
             </span>
             <button
               className="btn-page"
-              onClick={() => requestPage(produto.pageable.pageNumber + 1)}
+              onClick={() => requestPage(cliente.pageable.pageNumber + 1)}
             >
               {">"}
             </button>
@@ -161,4 +157,4 @@ const ProdutoList = (props) => {
   );
 };
 
-export default ProdutoList;
+export default ClienteList;

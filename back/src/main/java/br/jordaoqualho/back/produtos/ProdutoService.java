@@ -46,7 +46,6 @@ public class ProdutoService {
     public void gerarProdutos(){     
         for (int i = 0; i < 10; i++) {
             String name = faker.food().dish();
-            System.out.println(name);
             Double price = faker.number().randomDouble(1, 2, 6);
             int estoque = faker.number().numberBetween(100, 1000);
             Produto novo = new Produto(name, new BigDecimal(price), estoque, "não definido", "não definido");
