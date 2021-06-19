@@ -138,7 +138,7 @@ const InspecaoList = (props) => {
 
   return (
     <>
-      <Menu></Menu>
+      <Menu ativo='inspecao'></Menu>
       <div className="container">
         {renderConfirmDelete()}
         <form className="pd">

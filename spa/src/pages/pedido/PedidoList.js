@@ -106,7 +106,7 @@ const PedidoList = (props) => {
 
   return (
     <>
-      <Menu></Menu>
+      <Menu ativo='pedido'></Menu>
       <div className="container">
         <form className="pd">
           <input

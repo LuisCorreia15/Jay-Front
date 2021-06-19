@@ -106,7 +106,7 @@ const ProdutoList = (props) => {
   return (
     <>
       <LoadingScreen></LoadingScreen>
-      <Menu></Menu>
+      <Menu ativo='produto'></Menu>
       <div className="container">
         <form className="pd">
           <input

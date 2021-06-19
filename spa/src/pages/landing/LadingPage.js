@@ -8,7 +8,7 @@ export const LandingPage = () => {
     <>
       <LoadingScreen></LoadingScreen>
       <div className="holder">
-        <Menu></Menu>
+        <Menu ativo="home"></Menu>
         <div className="container">
           <div className="text-container">
             <h2 className="h2-lnd">Olá, meu nome é</h2>
