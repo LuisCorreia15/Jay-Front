@@ -1,12 +1,14 @@
 import React from "react";
-import Menu from "../../components/menu/menu";
+import Menu from "components/menu/menu";
+import LoadingScreen from "components/loader/Loading";
 import "./Landing.css";
 
 export const LandingPage = () => {
   return (
     <>
+      <LoadingScreen></LoadingScreen>
       <div className="holder">
-        <Menu></Menu>
+        <Menu ativo="home"></Menu>
         <div className="container">
           <div className="text-container">
             <h2 className="h2-lnd">Olá, meu nome é</h2>

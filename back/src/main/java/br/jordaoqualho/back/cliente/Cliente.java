@@ -1,14 +1,10 @@
 package br.jordaoqualho.back.cliente;
 
 
-import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-import br.jordaoqualho.back.pedido.Pedido;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,13 +25,7 @@ public class Cliente {
     private String celular;
     @Getter
     @Setter
-    private String logradouro;
-    @Getter
-    @Setter
-    @OneToMany
-    private List<Pedido> pedidoList;
-
-    
+    private String logradouro;    
 
     public Cliente() {
         this.id = UUID.randomUUID().toString();

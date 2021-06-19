@@ -20,7 +20,7 @@ public class PedidoService {
         if (termo == null || termo.trim().length() == 0) {
              return repository.findAll(pageRequest);            
         }
-        return repository.findBynomeDoClienteLikeIgnoreCase(pageRequest, "%" + termo + "%");
+        return repository.findByIdLike(pageRequest, "%" + termo + "%");
     }  
 
     public Pedido obterPeloId(String id) {

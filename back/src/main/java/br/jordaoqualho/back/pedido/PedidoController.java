@@ -33,15 +33,15 @@ public class PedidoController {
     }
 
     @PutMapping("/{id}")
-    public void put(@PathVariable String id, @RequestBody Pedido InspecaoEditado) {
-        service.salvar(InspecaoEditado);
+    public void put(@PathVariable String id, @RequestBody Pedido PedidoEditado) {
+        service.salvar(PedidoEditado);
     }
 
 
     @PostMapping
     public String post(@RequestBody Pedido novo) {
-        Pedido InspecaoSalvo = service.salvar(novo);
-        return InspecaoSalvo.getId();
+        Pedido PedidoSalvo = service.salvar(novo);
+        return PedidoSalvo.getId();
     }
 
 

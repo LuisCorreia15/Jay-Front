@@ -7,13 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PedidoRepository extends JpaRepository<Pedido, String> {
 
-    /*
-    @Query(value ="select p from Produto p where p.descricao like %:termo%")
-    List<Produto> encontrarComTermo(String termo);
-    */
-
-    // List<Inspecao> findBynomeDoClienteLike(String nomeDoCliente);
-    
-    Page<Pedido> findBynomeDoClienteLikeIgnoreCase(Pageable pageRequest, String nomeDoCliente);
+    Page<Pedido> findByIdLike(Pageable pageRequest, String nomeDoCliente);
 
 }

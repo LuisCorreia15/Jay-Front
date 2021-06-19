@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import tempAlert from "components/alert/Alert";
 import Menu from "components/menu/menu";
 import "./Produto.css";
+import LoadingScreen from "components/loader/Loading";
 
 /* rafc  - comando para criar um component arrow*/
 
@@ -36,7 +37,8 @@ const ProdutoNew = () => {
 
   return (
     <>
-      <Menu></Menu>
+      <LoadingScreen></LoadingScreen>
+      <Menu ativo='produto'></Menu>
       <div className="container">
         <h3 className="pg-title">Cadastro de Produto</h3>
         <form onSubmit={handleSubmit} className="pg-form">
@@ -52,7 +54,7 @@ const ProdutoNew = () => {
               value={Produto.nomeDoProduto}
             ></input>
           </div>
-          <div className="sl-icon">
+          <div className="sl-icon flex-column">
             Tipo do Produto
             <select
               className="pg-select"
@@ -70,7 +72,7 @@ const ProdutoNew = () => {
               <option value="Ingrediente">Ingrediente</option>
             </select>
           </div>
-          <div className="sl-icon">
+          <div className="sl-icon flex-column">
             Medida
             <select
               defaultValue=""
@@ -88,7 +90,7 @@ const ProdutoNew = () => {
               <option value="/g">grama</option>
             </select>
           </div>
-          <div>
+          <div className="flex-column">
             Preço
             <input
               type="text"
