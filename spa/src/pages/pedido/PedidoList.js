@@ -7,12 +7,11 @@ import tempAlert from "components/alert/Alert";
 const PedidoList = (props) => {
   const { statusPesquisa, setStatusPesquisa } = props;
   const history = useHistory();
-  const [Pedido, setPedido] = useState({
+  const [pedido, setPedido] = useState({
     content: [],
     pageable: { pageNumber: 0 },
     totalPages: 0,
   });
-  
 
   const doGetPedido = async (páginaRequerida, termoDePesquisa) => {
     const response = await axios.get(
@@ -60,12 +59,11 @@ const PedidoList = (props) => {
     doExcluirTodosPedido();
   };
 
-
   const tableData =
-    Pedido.content.length === 0 ? (
+    pedido.content.length === 0 ? (
       <p>Nada encontrado!</p>
     ) : (
-      Pedido.content.map((row) => {
+      pedido.content.map((row) => {
         return (
           <div
             className="tb"
@@ -89,8 +87,8 @@ const PedidoList = (props) => {
     if (requestedPage <= 0) {
       requestedPage = 0;
     }
-    if (requestedPage >= Pedido.totalPages) {
-      requestedPage = Pedido.totalPages - 1;
+    if (requestedPage >= pedido.totalPages) {
+      requestedPage = pedido.totalPages - 1;
     }
     doGetPedido(requestedPage, statusPesquisa.termoDePesquisa);
   };
@@ -106,7 +104,7 @@ const PedidoList = (props) => {
 
   return (
     <>
-      <Menu ativo='pedido'></Menu>
+      <Menu ativo="pedido"></Menu>
       <div className="container">
         <form className="pd">
           <input
@@ -119,39 +117,37 @@ const PedidoList = (props) => {
           />
           <button className="bb">Pesquisar</button>
         </form>
-        <button className="btn-page" onClick={handleGerar}>
-          Gerar 10 Pedidos
-        </button>
         <button
           className="btn-page novo"
           onClick={() => history.push("/pedido/novo")}
         >
           Novo Pedido
         </button>
-        <button className="btn-page lixo" onClick={handleExcluirTodos}>
-          Excluir Todos
-        </button>
-
         <div className="tb-cnt">{tableData}</div>
-        <div className="page-control">
-          <button
-            className="btn-page"
-            onClick={() => requestPage(Pedido.pageable.pageNumber - 1)}
-          >
-            {"<"}
-          </button>
-          <span>
-            Página{" "}
-            {Pedido.totalPages > 0 ? Pedido.pageable.pageNumber + 1 : 0} de{" "}
-            {Pedido.totalPages}
-          </span>
-          <button
-            className="btn-page"
-            onClick={() => requestPage(Pedido.pageable.pageNumber + 1)}
-          >
-            {">"}
-          </button>
-        </div>
+
+        {pedido.totalPages > 1 ? (
+          <div className="page-control">
+            <button
+              className="btn-page"
+              onClick={() => requestPage(pedido.pageable.pageNumber - 1)}
+            >
+              {"<"}
+            </button>
+            <span>
+              Página{" "}
+              {pedido.totalPages > 0 ? pedido.pageable.pageNumber + 1 : 0} de{" "}
+              {pedido.totalPages}
+            </span>
+            <button
+              className="btn-page"
+              onClick={() => requestPage(pedido.pageable.pageNumber + 1)}
+            >
+              {">"}
+            </button>
+          </div>
+        ) : (
+          <div></div>
+        )}
       </div>
     </>
   );

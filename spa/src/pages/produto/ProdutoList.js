@@ -8,7 +8,7 @@ import LoadingScreen from "components/loader/Loading";
 const ProdutoList = (props) => {
   const { statusPesquisa, setStatusPesquisa } = props;
   const history = useHistory();
-  const [Produto, setProduto] = useState({
+  const [produto, setProduto] = useState({
     content: [],
     pageable: { pageNumber: 0 },
     totalPages: 0,
@@ -61,10 +61,10 @@ const ProdutoList = (props) => {
   };
 
   const tableData =
-    Produto.content.length === 0 ? (
+    produto.content.length === 0 ? (
       <p>Nada encontrado!</p>
     ) : (
-      Produto.content.map((row) => {
+      produto.content.map((row) => {
         return (
           <div
             className="tb"
@@ -88,8 +88,8 @@ const ProdutoList = (props) => {
     if (requestedPage <= 0) {
       requestedPage = 0;
     }
-    if (requestedPage >= Produto.totalPages) {
-      requestedPage = Produto.totalPages - 1;
+    if (requestedPage >= produto.totalPages) {
+      requestedPage = produto.totalPages - 1;
     }
     doGetProduto(requestedPage, statusPesquisa.termoDePesquisa);
   };
@@ -106,7 +106,7 @@ const ProdutoList = (props) => {
   return (
     <>
       <LoadingScreen></LoadingScreen>
-      <Menu ativo='produto'></Menu>
+      <Menu ativo="produto"></Menu>
       <div className="container">
         <form className="pd">
           <input
@@ -133,25 +133,29 @@ const ProdutoList = (props) => {
         </button>
 
         <div className="tb-cnt">{tableData}</div>
-        <div className="page-control">
-          <button
-            className="btn-page"
-            onClick={() => requestPage(Produto.pageable.pageNumber - 1)}
-          >
-            {"<"}
-          </button>
-          <span>
-            Página{" "}
-            {Produto.totalPages > 0 ? Produto.pageable.pageNumber + 1 : 0} de{" "}
-            {Produto.totalPages}
-          </span>
-          <button
-            className="btn-page"
-            onClick={() => requestPage(Produto.pageable.pageNumber + 1)}
-          >
-            {">"}
-          </button>
-        </div>
+        {produto.totalPages > 1 ? (
+          <div className="page-control">
+            <button
+              className="btn-page"
+              onClick={() => requestPage(produto.pageable.pageNumber - 1)}
+            >
+              {"<"}
+            </button>
+            <span>
+              Página{" "}
+              {produto.totalPages > 0 ? produto.pageable.pageNumber + 1 : 0} de{" "}
+              {produto.totalPages}
+            </span>
+            <button
+              className="btn-page"
+              onClick={() => requestPage(produto.pageable.pageNumber + 1)}
+            >
+              {">"}
+            </button>
+          </div>
+        ) : (
+          <div></div>
+        )}
       </div>
     </>
   );

@@ -10,7 +10,7 @@ import DeleteConfirm from "components/alert/DeleteConfirm";
 const InspecaoList = (props) => {
   const { statusPesquisa, setStatusPesquisa } = props;
   const history = useHistory();
-  const [Inspecao, setInspecao] = useState({
+  const [inspecao, setInspecao] = useState({
     content: [],
     pageable: { pageNumber: 0 },
     totalPages: 0,
@@ -33,7 +33,7 @@ const InspecaoList = (props) => {
 
   const doExcluirInspecao = async (id, name) => {
     await axios.delete(`/api/inspecao/${id}`);
-    if (Inspecao.content.length === 1) {
+    if (inspecao.content.length === 1) {
       doGetInspecao(
         statusPesquisa.páginaAtual - 1,
         statusPesquisa.termoDePesquisa
@@ -97,10 +97,10 @@ const InspecaoList = (props) => {
   };
 
   const tableData =
-    Inspecao.content.length === 0 ? (
+    inspecao.content.length === 0 ? (
       <p>Nada encontrado!</p>
     ) : (
-      Inspecao.content.map((row) => {
+      inspecao.content.map((row) => {
         return (
           <div className="tb" key={row.id}>
             <div className="tb-title">
@@ -130,15 +130,15 @@ const InspecaoList = (props) => {
     if (requestedPage <= 0) {
       requestedPage = 0;
     }
-    if (requestedPage >= Inspecao.totalPages) {
-      requestedPage = Inspecao.totalPages - 1;
+    if (requestedPage >= inspecao.totalPages) {
+      requestedPage = inspecao.totalPages - 1;
     }
     doGetInspecao(requestedPage, statusPesquisa.termoDePesquisa);
   };
 
   return (
     <>
-      <Menu ativo='inspecao'></Menu>
+      <Menu ativo="inspecao"></Menu>
       <div className="container">
         {renderConfirmDelete()}
         <form className="pd">
@@ -165,23 +165,29 @@ const InspecaoList = (props) => {
           Excluir Todas
         </button>
         <div className="tb-cnt">{tableData}</div>
-        <button
-          className="btn-page"
-          onClick={() => requestPage(Inspecao.pageable.pageNumber - 1)}
-        >
-          {"<"}
-        </button>
-        <span>
-          Página{" "}
-          {Inspecao.totalPages > 0 ? Inspecao.pageable.pageNumber + 1 : 0} de{" "}
-          {Inspecao.totalPages}
-        </span>
-        <button
-          className="btn-page"
-          onClick={() => requestPage(Inspecao.pageable.pageNumber + 1)}
-        >
-          {">"}
-        </button>
+        {inspecao.totalPages > 1 ? (
+          <div className="page-control">
+            <button
+              className="btn-page"
+              onClick={() => requestPage(inspecao.pageable.pageNumber - 1)}
+            >
+              {"<"}
+            </button>
+            <span>
+              Página{" "}
+              {inspecao.totalPages > 0 ? inspecao.pageable.pageNumber + 1 : 0} de{" "}
+              {inspecao.totalPages}
+            </span>
+            <button
+              className="btn-page"
+              onClick={() => requestPage(inspecao.pageable.pageNumber + 1)}
+            >
+              {">"}
+            </button>
+          </div>
+        ) : (
+          <div></div>
+        )}
       </div>
     </>
   );
