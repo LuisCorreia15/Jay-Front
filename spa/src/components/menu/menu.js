@@ -30,6 +30,9 @@ const Menu = (props) => {
         <Link to="/inspecao" id="inspecao">
           <li>Inspeção</li>
         </Link>
+        <Link to="/cliente" id="cliente">
+          <li>Cliente</li>
+        </Link>
       </ul>
     </div>
   );

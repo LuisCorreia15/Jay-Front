@@ -6,6 +6,7 @@ import InspecaoManter from "./pages/inspecao/InspecaoManter";
 import PedidoManter from "pages/pedido/PedidoManter";
 import ProdutoManter from "pages/produto/ProdutoManter";
 import LandingPage from "./pages/landing/LadingPage";
+import ClienteManter from "pages/cliente/ClienteManter";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/inspecao" component={InspecaoManter}></Route>
             <Route path="/produto" component={ProdutoManter}></Route>
             <Route path="/pedido" component={PedidoManter}></Route>
+            <Route path="/cliente" component={ClienteManter}></Route>
           </Switch>
         </Router>
       </header>
