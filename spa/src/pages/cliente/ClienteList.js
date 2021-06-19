@@ -72,12 +72,8 @@ const ClienteList = (props) => {
             onClick={() => history.push(`/cliente/editar/${row.id}`)}
           >
             <div className="tb-title">
-              <p>{row.tipoDoCliente}</p>
+              <p>{row.celular}</p>
               <h2>{row.nomeDoCliente}</h2>
-            </div>
-            <div className="tb-price">
-              <h2>R$ {row.preco.toFixed(2)}</h2>
-              <p>{row.vendidoPor}</p>
             </div>
           </div>
         );

@@ -45,6 +45,10 @@
 .pg-input {
   width: 735px !important;
 }
+.pg-input::placeholder {
+  color: var(--light);
+  font-weight: 300;
+}
 .pg-select {
   width: 759px;
   cursor: pointer;

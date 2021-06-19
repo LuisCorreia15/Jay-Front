@@ -5,6 +5,7 @@ import tempAlert from "components/alert/Alert";
 import Menu from "components/menu/menu";
 import "./Cliente.css";
 import LoadingScreen from "components/loader/Loading";
+import InputMask from "react-input-mask";
 
 /* rafc  - comando para criar um component arrow*/
 
@@ -12,10 +13,8 @@ const ClienteNew = () => {
   const history = useHistory();
   const [cliente, setCliente] = useState({
     nomeDoCliente: "",
-    preco: 2.2,
-    vendidos: 0,
-    tipoDoCliente: "Doce",
-    vendidoPor: "unidade",
+    celular: "",
+    logradouro: "",
   });
 
   // nfn - comando para criar função anonima
@@ -38,12 +37,12 @@ const ClienteNew = () => {
   return (
     <>
       <LoadingScreen></LoadingScreen>
-      <Menu ativo='cliente'></Menu>
+      <Menu ativo="cliente"></Menu>
       <div className="container">
         <h3 className="pg-title">Cadastro de Cliente</h3>
         <form onSubmit={handleSubmit} className="pg-form">
-          <div>
-            Nome Do Cliente
+          <div className="flex-column">
+            Nome
             <input
               type="text"
               autoFocus
@@ -51,56 +50,31 @@ const ClienteNew = () => {
               className="pg-input"
               required
               onChange={handleChange}
-              value={cliente.nomeDoCliente}
             ></input>
-          </div>
-          <div className="sl-icon flex-column">
-            Tipo do Cliente
-            <select
-              className="pg-select"
-              name="tipoDoCliente"
-              required
-              onChange={handleChange}
-              defaultValue=""
-            >
-              <option value="" disabled>
-                Selecione o tipo do cliente
-              </option>
-              <option value="Doce">Doce</option>
-              <option value="Salgado">Salgado</option>
-              <option value="Bolo">Bolo</option>
-              <option value="Ingrediente">Ingrediente</option>
-            </select>
-          </div>
-          <div className="sl-icon flex-column">
-            Medida
-            <select
-              defaultValue=""
-              className="pg-select"
-              name="vendidoPor"
-              required
-              onChange={handleChange}
-            >
-              <option value="" disabled>
-                O cliente será vendido por
-              </option>
-
-              <option value="/un">unidade</option>
-              <option value="/Kg">kilograma</option>
-              <option value="/g">grama</option>
-            </select>
           </div>
           <div className="flex-column">
-            Preço
+            Celular
+            <InputMask
+              mask="(99) 9.9999-9999"
+              placeholder="(__) _.____-____"
+              onChange={handleChange}
+              required
+              type="text"
+              name="celular"
+              className="pg-input"
+            ></InputMask>
+          </div>
+          <div className="flex-column">
+            Logradouro
             <input
               type="text"
-              name="preco"
-              required
+              name="logradouro"
               className="pg-input"
+              required
               onChange={handleChange}
-              value={cliente.preco}
             ></input>
           </div>
+
           <button className="btn-page pg-btn">Enviar</button>
           <button
             className="btn-page bt-lixo pg-btn"
