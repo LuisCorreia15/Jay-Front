@@ -43,7 +43,7 @@ const PedidoEdit = () => {
     return (
       <DeleteConfirm
         estado={confirmState}
-        doExcluirPedido={doExcluirPedido}
+        doExcluir={doExcluirPedido}
         id={idParaEditar}
         nome={pedido.nomeDoPedido}
         setConfirmState={setConfirmState}

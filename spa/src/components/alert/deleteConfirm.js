@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Alert.css";
 
 const DeleteConfirm = (props) => {
-  const { estado, doExcluirProduto, setConfirmState, id, nome } = props;
+  const { estado, doExcluir, setConfirmState, id, nome } = props;
   const [open, setOpen] = useState(true);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const DeleteConfirm = (props) => {
               className="cnf"
               onClick={() => {
                 mostrarConfirmação();
-                doExcluirProduto(id, nome);
+                doExcluir(id, nome);
               }}
             >
               Confirmar

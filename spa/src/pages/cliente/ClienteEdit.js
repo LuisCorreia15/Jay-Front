@@ -7,16 +7,15 @@ import tempAlert from "../../components/alert/Alert";
 import Menu from "components/menu/menu";
 import DeleteConfirm from "components/alert/DeleteConfirm";
 import LoadingScreen from "components/loader/Loading";
+import InputMask from "react-input-mask";
 
 const ClienteEdit = () => {
   const history = useHistory();
   const { idParaEditar } = useParams();
   const [cliente, setCliente] = useState({
     nomeDoCliente: "",
-    preco: 0.0,
-    vendidos: 0,
-    tipoDoCliente: "",
-    vendidoPor: "",
+    celular: "",
+    logradouro: "",
   });
   const [confirmState, setConfirmState] = useState(false);
 
@@ -44,7 +43,7 @@ const ClienteEdit = () => {
     return (
       <DeleteConfirm
         estado={confirmState}
-        doExcluirCliente={doExcluirCliente}
+        doExcluir={doExcluirCliente}
         id={idParaEditar}
         nome={cliente.nomeDoCliente}
         setConfirmState={setConfirmState}
@@ -83,63 +82,36 @@ const ClienteEdit = () => {
             Nome
             <input
               type="text"
-              className="pg-input"
-              name="nomeDoCliente"
-              required
               autoFocus
+              name="nomeDoCliente"
+              className="pg-input"
+              required
               onChange={handleChange}
               value={cliente.nomeDoCliente}
             ></input>
           </div>
-          <div className="sl-icon flex-column">
-            Tipo do Cliente
-            <select
-              className="pg-select"
-              name="tipoDoCliente"
-              required
-              defaultValue={cliente.tipoDoCliente}
+          <div className="flex-column">
+            Celular
+            <InputMask
+              mask="(99) 9.9999-9999"
+              placeholder="(__) _.____-____"
               onChange={handleChange}
-            >
-              <option value="Doce">Doce</option>
-              <option value="Salgado">Salgado</option>
-              <option value="Bolo">Bolo</option>
-              <option value="Ingredientes">Ingrediente</option>
-            </select>
-          </div>
-          <div className="sl-icon flex-column">
-            Medida
-            <select
-              defaultValue={cliente.medida}
-              className="pg-select"
-              name="vendidoPor"
               required
-              onChange={handleChange}
-            >
-              <option value="/un">a unidade</option>
-              <option value="/Kg">o kilo</option>
-              <option value="/g">o grama</option>
-            </select>
+              type="text"
+              name="celular"
+              className="pg-input"
+              value={cliente.celular}
+            ></InputMask>
           </div>
           <div className="flex-column">
-            Preço
+            Logradouro
             <input
               type="text"
-              name="preco"
+              name="logradouro"
+              className="pg-input"
               required
               onChange={handleChange}
-              value={cliente.preco}
-              className="pg-input"
-            ></input>
-          </div>
-          <div className="flex-column">
-            Vendidos
-            <input
-              type="text"
-              className="pg-input"
-              name="vendidos"
-              required
-              onChange={handleChange}
-              value={cliente.vendidos}
+              value={cliente.logradouro}
             ></input>
           </div>
           <button className="btn-page pg-btn ">Concluir </button>

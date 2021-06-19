@@ -42,7 +42,7 @@ const ClienteList = (props) => {
 
   const doGerarCliente = async () => {
     await axios.post(`/api/cliente/gerar-cliente`);
-    tempAlert("10 Cliente gerados!", 5000);
+    tempAlert("10 Clientes gerados!", 5000);
     doGetCliente(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
   };
 

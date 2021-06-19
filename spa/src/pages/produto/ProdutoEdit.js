@@ -44,7 +44,7 @@ const ProdutoEdit = () => {
     return (
       <DeleteConfirm
         estado={confirmState}
-        doExcluirProduto={doExcluirProduto}
+        doExlcuir={doExcluirProduto}
         id={idParaEditar}
         nome={produto.nomeDoProduto}
         setConfirmState={setConfirmState}
