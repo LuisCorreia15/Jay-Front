@@ -41,7 +41,7 @@ const ProdutoList = (props) => {
   }, [statusPesquisa.termoDePesquisa]);
 
   const doGerarProduto = async () => {
-    await axios.post(`/api/produto/gerar-produto`);
+    await axios.post(`/api/produto/gerar`);
     tempAlert("10 Produto gerados!", 5000);
     doGetProduto(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
   };
