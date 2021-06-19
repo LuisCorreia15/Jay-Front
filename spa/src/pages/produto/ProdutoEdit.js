@@ -6,6 +6,7 @@ import { useHistory, useParams } from "react-router-dom";
 import tempAlert from "../../components/alert/Alert";
 import Menu from "components/menu/menu";
 import DeleteConfirm from "components/alert/DeleteConfirm";
+import LoadingScreen from "components/loading/Loading";
 
 const ProdutoEdit = () => {
   const history = useHistory();
@@ -69,6 +70,7 @@ const ProdutoEdit = () => {
 
   return (
     <>
+      <LoadingScreen></LoadingScreen>
       <Menu></Menu>
       {renderConfirmDelete()}
       <div className="container">
@@ -76,7 +78,7 @@ const ProdutoEdit = () => {
         <button className="pg-excluir" onClick={() => handleExcluir()}>
           excluir produto
         </button>
-      
+
         <form onSubmit={handleSubmit} className="pg-form">
           <div>
             Nome

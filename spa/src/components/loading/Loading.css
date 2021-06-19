@@ -1,0 +1,43 @@
+/*-------------- Loading Screen --------------*/
+#loading-screen {
+  position: fixed;
+  z-index: 1000;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+  background-color: transparent;
+}
+.loading-logo {
+  width: auto;
+  height: auto;
+}
+.loading-bar {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  height: 3px;
+  background: var(--purple);
+  position: relative;
+  overflow: hidden;
+}
+.loading-bar::before {
+  content: "";
+  width: 800px;
+  height: 3px;
+  background: var(--comment);
+  position: absolute;
+  left: -34px;
+  -webkit-animation: 1.5s ease 0s infinite normal none running bluebar;
+  animation: 1.5s ease 0s infinite normal none running bluebar;
+}
+@-webkit-keyframes bluebar {
+  50% {
+    left: 100%;
+  }
+}
+@keyframes bluebar {
+  50% {
+    left: 100%;
+  }
+}

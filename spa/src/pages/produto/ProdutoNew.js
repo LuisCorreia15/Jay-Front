@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import tempAlert from "components/alert/Alert";
 import Menu from "components/menu/menu";
 import "./Produto.css";
+import LoadingScreen from "components/loading/Loading";
 
 /* rafc  - comando para criar um component arrow*/
 
@@ -36,6 +37,7 @@ const ProdutoNew = () => {
 
   return (
     <>
+    <LoadingScreen></LoadingScreen>
       <Menu></Menu>
       <div className="container">
         <h3 className="pg-title">Cadastro de Produto</h3>

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Menu from "components/menu/menu";
 import tempAlert from "components/alert/Alert";
+import LoadingScreen from "components/loading/Loading";
 
 const ProdutoList = (props) => {
   const { statusPesquisa, setStatusPesquisa } = props;
@@ -12,7 +13,6 @@ const ProdutoList = (props) => {
     pageable: { pageNumber: 0 },
     totalPages: 0,
   });
-  
 
   const doGetProduto = async (páginaRequerida, termoDePesquisa) => {
     const response = await axios.get(
@@ -60,7 +60,6 @@ const ProdutoList = (props) => {
     doExcluirTodosProduto();
   };
 
-
   const tableData =
     Produto.content.length === 0 ? (
       <p>Nada encontrado!</p>
@@ -106,6 +105,7 @@ const ProdutoList = (props) => {
 
   return (
     <>
+      <LoadingScreen></LoadingScreen>
       <Menu></Menu>
       <div className="container">
         <form className="pd">
