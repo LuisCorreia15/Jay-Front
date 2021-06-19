@@ -9,6 +9,7 @@ const Menu = (props) => {
       document.getElementById(ativo).style.color = "#555";
       document.getElementById(ativo).style.fontWeight = "500";
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Menu from "components/menu/menu";
-import tempAlert from "components/alert/Alert";
 
 const PedidoList = (props) => {
   const { statusPesquisa, setStatusPesquisa } = props;
@@ -39,25 +38,7 @@ const PedidoList = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [statusPesquisa.termoDePesquisa]);
 
-  const doGerarPedido = async () => {
-    await axios.post(`/api/pedido/gerar-pedido`);
-    tempAlert("10 Pedido gerados!", 5000);
-    doGetPedido(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
-  };
-
-  const handleGerar = () => {
-    doGerarPedido();
-  };
-
-  const doExcluirTodosPedido = async () => {
-    await axios.delete(`/api/pedido/excluir-todos`);
-    tempAlert("Todos Pedidos excluídos!", 5000);
-    doGetPedido(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
-  };
-
-  const handleExcluirTodos = () => {
-    doExcluirTodosPedido();
-  };
+  
 
   const tableData =
     pedido.content.length === 0 ? (
