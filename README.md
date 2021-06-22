@@ -5,7 +5,9 @@
 - [x] Adicionar "Vendido por" nos produtos
 - [x] Arrumar o excluir produto ao editar
 - [X] Verificar como fazer a relação de PedidosxProdutos no banco
-- [ ] Preco Vitrine e Encomenda implementado
+- [ ] Fix/produto-edit-delete
+- [X] Preco Vitrine implementado
+- [ ] Preco Encomenda implementado
 - [ ] Validação dos campos input
 - [ ] Mostrar o page control somente quando tiver paginas
 - [ ] Adicionar filtro a busca "Doces/Bolos/Salgados/Outros"
