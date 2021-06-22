@@ -8,7 +8,11 @@ import LoadingScreen from "components/loader/Loading";
 const ProdutoList = (props) => {
   const { statusPesquisa, setStatusPesquisa } = props;
   const history = useHistory();
-  const [typeProduto, setTypeProduto] = useState("Vitrine");
+  const [load, setLoad] = useState(false);
+  const [types, setTypes] = useState({
+    typeProdutos: "Todos",
+    typeValores: "Vitrine",
+  });
   const [produto, setProduto] = useState({
     content: [],
     pageable: { pageNumber: 0 },
@@ -38,8 +42,9 @@ const ProdutoList = (props) => {
 
   useEffect(() => {
     doGetProduto(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
+    setLoad(!load);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [statusPesquisa.termoDePesquisa]);
+  }, [statusPesquisa.termoDePesquisa, types.typeProdutos, types.typeValores]);
 
   const doGerarProduto = async () => {
     await axios.post(`/api/produto/gerar`);
@@ -61,6 +66,14 @@ const ProdutoList = (props) => {
     doExcluirTodosProduto();
   };
 
+  const handleSearchSelectChange = (event) => {
+    const typeChaged = {
+      ...types,
+      [event.target.name]: event.target.value,
+    };
+    setTypes(typeChaged);
+  };
+
   const tableData =
     produto.content.length === 0 ? (
       <p>Nada encontrado!</p>
@@ -77,7 +90,11 @@ const ProdutoList = (props) => {
               <h2>{row.nomeDoProduto}</h2>
             </div>
             <div className="tb-price">
-              <h2>R$ {row.precoVitrine.toFixed(2)}</h2>
+              {types.typeValores === "Vitrine" ? (
+                <h2>R$ {row.precoVitrine.toFixed(2)}</h2>
+              ) : (
+                <h2>R$ {row.precoEncomenda.toFixed(2)}</h2>
+              )}
               <p>{row.vendidoPor}</p>
             </div>
           </div>
@@ -100,26 +117,55 @@ const ProdutoList = (props) => {
       history.push("/produto/novo");
     }
     // Arrumar o go back do history
-    // if (e.keyCode === 27) { 
+    // if (e.keyCode === 27) {
     //   history.goBack();
     // }
   }
 
   return (
     <>
-      <LoadingScreen></LoadingScreen>
+      <LoadingScreen ></LoadingScreen>
       <Menu ativo="produto"></Menu>
       <div className="container">
-        <form className="pd">
+        <form className="pd campo-busca">
+          <div className="sl-search">
+            <select
+              defaultValue={types.typeValores}
+              required
+              onChange={handleSearchSelectChange}
+              name="typeValores"
+            >
+              <option value="" disabled>
+                Tipo de valor
+              </option>
+              <option value="Vitrine">Vitrine</option>
+              <option value="Encomenda">Encomenda</option>
+            </select>
+          </div>
+          <div className="sl-search">
+            <select
+              defaultValue={types.typeProdutos}
+              required
+              onChange={handleSearchSelectChange}
+              name="typeProdutos"
+            >
+              <option value="" disabled>
+                Tipo dos produtos
+              </option>
+              <option value="Todos">Todos</option>
+              <option value="Doce">Doce</option>
+              <option value="Salgado">Salgado</option>
+              <option value="Bolo">Bolo</option>
+              <option value="Ingrediente">Ingrediente</option>
+            </select>
+          </div>
           <input
-            className="cb"
             type="text"
             value={statusPesquisa.termoDePesquisa}
             placeholder="O que deseja buscar?"
             autoFocus
             onChange={handleSearchInputChange}
           />
-          <button className="bb">Pesquisar</button>
         </form>
         <button className="btn-page" onClick={handleGerar}>
           Gerar 10 Produtos

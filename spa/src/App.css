@@ -102,21 +102,13 @@ select {
   border: 3px solid transparent;
 }
 
-/* input:required:valid,
-select:required:valid {
-  border: 3px solid var(--comment) !important;
-} */
 input::placeholder,
 select::placeholder {
   font-size: 18px;
   font-weight: 700;
   color: var(--comment);
 }
-/* input:required:invalid,
-select:required:invalid {
-  border: 3px solid var(--light);
-  color: var(--light);
-} */
+
 select:focus,
 input:focus {
   border: 3px solid var(--comment);
@@ -183,40 +175,42 @@ h2 {
 
 .pd {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   margin-top: 20px;
 }
-.cb {
-  height: 44px;
-  padding: 0 25px !important;
-  margin: 0 !important;
+.campo-busca {
+  display: flex;
+  height: 50px;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
   color: var(--comment);
-  border-radius: 10px 0px 0px 10px;
+  border-radius: 10px;
   background-color: var(--bg);
+  border: 3px solid transparent;
 }
-.cb::placeholder {
+
+.campo-busca input::placeholder {
   font-weight: 300;
   color: var(--light);
 }
-.bb {
-  background-color: var(--comment);
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
-  font-size: 16px;
-  font-weight: 900;
-  color: var(--bg);
-  cursor: pointer;
-  height: 50px !important;
-  padding: 0px 40px;
-  border: none;
-  outline: none;
-  border-radius: 0px 10px 10px 0;
-  text-transform: uppercase;
-  transition: all 0.3s ease;
+.campo-busca input {
+  border-radius: 0 10px 10px 0;
+  margin-left: 25px;
+  height: calc(100% - 9px);
 }
-.bb:hover {
-  background-color: #fff;
-  color: var(--comment);
+.campo-busca input:focus {
+  border: 3px solid transparent;
+}
+.sl-search {
+  margin-left: 25px;
+  width: 200px;
+}
+.sl-search select {
+  cursor: pointer;
+  height: 100%;
+}
+.sl-search select:focus {
+  border: 3px solid transparent;
 }
 .btn-page {
   background-color: var(--bg);

@@ -1,6 +1,5 @@
 import React from "react";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
-
 import "./App.css";
 import InspecaoManter from "./pages/inspecao/InspecaoManter";
 import PedidoManter from "pages/pedido/PedidoManter";
