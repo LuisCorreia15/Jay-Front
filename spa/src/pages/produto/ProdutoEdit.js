@@ -13,7 +13,8 @@ const ProdutoEdit = () => {
   const { idParaEditar } = useParams();
   const [produto, setProduto] = useState({
     nomeDoProduto: "",
-    preco: 0.0,
+    precoEncomenda: 0.0,
+    precoVitrine: 0.0,
     vendidos: 0,
     tipoDoProduto: "",
     vendidoPor: "",
@@ -124,10 +125,21 @@ const ProdutoEdit = () => {
             Preço
             <input
               type="text"
-              name="preco"
+              name="precoEncomenda"
               required
               onChange={handleChange}
-              value={produto.preco}
+              value={produto.precoEncomenda}
+              className="pg-input"
+            ></input>
+          </div>
+          <div className="flex-column">
+            Preço
+            <input
+              type="text"
+              name="precoVitrine"
+              required
+              onChange={handleChange}
+              value={produto.precoVitrine}
               className="pg-input"
             ></input>
           </div>

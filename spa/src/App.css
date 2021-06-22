@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 :root {
-  --purple: #e8eaed;
+  --lightGray: #e8eaed;
   --red: #ea4335;
   --light: #dbdbdb;
   --bg: #ffffff;
@@ -16,15 +16,13 @@
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg);
+  background: var(--lightGray);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--purple);
+  background: var(--comment);
   border-radius: 10px;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: var(--comment);
-}
+
 * {
   font-family: var(--font);
   outline: none;

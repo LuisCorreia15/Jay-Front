@@ -8,6 +8,7 @@ import LoadingScreen from "components/loader/Loading";
 const ProdutoList = (props) => {
   const { statusPesquisa, setStatusPesquisa } = props;
   const history = useHistory();
+  const [typeProduto, setTypeProduto] = useState("Vitrine");
   const [produto, setProduto] = useState({
     content: [],
     pageable: { pageNumber: 0 },
@@ -76,7 +77,7 @@ const ProdutoList = (props) => {
               <h2>{row.nomeDoProduto}</h2>
             </div>
             <div className="tb-price">
-              <h2>R$ {row.preco.toFixed(2)}</h2>
+              <h2>R$ {row.precoVitrine.toFixed(2)}</h2>
               <p>{row.vendidoPor}</p>
             </div>
           </div>
@@ -98,9 +99,10 @@ const ProdutoList = (props) => {
     if (e.keyCode === 115) {
       history.push("/produto/novo");
     }
-    if (e.keyCode === 27) {
-      history.goBack();
-    }
+    // Arrumar o go back do history
+    // if (e.keyCode === 27) { 
+    //   history.goBack();
+    // }
   }
 
   return (

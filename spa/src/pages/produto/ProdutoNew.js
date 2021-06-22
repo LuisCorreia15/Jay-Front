@@ -10,18 +10,18 @@ import LoadingScreen from "components/loader/Loading";
 
 const ProdutoNew = () => {
   const history = useHistory();
-  const [Produto, setProduto] = useState({
+  const [produto, setProduto] = useState({
     nomeDoProduto: "",
-    precoEncomenda: 0.0,
-    precoVitrine: 0.0,
+    precoEncomenda: 4.0,
+    precoVitrine: 1.0,
     vendidos: 0,
     tipoDoProduto: "Doce",
-    vendidoPor: "unidade",
+    vendidoPor: "/un",
   });
 
   // nfn - comando para criar função anonima
   const doPost = async () => {
-    await axios.post("/api/produto", Produto);
+    await axios.post("/api/produto", produto);
     tempAlert(`Produto adicionado com sucesso!`, 5000);
     history.push("/produto");
   };
@@ -32,14 +32,14 @@ const ProdutoNew = () => {
   };
 
   const handleChange = (event) => {
-    const novoProduto = { ...Produto, [event.target.name]: event.target.value };
+    const novoProduto = { ...produto, [event.target.name]: event.target.value };
     setProduto(novoProduto);
   };
 
   return (
     <>
       <LoadingScreen></LoadingScreen>
-      <Menu ativo='produto'></Menu>
+      <Menu ativo="produto"></Menu>
       <div className="container">
         <h3 className="pg-title">Cadastro de Produto</h3>
         <form onSubmit={handleSubmit} className="pg-form">
@@ -52,7 +52,7 @@ const ProdutoNew = () => {
               className="pg-input"
               required
               onChange={handleChange}
-              value={Produto.nomeDoProduto}
+              value={produto.nomeDoProduto}
             ></input>
           </div>
           <div className="sl-icon flex-column">
@@ -62,7 +62,7 @@ const ProdutoNew = () => {
               name="tipoDoProduto"
               required
               onChange={handleChange}
-              defaultValue=""
+              defaultValue={produto.tipoDoProduto}
             >
               <option value="" disabled>
                 Selecione o tipo do produto
@@ -76,7 +76,7 @@ const ProdutoNew = () => {
           <div className="sl-icon flex-column">
             Medida
             <select
-              defaultValue=""
+              defaultValue={produto.vendidoPor}
               className="pg-select"
               name="vendidoPor"
               required
@@ -95,22 +95,22 @@ const ProdutoNew = () => {
             Preço Encomenda
             <input
               type="text"
-              name="preco"
+              name="precoEncomenda"
               required
               className="pg-input"
               onChange={handleChange}
-              value={Produto.precoEncomenda}
+              value={produto.precoEncomenda}
             ></input>
           </div>
           <div className="flex-column">
             Preço Vitrine
             <input
               type="text"
-              name="preco"
+              name="precoVitrine"
               required
               className="pg-input"
               onChange={handleChange}
-              value={Produto.precoVitrine}
+              value={produto.precoVitrine}
             ></input>
           </div>
           <button className="btn-page pg-btn">Enviar</button>
