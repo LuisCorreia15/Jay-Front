@@ -12,7 +12,8 @@ const ProdutoNew = () => {
   const history = useHistory();
   const [Produto, setProduto] = useState({
     nomeDoProduto: "",
-    preco: 2.2,
+    precoEncomenda: 0.0,
+    precoVitrine: 0.0,
     vendidos: 0,
     tipoDoProduto: "Doce",
     vendidoPor: "unidade",
@@ -91,14 +92,25 @@ const ProdutoNew = () => {
             </select>
           </div>
           <div className="flex-column">
-            Preço
+            Preço Encomenda
             <input
               type="text"
               name="preco"
               required
               className="pg-input"
               onChange={handleChange}
-              value={Produto.preco}
+              value={Produto.precoEncomenda}
+            ></input>
+          </div>
+          <div className="flex-column">
+            Preço Vitrine
+            <input
+              type="text"
+              name="preco"
+              required
+              className="pg-input"
+              onChange={handleChange}
+              value={Produto.precoVitrine}
             ></input>
           </div>
           <button className="btn-page pg-btn">Enviar</button>

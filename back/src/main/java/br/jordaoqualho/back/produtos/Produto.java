@@ -25,7 +25,11 @@ public class Produto {
     @Getter
     @Setter
     @Column(scale = 3)
-    private BigDecimal preco;
+    private BigDecimal precoEncomenda;
+    @Getter
+    @Setter
+    @Column(scale = 3)
+    private BigDecimal precoVitrine;
     @Getter
     @Setter
     private Integer vendidos;
@@ -40,10 +44,11 @@ public class Produto {
         this.id = UUID.randomUUID().toString();
     }
 
-    public Produto(String nomeDoProduto, BigDecimal preco, Integer vendidos, String tipoDoProduto, String vendidoPor) {
+    public Produto(String nomeDoProduto, BigDecimal precoEncomenda, BigDecimal precoVitrine, Integer vendidos, String tipoDoProduto, String vendidoPor) {
         this();
         this.nomeDoProduto = nomeDoProduto;
-        this.preco = preco;
+        this.precoEncomenda = precoEncomenda;
+        this.precoVitrine = precoVitrine;
         this.vendidos = vendidos;
         this.tipoDoProduto = tipoDoProduto;
         this.vendidoPor = vendidoPor;
