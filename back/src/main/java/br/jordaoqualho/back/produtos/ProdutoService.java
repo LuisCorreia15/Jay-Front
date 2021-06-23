@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 @Service
 @Transactional
 public class ProdutoService {
@@ -19,9 +20,14 @@ public class ProdutoService {
     private ProdutoRepository repository;
       Faker faker = new Faker();
 
-    public Page<Produto> obterTodos(Pageable pageRequest, String termo) {
+    public Page<Produto> obterTodos(Pageable pageRequest, String termo, String tipo) {
         if (termo == null || termo.trim().length() == 0) {
-             return repository.findAll(pageRequest);            
+             if (tipo == null || tipo.trim().length() == 0 ) {
+                return repository.findAll(pageRequest);            
+             }
+             else {
+                return repository.findBytipoDoProdutoLikeIgnoreCase(pageRequest, "%" + tipo + "%");
+             }
         }
         return repository.findBynomeDoProdutoLikeIgnoreCase(pageRequest, "%" + termo + "%");
     }  

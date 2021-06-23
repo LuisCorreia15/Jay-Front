@@ -23,8 +23,8 @@ public class ProdutoController {
    
 
     @GetMapping
-    public Page<Produto> get(Pageable pageRequest,  @RequestParam(name = "termo",required = false) String termo) {
-        return service.obterTodos(pageRequest, termo);
+    public Page<Produto> get(Pageable pageRequest,  @RequestParam(name = "termo", required = false) String termo, @RequestParam(name = "tipo", required = false) String tipo) {
+        return service.obterTodos(pageRequest, termo, tipo);
     }
  
     @GetMapping("/{idParaEditar}")

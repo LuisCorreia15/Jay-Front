@@ -5,14 +5,14 @@
 - [x] Adicionar "Vendido por" nos produtos
 - [x] Arrumar o excluir produto ao editar
 - [X] Verificar como fazer a relação de PedidosxProdutos no banco
-- [ ] Fix/produto-edit-delete
 - [X] Preco Vitrine implementado
-- [ ] Preco Encomenda implementado
-- [ ] Validação dos campos input
-- [ ] Mostrar o page control somente quando tiver paginas
-- [ ] Adicionar filtro a busca "Doces/Bolos/Salgados/Outros"
+- [X] Adicionar filtro a busca "Doces/Bolos/Salgados/Outros"
+- [X] Mostrar o page control somente quando tiver paginas
+- [X] Preco Encomenda implementado
+- [ ] Fix/produto-edit-delete
 - [ ] Produto Edit não trazendo as categorias para edição!
-- [ ] Verificar Relações das entidades com
+- [ ] Validação de produto repetido
+- [ ] Validação dos campos input
 - [ ] Finalizar front do Pedido com os itens funcionando
 - [ ] Colocar o locale do faker para 'pt-BR'
 

@@ -10,7 +10,7 @@ const ProdutoList = (props) => {
   const history = useHistory();
   const [load, setLoad] = useState(false);
   const [types, setTypes] = useState({
-    typeProdutos: "Todos",
+    typeProdutos: "",
     typeValores: "Vitrine",
   });
   const [produto, setProduto] = useState({
@@ -19,16 +19,24 @@ const ProdutoList = (props) => {
     totalPages: 0,
   });
 
-  const doGetProduto = async (páginaRequerida, termoDePesquisa) => {
+  const doGetProduto = async (
+    páginaRequerida,
+    termoDePesquisa,
+    tipoDosProdutos
+  ) => {
     const response = await axios.get(
-      `/api/produto?termo=${termoDePesquisa}&page=${páginaRequerida}`
+      `/api/produto?termo=${termoDePesquisa}&page=${páginaRequerida}&tipo=${tipoDosProdutos}`
     );
     setProduto(response.data);
   };
 
   useEffect(() => {
     document.addEventListener("keydown", keydownHandler);
-    doGetProduto(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
+    doGetProduto(
+      statusPesquisa.páginaAtual,
+      statusPesquisa.termoDePesquisa,
+      types.typeProdutos
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -41,7 +49,11 @@ const ProdutoList = (props) => {
   };
 
   useEffect(() => {
-    doGetProduto(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
+    doGetProduto(
+      statusPesquisa.páginaAtual,
+      statusPesquisa.termoDePesquisa,
+      types.typeProdutos
+    );
     setLoad(!load);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [statusPesquisa.termoDePesquisa, types.typeProdutos, types.typeValores]);
@@ -124,7 +136,7 @@ const ProdutoList = (props) => {
 
   return (
     <>
-      <LoadingScreen ></LoadingScreen>
+      <LoadingScreen></LoadingScreen>
       <Menu ativo="produto"></Menu>
       <div className="container">
         <form className="pd campo-busca">
@@ -149,10 +161,7 @@ const ProdutoList = (props) => {
               onChange={handleSearchSelectChange}
               name="typeProdutos"
             >
-              <option value="" disabled>
-                Tipo dos produtos
-              </option>
-              <option value="Todos">Todos</option>
+              <option value="">Todos</option>
               <option value="Doce">Doce</option>
               <option value="Salgado">Salgado</option>
               <option value="Bolo">Bolo</option>
