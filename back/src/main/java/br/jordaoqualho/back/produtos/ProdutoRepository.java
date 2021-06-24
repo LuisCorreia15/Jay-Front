@@ -9,6 +9,6 @@ public interface ProdutoRepository extends JpaRepository<Produto, String> {
     
     Page<Produto> findBynomeDoProdutoLikeIgnoreCase(Pageable pageRequest, String nomeDoProduto);
     Page<Produto> findBytipoDoProdutoLikeIgnoreCase(Pageable pageRequest, String tipoDoProduto);
-    // Page<Produto> findBytipoDoProdutoLikeAndfindBynomeDoProdutoLikeIgnoreCase(Pageable pageRequest, String tipoDoProduto, String nomeDoProduto);
+    Page<Produto> findBytipoDoProdutoLikeAndNomeDoProdutoLikeIgnoreCase(Pageable pageRequest, String tipoDoProduto, String nomeDoProduto);
 
 }

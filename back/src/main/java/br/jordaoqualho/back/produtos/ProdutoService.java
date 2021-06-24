@@ -29,7 +29,7 @@ public class ProdutoService {
                 return repository.findBytipoDoProdutoLikeIgnoreCase(pageRequest, "%" + tipo + "%");
              }
         }
-        return repository.findBynomeDoProdutoLikeIgnoreCase(pageRequest, "%" + termo + "%");
+        return repository.findBytipoDoProdutoLikeAndNomeDoProdutoLikeIgnoreCase(pageRequest, "%" + tipo + "%", "%" + termo + "%");
     }  
 
     public Produto obterPeloId(String id) {
