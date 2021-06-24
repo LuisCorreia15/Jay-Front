@@ -68,16 +68,6 @@ const ProdutoList = (props) => {
     doGerarProduto();
   };
 
-  const doExcluirTodosProduto = async () => {
-    await axios.delete(`/api/produto/excluir-todos`);
-    tempAlert("Todos Produtos excluídos!", 5000);
-    doGetProduto(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
-  };
-
-  const handleExcluirTodos = () => {
-    doExcluirTodosProduto();
-  };
-
   const handleSearchSelectChange = (event) => {
     const typeChaged = {
       ...types,
@@ -184,9 +174,6 @@ const ProdutoList = (props) => {
           onClick={() => history.push("/produto/novo")}
         >
           Novo Produto
-        </button>
-        <button className="btn-page lixo" onClick={handleExcluirTodos}>
-          Excluir Todos
         </button>
 
         <div className="tb-cnt">{tableData}</div>
