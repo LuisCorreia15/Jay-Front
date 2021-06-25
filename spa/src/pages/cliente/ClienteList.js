@@ -94,9 +94,6 @@ const ClienteList = (props) => {
     if (e.keyCode === 115) {
       history.push("/cliente/novo");
     }
-    if (e.keyCode === 27) {
-      history.goBack();
-    }
   }
 
   return (
@@ -104,16 +101,14 @@ const ClienteList = (props) => {
       <LoadingScreen></LoadingScreen>
       <Menu ativo="cliente"></Menu>
       <div className="container">
-        <form className="pd">
+        <form className="pd campo-busca">
           <input
-            className="cb"
             type="text"
             value={statusPesquisa.termoDePesquisa}
             placeholder="O que deseja buscar?"
             autoFocus
             onChange={handleSearchInputChange}
           />
-          <button className="bb">Pesquisar</button>
         </form>
         <button className="btn-page" onClick={handleGerar}>
           Gerar 10 Clientes

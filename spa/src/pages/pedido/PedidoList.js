@@ -11,6 +11,10 @@ const PedidoList = (props) => {
     pageable: { pageNumber: 0 },
     totalPages: 0,
   });
+  const [types, setTypes] = useState({
+    typePedidos: "Cliente",
+    typeStatus: "",
+  });
 
   const doGetPedido = async (páginaRequerida, termoDePesquisa) => {
     const response = await axios.get(
@@ -38,8 +42,6 @@ const PedidoList = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [statusPesquisa.termoDePesquisa]);
 
-  
-
   const tableData =
     pedido.content.length === 0 ? (
       <p>Nada encontrado!</p>
@@ -64,6 +66,12 @@ const PedidoList = (props) => {
       })
     );
 
+  function keydownHandler(e) {
+    if (e.keyCode === 115) {
+      history.push("/pedido/novo");
+    }
+  }
+
   const requestPage = (requestedPage) => {
     if (requestedPage <= 0) {
       requestedPage = 0;
@@ -74,32 +82,52 @@ const PedidoList = (props) => {
     doGetPedido(requestedPage, statusPesquisa.termoDePesquisa);
   };
 
-  function keydownHandler(e) {
-    if (e.keyCode === 115) {
-      history.push("/pedido/novo");
-    }
-    if (e.keyCode === 27) {
-      history.goBack();
-    }
-  }
+  const handleSearchSelectChange = (event) => {
+    const typeChaged = {
+      ...types,
+      [event.target.name]: event.target.value,
+    };
+    setTypes(typeChaged);
+  };
 
   return (
     <>
       <Menu ativo="pedido"></Menu>
       <div className="container">
-        <form className="pd">
+        <form className="pd campo-busca">
+          <div className="sl-search">
+            <select
+              name="typeStatus"
+              defaultValue={types.typeStatus}
+              onChange={handleSearchSelectChange}
+            >
+              <option value="">Todos</option>
+              <option value="Aberto">Em Aberto</option>
+              <option value="Quitados">Quitados</option>
+              <option value="Fechados">Fechados</option>
+            </select>
+          </div>
+          <div className="sl-search">
+            <select
+              name="typePedidos"
+              defaultValue={types.typePedidos}
+              onChange={handleSearchSelectChange}
+            >
+              <option value="">Todos</option>
+              <option value="Cliente">Clientes</option>
+              <option value="Data">Data</option>
+            </select>
+          </div>
           <input
-            className="cb"
             type="text"
             value={statusPesquisa.termoDePesquisa}
             placeholder="O que deseja buscar?"
             autoFocus
             onChange={handleSearchInputChange}
           />
-          <button className="bb">Pesquisar</button>
         </form>
         <button
-          className="btn-page novo"
+          className="btn-page novo nw-pl"
           onClick={() => history.push("/pedido/novo")}
         >
           Novo Pedido
