@@ -2,6 +2,8 @@ package br.jordaoqualho.back.pedido;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -21,7 +23,13 @@ public class Pedido {
     private String id;
     @Getter
     @Setter
-    private LocalDate lancadoEm;
+    private String lancadoEm;
+    @Getter
+    @Setter
+    private String dataEntrega;
+    @Getter
+    @Setter
+    private String situaçãoPedido;
     @Getter
     @Setter
     @Column(scale = 2)
@@ -30,14 +38,17 @@ public class Pedido {
     @Setter
     @EqualsAndHashCode.Include
     private String clienteId;
+    
 
     public Pedido() {
         this.id = UUID.randomUUID().toString();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.ENGLISH);
+        LocalDate date = LocalDate.now();
+        this.lancadoEm = formatter.format(date);
     }
 
-    public Pedido( LocalDate lancadoEm, BigDecimal valorTotal, String nomeDoCliente) {
+    public Pedido( BigDecimal valorTotal, String nomeDoCliente) {
         this();
-        this.lancadoEm = lancadoEm;
         this.valorTotal = valorTotal;
         this.clienteId = nomeDoCliente;
     }    

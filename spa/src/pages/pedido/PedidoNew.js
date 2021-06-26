@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import tempAlert from "components/alert/Alert";
 import Menu from "components/menu/menu";
 import { Typeahead } from "react-bootstrap-typeahead";
+import InputMask from "react-input-mask";
 import "react-bootstrap-typeahead/css/Typeahead.css";
 import "./Pedido.css";
 
@@ -12,10 +13,10 @@ const PedidoNew = () => {
   const [clientes, setClientes] = useState([{}]);
   const [pedido, setPedido] = useState({
     nomeDoCliente: "",
-    preco: 2.2,
-    vendidos: 0,
-    tipoDoPedido: "Doce",
-    vendidoPor: "unidade",
+    valorTotal: 0,
+    clienteId: 0,
+    situaçãoPedido: "Aberto",
+    dataEntrega: "",
   });
 
   const doGetClientes = async () => {
@@ -27,6 +28,10 @@ const PedidoNew = () => {
     doGetClientes();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    console.log(pedido);
+  }, [pedido]);
 
   const doPost = async () => {
     await axios.post("/api/pedido", pedido);
@@ -41,6 +46,11 @@ const PedidoNew = () => {
 
   const handleChange = (event) => {
     const novoPedido = { ...pedido, [event.target.name]: event.target.value };
+    setPedido(novoPedido);
+  };
+
+  const handleChangeTh = (event) => {
+    const novoPedido = { ...pedido, clienteId: event[0].id };
     setPedido(novoPedido);
   };
 
@@ -60,68 +70,24 @@ const PedidoNew = () => {
               labelKey="nomeDoCliente"
               // onChange={handleChange}
               options={clientes}
+              onChange={handleChangeTh}
               placeholder="Digite o nome do cliente"
               // selected={() => ()}
             />
           </div>
-          <div className="sl-icon flex-column">
-            Tipo do Produto
-            <select
-              className="pg-select"
-              name="tipoDoProduto"
-              required
+          <div>
+            Data e Hora de Entrega
+            <InputMask
+              mask="99/99/9999  99:99"
+              placeholder="__/__/____ __:__"
               onChange={handleChange}
-              // defaultValue={produto.tipoDoProduto}
-            >
-              <option value="" disabled>
-                Selecione o tipo do produto
-              </option>
-              <option value="Doce">Doce</option>
-              <option value="Salgado">Salgado</option>
-              <option value="Bolo">Bolo</option>
-              <option value="Ingrediente">Ingrediente</option>
-            </select>
+              required
+              type="text"
+              name="dataEntrega"
+              className="pg-input"
+            ></InputMask>
           </div>
-          <div className="sl-icon flex-column">
-            Medida
-            <select
-              // defaultValue={produto.vendidoPor}
-              className="pg-select"
-              name="vendidoPor"
-              required
-              onChange={handleChange}
-            >
-              <option value="" disabled>
-                O produto será vendido por
-              </option>
 
-              <option value="/un">unidade</option>
-              <option value="/Kg">kilograma</option>
-              <option value="/g">grama</option>
-            </select>
-          </div>
-          <div className="flex-column">
-            Preço Encomenda
-            <input
-              type="text"
-              name="precoEncomenda"
-              required
-              className="pg-input"
-              onChange={handleChange}
-              // value={produto.precoEncomenda}
-            ></input>
-          </div>
-          <div className="flex-column">
-            Preço Vitrine
-            <input
-              type="text"
-              name="precoVitrine"
-              required
-              className="pg-input"
-              onChange={handleChange}
-              // value={produto.precoVitrine}
-            ></input>
-          </div>
           <button className="btn-page pg-btn">Enviar</button>
           <button
             className="btn-page bt-lixo pg-btn"
