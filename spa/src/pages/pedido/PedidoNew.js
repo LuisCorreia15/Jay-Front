@@ -19,6 +19,7 @@ const PedidoNew = () => {
     situaçãoPedido: "Aberto",
     dataEntrega: "",
   });
+  const [productList, setProductList] = useState([{}]);
 
   const doGetClientes = async () => {
     const response = await axios.get(`/api/cliente`);
@@ -55,6 +56,30 @@ const PedidoNew = () => {
     setPedido(novoPedido);
   };
 
+  const productListData =
+    productList.length === 0 ? (
+      <p>Nada encontrado!</p>
+    ) : (
+      productList.map((row) => {
+        return (
+          <div
+            className="pd-tb"
+            key={row.id}
+            // onClick={() => history.push(`/produto/editar/${row.id}`)}
+          >
+            <div className="pd-tb-name">
+              <p>18</p>
+              <p>Coxinha de morango</p>
+              <span>(3.20)</span>
+            </div>
+            <div className="pd-tb-price">
+              <p>R$ 57.60</p>
+            </div>
+          </div>
+        );
+      })
+    );
+
   return (
     <>
       <Menu ativo="pedido"></Menu>
@@ -90,7 +115,7 @@ const PedidoNew = () => {
           </div>
           <div className="lp-container">
             Lista de Produtos
-            <div className="pn-itens"></div>
+            <div className="pn-itens">{productListData}</div>
             <div className="lp-buttons">
               <button>Adicionar item</button>
               <button>Excluir item</button>

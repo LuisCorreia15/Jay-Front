@@ -38,13 +38,60 @@
   background-color: var(--light);
 }
 
+/* ----------- List of Products Data Style ----------- */
+.pd-tb {
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+  width: 720px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  height: fit-content;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+.pd-tb:hover {
+  background-color: var(--comment);
+  border-radius: 10px 10px 0 0;
+}
+.pd-tb:hover .pd-tb-name p {
+  color: var(--bg);
+}
+.pd-tb:hover .pd-tb-name span {
+  color: var(--light);
+}
+.pd-tb:hover .pd-tb-price {
+  color: var(--bg);
+}
+.pd-tb p {
+  margin: 0;
+}
+.pd-tb-name {
+  display: flex;
+  align-items: center;
+}
+.pd-tb-name p {
+  color: var(--comment);
+  font-weight: 700;
+  font-size: 16px;
+  margin-right: 10px;
+}
+.pd-tb-name span {
+  color: var(--comment);
+  padding: 0;
+  font-weight: 300;
+  font-size: 16px;
+}
+.pd-tb-price {
+  color: var(--comment);
+  font-size: 16px;
+}
+
 /* ----------- List of Products Style ----------- */
 .lp-container {
   margin-bottom: 50px;
 }
 .pn-itens {
   height: 300px;
-
   border: 1px solid rgba(0, 0, 0, 0.05);
   width: 759px;
   border-radius: 10px 10px 0 0;

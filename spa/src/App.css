@@ -27,6 +27,7 @@
   font-family: var(--font);
   outline: none;
 }
+
 .flex-column {
   display: flex;
   flex-direction: column;
