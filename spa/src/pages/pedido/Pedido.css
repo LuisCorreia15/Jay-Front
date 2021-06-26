@@ -1,3 +1,38 @@
 .nw-pl {
   margin: 0 !important;
 }
+.th-input input::placeholder {
+  color: var(--light);
+  font-weight: 400;
+}
+.th-input {
+  width: 759px !important;
+  cursor: pointer;
+  appearance: none;
+}
+.rbt-menu {
+  display: flex !important;
+  z-index: 10;
+  width: 750px !important;
+  border-radius: 0 0 10px 10px;
+  border: 3px solid var(--light) !important;
+  margin-top: 10px;
+  flex-direction: column !important;
+  background-color: var(--bg);
+  padding: 5px 0 5px 0px;
+  line-height: 2;
+}
+.rbt-menu a {
+  color: var(--comment);
+  font-weight: 500;
+  padding-left: 20px;
+  font-size: 18px;
+  text-decoration: none;
+}
+.rbt-menu a.active {
+  background-color: var(--comment);
+  color: white;
+}
+.rbt-menu a:hover {
+  background-color: var(--light);
+}

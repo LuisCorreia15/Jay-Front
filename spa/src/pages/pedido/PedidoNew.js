@@ -10,7 +10,7 @@ import "./Pedido.css";
 const PedidoNew = () => {
   const history = useHistory();
   const [clientes, setClientes] = useState([{}]);
-  const [Pedido, setPedido] = useState({
+  const [pedido, setPedido] = useState({
     nomeDoCliente: "",
     preco: 2.2,
     vendidos: 0,
@@ -29,7 +29,7 @@ const PedidoNew = () => {
   }, []);
 
   const doPost = async () => {
-    await axios.post("/api/pedido", Pedido);
+    await axios.post("/api/pedido", pedido);
     tempAlert(`Pedido adicionado com sucesso!`, 5000);
     history.push("/pedido");
   };
@@ -40,7 +40,7 @@ const PedidoNew = () => {
   };
 
   const handleChange = (event) => {
-    const novoPedido = { ...Pedido, [event.target.name]: event.target.value };
+    const novoPedido = { ...pedido, [event.target.name]: event.target.value };
     setPedido(novoPedido);
   };
 
@@ -53,8 +53,12 @@ const PedidoNew = () => {
           <div>
             Nome Do Cliente
             <Typeahead
+              id="select-nome-cliente"
+              name="nomeDoCliente"
+              className="th-input"
+              // @ts-ignore
               labelKey="nomeDoCliente"
-              onChange={handleChange}
+              // onChange={handleChange}
               options={clientes}
               placeholder="Digite o nome do cliente"
               // selected={() => ()}
