@@ -8,27 +8,21 @@
 .pg-form {
   width: 50%;
   margin: 25px 0 0 0;
+  color: var(--comment);
 }
 .pg-form input,
 .pg-select {
   color: black;
   border-radius: 10px;
   margin: 0 0 20px 0;
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
   padding: 10px 10px;
 }
+.pg-select:focus,
+.pg-input:focus {
+  border: 1px solid var(--comment) !important;
+}
 
-.pg-btn {
-  width: 100%;
-  margin: 0 0 20px 0 !important;
-  padding: 20px 0 !important;
-  background-color: var(--comment) !important;
-  color: var(--bg) !important;
-  width: 760px;
-}
-.bt-lixo {
-  background-color: var(--red) !important;
-}
 .pg-excluir {
   border: 1px solid var(--red);
   border-radius: 10px;
@@ -50,7 +44,7 @@
   font-weight: 300;
 }
 .pg-select {
-  width: 759px;
+  width: 767px;
   cursor: pointer;
   appearance: none;
 }

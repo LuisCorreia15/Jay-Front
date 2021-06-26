@@ -6,6 +6,7 @@ import { useHistory, useParams } from "react-router-dom";
 import tempAlert from "../../components/alert/Alert";
 import Menu from "components/menu/menu";
 import DeleteConfirm from "components/alert/DeleteConfirm";
+import ButtonForm from "components/button/ButtonForm";
 
 const PedidoEdit = () => {
   const history = useHistory();
@@ -76,7 +77,7 @@ const PedidoEdit = () => {
         <button className="pg-excluir" onClick={() => handleExcluir()}>
           excluir pedido
         </button>
-      
+
         <form onSubmit={handleSubmit} className="pg-form">
           <div>
             Nome
@@ -141,13 +142,7 @@ const PedidoEdit = () => {
               value={pedido.vendidos}
             ></input>
           </div>
-          <button className="btn-page pg-btn ">Concluir </button>
-          <button
-            className="btn-page bt-lixo pg-btn"
-            onClick={() => history.push("/pedido")}
-          >
-            Cancelar
-          </button>
+          <ButtonForm exitPath="/pedido"></ButtonForm>
         </form>
       </div>
     </>

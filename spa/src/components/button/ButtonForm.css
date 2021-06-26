@@ -1,0 +1,30 @@
+.btn-form {
+  display: flex;
+  justify-content: space-between;
+  width: 765px;
+}
+.btn-form button {
+  border-radius: 10px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  width: 47%;
+  transition: 0.3s ease;
+  font-size: 18px;
+  padding: 12px 0;
+}
+.btn-send {
+  background-color: var(--comment);
+  color: var(--bg);
+}
+.btn-send:hover {
+  background-color: var(--light);
+}
+.btn-cancel {
+  background-color: var(--bg);
+  border: 1px solid var(--red) !important;
+  color: var(--red);
+}
+.btn-cancel:hover {
+  background-color: var(--red);
+  color: var(--bg);
+}

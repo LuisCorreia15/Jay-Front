@@ -1,3 +1,4 @@
+/* ----------- TypeAheade Style ----------- */
 .nw-pl {
   margin: 0 !important;
 }
@@ -35,4 +36,32 @@
 }
 .rbt-menu a:hover {
   background-color: var(--light);
+}
+
+/* ----------- List of Products Style ----------- */
+.lp-container {
+  margin-bottom: 50px;
+}
+.pn-itens {
+  height: 300px;
+
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  width: 759px;
+  border-radius: 10px 10px 0 0;
+}
+.lp-buttons {
+  width: 762px;
+}
+.lp-buttons button {
+  width: 50%;
+  padding: 10px 0;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  background-color: var(--white);
+  color: var(--comment);
+  cursor: pointer;
+  border-radius: 0px 0px 10px 10px;
+}
+.lp-buttons button:hover {
+  color: var(--comment);
+  border: 1px solid var(--comment);
 }

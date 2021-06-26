@@ -7,6 +7,7 @@ import { Typeahead } from "react-bootstrap-typeahead";
 import InputMask from "react-input-mask";
 import "react-bootstrap-typeahead/css/Typeahead.css";
 import "./Pedido.css";
+import ButtonForm from "components/button/ButtonForm";
 
 const PedidoNew = () => {
   const history = useHistory();
@@ -87,14 +88,15 @@ const PedidoNew = () => {
               className="pg-input"
             ></InputMask>
           </div>
-
-          <button className="btn-page pg-btn">Enviar</button>
-          <button
-            className="btn-page bt-lixo pg-btn"
-            onClick={() => history.push("/pedido")}
-          >
-            Cancelar
-          </button>
+          <div className="lp-container">
+            Lista de Produtos
+            <div className="pn-itens"></div>
+            <div className="lp-buttons">
+              <button>Adicionar item</button>
+              <button>Excluir item</button>
+            </div>
+          </div>
+          <ButtonForm exitPath="/pedido"></ButtonForm>
         </form>
       </div>
     </>

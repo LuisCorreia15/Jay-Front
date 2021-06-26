@@ -5,6 +5,7 @@ import tempAlert from "components/alert/Alert";
 import Menu from "components/menu/menu";
 import "./Produto.css";
 import LoadingScreen from "components/loader/Loading";
+import ButtonForm from "components/button/ButtonForm";
 
 /* rafc  - comando para criar um component arrow*/
 
@@ -113,13 +114,7 @@ const ProdutoNew = () => {
               value={produto.precoVitrine}
             ></input>
           </div>
-          <button className="btn-page pg-btn">Enviar</button>
-          <button
-            className="btn-page bt-lixo pg-btn"
-            onClick={() => history.push("/produto")}
-          >
-            Cancelar
-          </button>
+          <ButtonForm exitPath='/produto'></ButtonForm>
         </form>
       </div>
     </>

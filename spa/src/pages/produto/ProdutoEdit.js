@@ -7,6 +7,7 @@ import tempAlert from "../../components/alert/Alert";
 import Menu from "components/menu/menu";
 import DeleteConfirm from "components/alert/DeleteConfirm";
 import LoadingScreen from "components/loader/Loading";
+import ButtonForm from "components/button/ButtonForm";
 
 const ProdutoEdit = () => {
   const history = useHistory();
@@ -154,13 +155,7 @@ const ProdutoEdit = () => {
               value={produto.vendidos}
             ></input>
           </div>
-          <button className="btn-page pg-btn ">Concluir </button>
-          <button
-            className="btn-page bt-lixo pg-btn"
-            onClick={() => history.push("/produto")}
-          >
-            Cancelar
-          </button>
+          <ButtonForm exitPath="/produto"></ButtonForm>
         </form>
       </div>
     </>

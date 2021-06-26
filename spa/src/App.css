@@ -99,7 +99,8 @@ select {
   background-color: #fff;
   outline: none;
   width: 100%;
-  border: 3px solid transparent;
+  padding-left: 20px !important;
+  border: 1px solid transparent;
 }
 
 input::placeholder,
@@ -111,7 +112,7 @@ select::placeholder {
 
 select:focus,
 input:focus {
-  border: 3px solid var(--comment);
+  border: 1px solid var(--comment);
 }
 
 .App-header {
@@ -128,51 +129,6 @@ h2 {
   font-size: 70px;
   font-weight: 300;
 }
-.btn {
-  background-color: var(--light);
-  font-size: 15px;
-  font-weight: 900;
-  border: none;
-  color: var(--light);
-  margin-top: 50px;
-  cursor: pointer;
-  text-transform: uppercase;
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
-  padding: 18px 0px;
-  margin-bottom: 20px;
-  width: 100%;
-  font-weight: 900;
-  border-radius: 10px;
-  text-transform: uppercase;
-  transition: all 0.3s ease;
-}
-.btn:hover {
-  color: var(--bg);
-  background-color: var(--comment);
-}
-
-.btn-cancel {
-  font-size: 15px;
-  background-color: var(--bg);
-  font-weight: 900;
-  color: var(--light);
-  cursor: pointer;
-  text-transform: uppercase;
-  border: 1px solid var(--purple);
-  padding: 18px 0px;
-  margin-bottom: 20px;
-  width: 100%;
-  font-weight: 900;
-  border-radius: 10px;
-  text-transform: uppercase;
-  transition: all 0.3s ease;
-}
-.btn-cancel:hover {
-  color: var(--light);
-  background-color: var(--red);
-  border: 1px solid var(--red);
-}
-
 .pd {
   display: flex;
   align-items: center;
@@ -212,6 +168,27 @@ h2 {
 .sl-search select:focus {
   border: 3px solid transparent;
 }
+.novo {
+  margin-left: 50px;
+}
+.novo:hover {
+  background-color: var(--comment) !important;
+}
+.page-control {
+  margin-bottom: 100px;
+}
+span {
+  font-size: 18px;
+  padding: 10px 30px;
+  font-weight: 500;
+}
+
+.lixo {
+  margin-left: 50px;
+}
+.lixo:hover {
+  background-color: var(--red) !important;
+}
 .btn-page {
   background-color: var(--bg);
   border: none;
@@ -226,27 +203,8 @@ h2 {
   text-transform: uppercase;
   transition: all 0.3s ease;
 }
+
 .btn-page:hover {
   background-color: var(--comment);
   color: var(--bg);
-}
-.lixo {
-  margin-left: 50px;
-}
-.lixo:hover {
-  background-color: var(--red) !important;
-}
-.novo {
-  margin-left: 50px;
-}
-.novo:hover {
-  background-color: var(--comment) !important;
-}
-.page-control {
-  margin-bottom: 100px;
-}
-span {
-  font-size: 18px;
-  padding: 10px 30px;
-  font-weight: 500;
 }

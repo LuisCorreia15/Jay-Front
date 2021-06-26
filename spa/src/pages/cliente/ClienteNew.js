@@ -6,6 +6,7 @@ import Menu from "components/menu/menu";
 import "./Cliente.css";
 import LoadingScreen from "components/loader/Loading";
 import InputMask from "react-input-mask";
+import ButtonForm from "components/button/ButtonForm";
 
 /* rafc  - comando para criar um component arrow*/
 
@@ -75,13 +76,7 @@ const ClienteNew = () => {
             ></input>
           </div>
 
-          <button className="btn-page pg-btn">Enviar</button>
-          <button
-            className="btn-page bt-lixo pg-btn"
-            onClick={() => history.push("/cliente")}
-          >
-            Cancelar
-          </button>
+          <ButtonForm exitPath="/cliente"></ButtonForm>
         </form>
       </div>
     </>
