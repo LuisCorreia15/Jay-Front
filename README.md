@@ -9,6 +9,7 @@
 - [X] Adicionar filtro a busca "Doces/Bolos/Salgados/Outros"
 - [X] Mostrar o page control somente quando tiver paginas
 - [X] Preco Encomenda implementado
+- [ ] Add Medida por FATIA e Categorias: Presentes/Caixas e Bolos/Tortas
 - [ ] Fix/produto-edit-delete
 - [ ] Produto Edit não trazendo as categorias para edição!
 - [ ] Validação de produto repetido
