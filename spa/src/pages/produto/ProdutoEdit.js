@@ -123,7 +123,7 @@ const ProdutoEdit = () => {
             </select>
           </div>
           <div className="flex-column">
-            Preço
+            Preço de Encomenda
             <input
               type="text"
               name="precoEncomenda"
@@ -134,7 +134,7 @@ const ProdutoEdit = () => {
             ></input>
           </div>
           <div className="flex-column">
-            Preço
+            Preço da Vitrine
             <input
               type="text"
               name="precoVitrine"
@@ -145,7 +145,7 @@ const ProdutoEdit = () => {
             ></input>
           </div>
           <div className="flex-column">
-            Vendidos
+            Quantidade vendida
             <input
               type="text"
               className="pg-input"

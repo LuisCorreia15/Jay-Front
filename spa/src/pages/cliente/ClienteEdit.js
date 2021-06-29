@@ -115,7 +115,7 @@ const ClienteEdit = () => {
               value={cliente.logradouro}
             ></input>
           </div>
-          <ButtonForm exitPath="/pedido"></ButtonForm>
+          <ButtonForm exitPath="/cliente"></ButtonForm>
         </form>
       </div>
     </>

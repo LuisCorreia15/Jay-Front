@@ -31,10 +31,6 @@ const PedidoNew = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    console.log(pedido);
-  }, [pedido]);
-
   const doPost = async () => {
     await axios.post("/api/pedido", pedido);
     tempAlert(`Pedido adicionado com sucesso!`, 5000);
