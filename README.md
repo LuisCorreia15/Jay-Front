@@ -19,3 +19,5 @@
 
 ## LongTerm
 - [ ] Colocar Banco de dados (Mongo), API e Spa Online
+- [ ] Estudar e implementar o Redux no projeto
+- [ ] Avaliar possibiidade em migrar a API para Node.js
