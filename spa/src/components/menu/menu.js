@@ -28,10 +28,10 @@ const Menu = (props) => {
           <li>Pedidos</li>
         </Link>
         <Link to="/inspecao" id="inspecao">
-          <li>Inspeção</li>
+          <li>Inspeções</li>
         </Link>
         <Link to="/cliente" id="cliente">
-          <li>Cliente</li>
+          <li>Clientes  </li>
         </Link>
       </ul>
     </div>

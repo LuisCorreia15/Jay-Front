@@ -27,7 +27,9 @@
   font-family: var(--font);
   outline: none;
 }
-
+.flex {
+  display: flex;
+}
 .flex-column {
   display: flex;
   flex-direction: column;
@@ -159,8 +161,12 @@ h2 {
   border: 3px solid transparent;
 }
 .sl-search {
-  margin-left: 25px;
-  width: 200px;
+  margin-left: 5px;
+  width: 300px;
+  height: 100%;
+  padding-right: 25px;
+  border-right: 1px solid var(--lightGray);
+  border-radius: 10px;
 }
 .sl-search select {
   cursor: pointer;

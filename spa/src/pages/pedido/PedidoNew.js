@@ -8,6 +8,7 @@ import InputMask from "react-input-mask";
 import "react-bootstrap-typeahead/css/Typeahead.css";
 import "./Pedido.css";
 import ButtonForm from "components/button/ButtonForm";
+import AddItem from "components/item/AddItem";
 
 const PedidoNew = () => {
   const history = useHistory();
@@ -79,6 +80,7 @@ const PedidoNew = () => {
   return (
     <>
       <Menu ativo="pedido"></Menu>
+      <AddItem estadoDoModal=""></AddItem>
       <div className="container">
         <h3 className="pg-title">Cadastro de Pedido</h3>
         <form onSubmit={handleSubmit} className="pg-form">
