@@ -21,6 +21,7 @@ const PedidoNew = () => {
     dataEntrega: "",
   });
   const [productList, setProductList] = useState([{}]);
+  const [addModal, setAddModal] = useState(false);
 
   const doGetClientes = async () => {
     const response = await axios.get(`/api/cliente`);
@@ -80,7 +81,11 @@ const PedidoNew = () => {
   return (
     <>
       <Menu ativo="pedido"></Menu>
-      <AddItem estadoDoModal=""></AddItem>
+      <AddItem
+        estadoDoModal={addModal}
+        setEstadoDoModal={setAddModal}
+        pedido={pedido}
+      ></AddItem>
       <div className="container">
         <h3 className="pg-title">Cadastro de Pedido</h3>
         <form onSubmit={handleSubmit} className="pg-form">
@@ -90,6 +95,7 @@ const PedidoNew = () => {
               id="select-nome-cliente"
               name="nomeDoCliente"
               className="th-input"
+              required
               // @ts-ignore
               labelKey="nomeDoCliente"
               // onChange={handleChange}
@@ -115,7 +121,9 @@ const PedidoNew = () => {
             Lista de Produtos
             <div className="pn-itens">{productListData}</div>
             <div className="lp-buttons">
-              <button>Adicionar item</button>
+              <button onClick={() => setAddModal(!addModal)} type="button">
+                Adicionar item
+              </button>
               <button>Excluir item</button>
             </div>
           </div>

@@ -8,7 +8,6 @@ import LoadingScreen from "components/loader/Loading";
 const ProdutoList = (props) => {
   const { statusPesquisa, setStatusPesquisa } = props;
   const history = useHistory();
-  const [load, setLoad] = useState(false);
   const [types, setTypes] = useState({
     typeProdutos: "",
     typeValores: "Vitrine",
@@ -30,16 +29,6 @@ const ProdutoList = (props) => {
     setProduto(response.data);
   };
 
-  useEffect(() => {
-    document.addEventListener("keydown", keydownHandler);
-    doGetProduto(
-      statusPesquisa.páginaAtual,
-      statusPesquisa.termoDePesquisa,
-      types.typeProdutos
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const handleSearchInputChange = async (event) => {
     const novoStatusPesquisa = {
       ...statusPesquisa,
@@ -49,14 +38,15 @@ const ProdutoList = (props) => {
   };
 
   useEffect(() => {
+    document.addEventListener("keydown", keydownHandler);
+
     doGetProduto(
       statusPesquisa.páginaAtual,
       statusPesquisa.termoDePesquisa,
       types.typeProdutos
     );
-    setLoad(!load);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [statusPesquisa.termoDePesquisa, types.typeProdutos, types.typeValores]);
+  }, [statusPesquisa.termoDePesquisa, types.typeProdutos, types.typeValores, ]);
 
   const doGerarProduto = async () => {
     await axios.post(`/api/produto/gerar`);

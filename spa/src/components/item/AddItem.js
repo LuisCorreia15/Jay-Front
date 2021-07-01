@@ -3,8 +3,7 @@ import axios from "axios";
 import "./AddItem.css";
 
 const AddItem = (props) => {
-  const { pedido } = props;
-  const [estadoDoModal, setEstadoDoModal] = useState(false);
+  const { pedido, estadoDoModal, setEstadoDoModal } = props;
   const [types, setTypes] = useState({
     typeProdutos: "",
     typeValores: "Vitrine",
@@ -31,24 +30,25 @@ const AddItem = (props) => {
   };
 
   useEffect(() => {
-    if (estadoDoModal) {
-      document.getElementById("add-container").style.display = "block ";
-      setEstadoDoModal(!estadoDoModal);
-    } else {
-      document.getElementById("add-container").style.display = "none";
-      setEstadoDoModal(!estadoDoModal);
-    }
     doGetProduto(
       statusPesquisa.páginaAtual,
       statusPesquisa.termoDePesquisa,
       types.typeProdutos
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [statusPesquisa.termoDePesquisa, types.typeProdutos, types.typeValores, ]);
+
+  useEffect(() => {
+    if (estadoDoModal) {
+      document.getElementById("add-container").style.display = "block ";
+    } else {
+      document.getElementById("add-container").style.display = "none";
+    }
+  }, [estadoDoModal]);
 
   const produtoData =
     produto.content.length === 0 ? (
-      <p>Nada encontrado!</p>
+      <p className='add-nothing'>Nada encontrado!</p>
     ) : (
       produto.content.map((row) => {
         return (
@@ -69,6 +69,22 @@ const AddItem = (props) => {
       })
     );
 
+  const handleSearchInputChange = async (event) => {
+    const novoStatusPesquisa = {
+      ...statusPesquisa,
+      termoDePesquisa: event.target.value,
+    };
+    setStatusPesquisa(novoStatusPesquisa);
+  };
+
+  const handleSearchSelectChange = (event) => {
+    const typeChaged = {
+      ...types,
+      [event.target.name]: event.target.value,
+    };
+    setTypes(typeChaged);
+  };
+
   return (
     <div className="add-container" id="add-container">
       <div className="add-modal">
@@ -77,7 +93,7 @@ const AddItem = (props) => {
             <select
               defaultValue={types.typeValores}
               required
-              // onChange={handleSearchSelectChange}
+              onChange={handleSearchSelectChange}
               name="typeValores"
             >
               <option value="" disabled>
@@ -91,7 +107,7 @@ const AddItem = (props) => {
             <select
               defaultValue={types.typeProdutos}
               required
-              // onChange={handleSearchSelectChange}
+              onChange={handleSearchSelectChange}
               name="typeProdutos"
             >
               <option value="">Todos</option>
@@ -106,7 +122,7 @@ const AddItem = (props) => {
             value={statusPesquisa.termoDePesquisa}
             placeholder="O que deseja buscar?"
             autoFocus
-            // onChange={handleSearchInputChange}
+            onChange={handleSearchInputChange}
           />
         </form>
         <div className="add-data">
@@ -115,7 +131,9 @@ const AddItem = (props) => {
         <div className="add-buttons">
           <button>Adicionar</button>
           <button>Concluir</button>
-          <button>Cancelar</button>
+          <button onClick={() => setEstadoDoModal(!estadoDoModal)}>
+            Cancelar
+          </button>
         </div>
       </div>
     </div>
