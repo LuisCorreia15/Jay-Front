@@ -85,6 +85,7 @@ const PedidoNew = () => {
         estadoDoModal={addModal}
         setEstadoDoModal={setAddModal}
         pedido={pedido}
+        setPedido={setPedido}
       ></AddItem>
       <div className="container">
         <h3 className="pg-title">Cadastro de Pedido</h3>

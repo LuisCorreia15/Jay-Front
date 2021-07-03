@@ -11,17 +11,25 @@
   position: fixed;
   z-index: 1000;
 }
-
 .add-modal {
+  overflow: hidden;
+  display: flex;
   width: 60%;
   height: 70%;
   border-radius: 10px;
   border: 1px solid var(--comment);
-  padding: 15px 25px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  background-color: var(--bg);
+  transition: all 0.3s ease;
+}
+.add-search {
+  width: calc(100% - 50px);
+  height: calc(100% - 30px);
+  border-radius: 10px;
+  padding: 15px 25px;
   background-color: var(--bg);
   transition: all 0.3s ease;
 }
@@ -99,4 +107,45 @@
 .add-buttons button:hover {
   background-color: var(--comment);
   color: white;
+}
+
+.add-select-container {
+  background-color: rgba(255, 255, 255, 0.02);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(1px);
+  width: 100%;
+  right: -100%;
+  position: absolute;
+  height: 100%;
+  transition: all 0.3s ease;
+}
+.add-select {
+  background-color: var(--bg);
+  width: 40%;
+  position: absolute;
+  right: 0;
+  border: 1px solid var(--lightGray);
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+  height: calc(100% - 30px);
+  border-radius: 10px;
+  padding: 15px 25px;
+  color: var(--comment);
+}
+.add-sl-form {
+  margin: 0 !important;
+}
+.add-sl-form h1 {
+  color: var(--comment);
+  font-size: 34px;
+  font-weight: 900;
+}
+.add-input {
+  border: 1px solid var(--lightGray) !important;
+  border-radius: 10px;
+  width: 70%;
+  padding: 10px;
+  margin-bottom: 30px;
+}
+.add-input:focus {
+  border: 1px solid var(--comment) !important;
 }
