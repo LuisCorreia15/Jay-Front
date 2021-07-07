@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./AddItem.css";
-import LoadingScreen from "components/loader/Loading";
 
 const AddItem = (props) => {
   const { pedido, setPedido, estadoDoModal, setEstadoDoModal } = props;

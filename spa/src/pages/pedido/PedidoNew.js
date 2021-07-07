@@ -31,6 +31,7 @@ const PedidoNew = () => {
 
   useEffect(() => {
     doGetClientes();
+    setProductList([{}]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
