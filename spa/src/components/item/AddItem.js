@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./AddItem.css";
+import LoadingScreen from "components/loader/Loading";
 
 const AddItem = (props) => {
   const { pedido, setPedido, estadoDoModal, setEstadoDoModal } = props;
@@ -59,6 +60,9 @@ const AddItem = (props) => {
   useEffect(() => {
     if (estadoDoModal) {
       document.getElementById("add-container").style.display = "block ";
+      setTimeout(function () {
+        document.getElementById("input-search-item").focus();
+      }, 500);
     } else {
       document.getElementById("add-container").style.display = "none";
     }
@@ -131,6 +135,7 @@ const AddItem = (props) => {
       ...pedido,
       valorTotal: addInput.quantidade * addInput.valorUnitario,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [addInput]);
 
   return (
@@ -169,6 +174,7 @@ const AddItem = (props) => {
             <input
               type="text"
               value={statusPesquisa.termoDePesquisa}
+              id="input-search-item"
               placeholder="O que deseja buscar?"
               autoFocus
               onChange={handleSearchInputChange}

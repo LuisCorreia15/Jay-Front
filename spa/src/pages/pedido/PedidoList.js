@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Menu from "components/menu/menu";
+import LoadingScreen from "components/loader/Loading";
 
 const PedidoList = (props) => {
   const { statusPesquisa, setStatusPesquisa } = props;
@@ -92,6 +93,7 @@ const PedidoList = (props) => {
 
   return (
     <>
+      <LoadingScreen></LoadingScreen>
       <Menu ativo="pedido"></Menu>
       <div className="container">
         <form className="pd campo-busca">

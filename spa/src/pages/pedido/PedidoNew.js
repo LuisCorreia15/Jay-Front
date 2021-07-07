@@ -9,6 +9,7 @@ import "react-bootstrap-typeahead/css/Typeahead.css";
 import "./Pedido.css";
 import ButtonForm from "components/button/ButtonForm";
 import AddItem from "components/item/AddItem";
+import LoadingScreen from "components/loader/Loading";
 
 const PedidoNew = () => {
   const history = useHistory();
@@ -80,6 +81,7 @@ const PedidoNew = () => {
 
   return (
     <>
+      <LoadingScreen></LoadingScreen>
       <Menu ativo="pedido"></Menu>
       <AddItem
         estadoDoModal={addModal}
@@ -97,13 +99,13 @@ const PedidoNew = () => {
               name="nomeDoCliente"
               className="th-input"
               required
+              autoFocus
+              minLength={1}
               // @ts-ignore
               labelKey="nomeDoCliente"
-              // onChange={handleChange}
               options={clientes}
               onChange={handleChangeTh}
               placeholder="Digite o nome do cliente"
-              // selected={() => ()}
             />
           </div>
           <div>

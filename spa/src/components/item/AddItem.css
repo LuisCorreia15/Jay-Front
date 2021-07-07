@@ -41,7 +41,8 @@
 }
 
 .add-modal-campo input {
-  padding-left: 0 !important;
+  padding-left: 15px !important;
+  border: none !important;
 }
 
 .add-data {
@@ -52,7 +53,7 @@
   overflow: hidden auto;
 }
 .add-tb-cnt {
-  min-height: 100%;
+  min-height: 400px;
 }
 .add-nothing {
   margin: 10px 20px;

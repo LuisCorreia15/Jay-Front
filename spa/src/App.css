@@ -154,7 +154,7 @@ h2 {
 }
 .campo-busca input {
   border-radius: 0 10px 10px 0;
-  margin-left: 25px;
+  margin-left: 10px;
   height: calc(100% - 9px);
 }
 .campo-busca input:focus {
