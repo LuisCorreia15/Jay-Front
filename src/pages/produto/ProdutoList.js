@@ -7,7 +7,7 @@ import LoadingScreen from "components/loader/Loading";
 
 const ProdutoList = (props) => {
   const conexao = axios.create({
-    baseURL: "http://localhost:3000",
+    baseURL: "http://localhost:8080",
   });
   const { statusPesquisa, setStatusPesquisa } = props;
   const history = useHistory();
