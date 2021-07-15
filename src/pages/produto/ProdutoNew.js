@@ -10,6 +10,9 @@ import ButtonForm from "components/button/ButtonForm";
 /* rafc  - comando para criar um component arrow*/
 
 const ProdutoNew = () => {
+  const conexao = axios.create({
+    baseURL: "http://localhost:3000",
+  });
   const history = useHistory();
   const [produto, setProduto] = useState({
     nomeDoProduto: "",
@@ -22,7 +25,7 @@ const ProdutoNew = () => {
 
   // nfn - comando para criar função anonima
   const doPost = async () => {
-    await axios.post("/api/produto", produto);
+    await conexao.post("/api/produto", produto);
     tempAlert(`Produto adicionado com sucesso!`, 5000);
     history.push("/produto");
   };
@@ -114,7 +117,7 @@ const ProdutoNew = () => {
               value={produto.precoVitrine}
             ></input>
           </div>
-          <ButtonForm exitPath='/produto'></ButtonForm>
+          <ButtonForm exitPath="/produto"></ButtonForm>
         </form>
       </div>
     </>

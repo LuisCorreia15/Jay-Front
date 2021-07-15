@@ -10,6 +10,9 @@ import LoadingScreen from "components/loader/Loading";
 import ButtonForm from "components/button/ButtonForm";
 
 const ProdutoEdit = () => {
+  const conexao = axios.create({
+    baseURL: "http://localhost:3000",
+  });
   const history = useHistory();
   const { idParaEditar } = useParams();
   const [produto, setProduto] = useState({
@@ -23,7 +26,7 @@ const ProdutoEdit = () => {
   const [confirmState, setConfirmState] = useState(false);
 
   const doGetById = async () => {
-    const response = await axios.get(`/api/produto/${idParaEditar}`, produto);
+    const response = await conexao.get(`/api/produto/${idParaEditar}`, produto);
     setProduto(response.data);
   };
 
@@ -32,7 +35,7 @@ const ProdutoEdit = () => {
   }, []);
 
   const doExcluirProduto = async (id, name) => {
-    await axios.delete(`/api/produto/${id}`);
+    await conexao.delete(`/api/produto/${id}`);
     tempAlert(name + " excluído!", 5000);
     setConfirmState(false);
     history.push("/produto");
@@ -55,7 +58,7 @@ const ProdutoEdit = () => {
   };
 
   const doPut = async () => {
-    await axios.put(`/api/produto/${idParaEditar}`, produto);
+    await conexao.put(`/api/produto/${idParaEditar}`, produto);
     tempAlert(`${produto.nomeDoProduto} alterado com sucesso!`, 5000);
     history.push("/produto");
   };

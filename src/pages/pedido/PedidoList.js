@@ -5,6 +5,9 @@ import Menu from "components/menu/menu";
 import LoadingScreen from "components/loader/Loading";
 
 const PedidoList = (props) => {
+  const conexao = axios.create({
+    baseURL: "http://localhost:3000",
+  });
   const { statusPesquisa, setStatusPesquisa } = props;
   const history = useHistory();
   const [pedido, setPedido] = useState({
@@ -18,7 +21,7 @@ const PedidoList = (props) => {
   });
 
   const doGetPedido = async (páginaRequerida, termoDePesquisa) => {
-    const response = await axios.get(
+    const response = await conexao.get(
       `/api/pedido?termo=${termoDePesquisa}&page=${páginaRequerida}`
     );
     setPedido(response.data);

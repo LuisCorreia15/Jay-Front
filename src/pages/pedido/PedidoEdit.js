@@ -9,6 +9,9 @@ import DeleteConfirm from "components/alert/DeleteConfirm";
 import ButtonForm from "components/button/ButtonForm";
 
 const PedidoEdit = () => {
+  const conexao = axios.create({
+    baseURL: "http://localhost:3000",
+  });
   const history = useHistory();
   const { idParaEditar } = useParams();
   const [pedido, setPedido] = useState({
@@ -21,7 +24,7 @@ const PedidoEdit = () => {
   const [confirmState, setConfirmState] = useState(false);
 
   const doGetById = async () => {
-    const response = await axios.get(`/api/pedido/${idParaEditar}`, pedido);
+    const response = await conexao.get(`/api/pedido/${idParaEditar}`, pedido);
     setPedido(response.data);
   };
 
@@ -30,7 +33,7 @@ const PedidoEdit = () => {
   }, []);
 
   const doExcluirPedido = async (id, name) => {
-    await axios.delete(`/api/pedido/${id}`);
+    await conexao.delete(`/api/pedido/${id}`);
     tempAlert(name + " excluído!", 5000);
     setConfirmState(false);
     history.push("/pedido");
@@ -53,7 +56,7 @@ const PedidoEdit = () => {
   };
 
   const doPut = async () => {
-    await axios.put(`/api/pedido/${idParaEditar}`, pedido);
+    await conexao.put(`/api/pedido/${idParaEditar}`, pedido);
     tempAlert(`${pedido.nomeDoPedido} alterado com sucesso!`, 5000);
     history.push("/pedido");
   };

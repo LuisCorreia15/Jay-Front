@@ -6,6 +6,9 @@ import tempAlert from "components/alert/Alert";
 import LoadingScreen from "components/loader/Loading";
 
 const ProdutoList = (props) => {
+  const conexao = axios.create({
+    baseURL: "http://localhost:3000",
+  });
   const { statusPesquisa, setStatusPesquisa } = props;
   const history = useHistory();
   const [types, setTypes] = useState({
@@ -23,7 +26,7 @@ const ProdutoList = (props) => {
     termoDePesquisa,
     tipoDosProdutos
   ) => {
-    const response = await axios.get(
+    const response = await conexao.get(
       `/api/produto?termo=${termoDePesquisa}&page=${páginaRequerida}&tipo=${tipoDosProdutos}`
     );
     setProduto(response.data);
@@ -46,10 +49,10 @@ const ProdutoList = (props) => {
       types.typeProdutos
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [statusPesquisa.termoDePesquisa, types.typeProdutos, types.typeValores, ]);
+  }, [statusPesquisa.termoDePesquisa, types.typeProdutos, types.typeValores]);
 
   const doGerarProduto = async () => {
-    await axios.post(`/api/produto/gerar`);
+    await conexao.post(`/api/produto/gerar`);
     tempAlert("10 Produto gerados!", 5000);
     doGetProduto(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
   };
