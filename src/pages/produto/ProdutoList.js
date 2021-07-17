@@ -15,11 +15,7 @@ const ProdutoList = (props) => {
     typeProdutos: "",
     typeValores: "Vitrine",
   });
-  const [produto, setProduto] = useState({
-    content: [],
-    pageable: { pageNumber: 0 },
-    totalPages: 0,
-  });
+  const [produto, setProduto] = useState([{}]);
 
   const doGetProduto = async (
     páginaRequerida,
@@ -40,14 +36,19 @@ const ProdutoList = (props) => {
     setStatusPesquisa(novoStatusPesquisa);
   };
 
+  const doGetProduto2 = async () => {
+    const response = await conexao.get("/produto/");
+    setProduto(response.data);
+  };
+
   useEffect(() => {
     document.addEventListener("keydown", keydownHandler);
-
-    doGetProduto(
-      statusPesquisa.páginaAtual,
-      statusPesquisa.termoDePesquisa,
-      types.typeProdutos
-    );
+    // doGetProduto(
+    //   statusPesquisa.páginaAtual,
+    //   statusPesquisa.termoDePesquisa,
+    //   types.typeProdutos
+    // );
+    doGetProduto2();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [statusPesquisa.termoDePesquisa, types.typeProdutos, types.typeValores]);
 
@@ -70,14 +71,14 @@ const ProdutoList = (props) => {
   };
 
   const tableData =
-    produto.content.length === 0 ? (
+    produto.length === 0 ? (
       <p>Nada encontrado!</p>
     ) : (
-      produto.content.map((row) => {
+      produto.map((row) => {
         return (
           <div
             className="tb"
-            key={row.id}
+            key={row._id}
             onClick={() => history.push(`/produto/editar/${row.id}`)}
           >
             <div className="tb-title">
@@ -86,9 +87,9 @@ const ProdutoList = (props) => {
             </div>
             <div className="tb-price">
               {types.typeValores === "Vitrine" ? (
-                <h2>R$ {row.precoVitrine.toFixed(2)}</h2>
+                <h2>R$ {row.precoVitrine /*toFixed(2)*/}</h2>
               ) : (
-                <h2>R$ {row.precoEncomenda.toFixed(2)}</h2>
+                <h2>R$ {row.precoEncomenda}</h2>
               )}
               <p>{row.vendidoPor}</p>
             </div>
