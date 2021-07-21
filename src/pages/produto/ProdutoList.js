@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Menu from "components/menu/menu";
-import tempAlert from "components/alert/Alert";
 import LoadingScreen from "components/loader/Loading";
 
 const ProdutoList = (props) => {
@@ -69,9 +68,11 @@ const ProdutoList = (props) => {
             </div>
             <div className="tb-price">
               {types.typeValores === "Vitrine" ? (
-                <h2>R$ {row.precoVitrine /*toFixed(2)*/}</h2>
+                <h2>R$ {row.precoVitrine ? row.precoVitrine.toFixed(2) : 0}</h2>
               ) : (
-                <h2>R$ {row.precoEncomenda}</h2>
+                <h2>
+                  R$ {row.precoEncomenda ? row.precoEncomenda.toFixed(2) : 0}
+                </h2>
               )}
               <p>{row.vendidoPor}</p>
             </div>
