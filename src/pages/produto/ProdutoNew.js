@@ -25,7 +25,7 @@ const ProdutoNew = () => {
 
   // nfn - comando para criar função anonima
   const doPost = async () => {
-    await conexao.post("/api/produto", produto);
+    await conexao.post("/produto", produto);
     tempAlert(`Produto adicionado com sucesso!`, 5000);
     history.push("/produto");
   };

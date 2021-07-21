@@ -7,6 +7,7 @@ import LoadingScreen from "components/loader/Loading";
 
 const ProdutoList = (props) => {
   const conexao = axios.create({
+    // baseURL: "https://jay-assistant-api.herokuapp.com/",
     baseURL: "http://localhost:8080",
   });
   const { statusPesquisa, setStatusPesquisa } = props;
@@ -17,13 +18,9 @@ const ProdutoList = (props) => {
   });
   const [produto, setProduto] = useState([{}]);
 
-  const doGetProduto = async (
-    páginaRequerida,
-    termoDePesquisa,
-    tipoDosProdutos
-  ) => {
+  const doGetProduto = async (termoDePesquisa, tipoDosProdutos) => {
     const response = await conexao.get(
-      `/api/produto?termo=${termoDePesquisa}&page=${páginaRequerida}&tipo=${tipoDosProdutos}`
+      `/produto/?nomeDoProduto=${termoDePesquisa}&tipoDoProduto=${tipoDosProdutos}`
     );
     setProduto(response.data);
   };
@@ -36,11 +33,6 @@ const ProdutoList = (props) => {
     setStatusPesquisa(novoStatusPesquisa);
   };
 
-  const doGetProduto2 = async () => {
-    const response = await conexao.get("/produto/");
-    setProduto(response.data);
-  };
-
   useEffect(() => {
     document.addEventListener("keydown", keydownHandler);
     // doGetProduto(
@@ -48,19 +40,9 @@ const ProdutoList = (props) => {
     //   statusPesquisa.termoDePesquisa,
     //   types.typeProdutos
     // );
-    doGetProduto2();
+    doGetProduto(statusPesquisa.termoDePesquisa, types.typeProdutos);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [statusPesquisa.termoDePesquisa, types.typeProdutos, types.typeValores]);
-
-  const doGerarProduto = async () => {
-    await conexao.post(`/api/produto/gerar`);
-    tempAlert("10 Produto gerados!", 5000);
-    doGetProduto(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
-  };
-
-  const handleGerar = () => {
-    doGerarProduto();
-  };
 
   const handleSearchSelectChange = (event) => {
     const typeChaged = {
@@ -79,7 +61,7 @@ const ProdutoList = (props) => {
           <div
             className="tb"
             key={row._id}
-            onClick={() => history.push(`/produto/editar/${row.id}`)}
+            onClick={() => history.push(`/produto/editar/${row._id}`)}
           >
             <div className="tb-title">
               <p>{row.tipoDoProduto}</p>
@@ -98,15 +80,15 @@ const ProdutoList = (props) => {
       })
     );
 
-  const requestPage = (requestedPage) => {
-    if (requestedPage <= 0) {
-      requestedPage = 0;
-    }
-    if (requestedPage >= produto.totalPages) {
-      requestedPage = produto.totalPages - 1;
-    }
-    doGetProduto(requestedPage, statusPesquisa.termoDePesquisa);
-  };
+  // const requestPage = (requestedPage) => {
+  //   if (requestedPage <= 0) {
+  //     requestedPage = 0;
+  //   }
+  //   if (requestedPage >= produto.totalPages) {
+  //     requestedPage = produto.totalPages - 1;
+  //   }
+  //   doGetProduto(requestedPage, statusPesquisa.termoDePesquisa);
+  // };
 
   function keydownHandler(e) {
     if (e.keyCode === 115) {
@@ -160,18 +142,16 @@ const ProdutoList = (props) => {
             onChange={handleSearchInputChange}
           />
         </form>
-        <button className="btn-page" onClick={handleGerar}>
-          Gerar 10 Produtos
-        </button>
+
         <button
           className="btn-page novo"
           onClick={() => history.push("/produto/novo")}
         >
-          Novo Produto
+          Novo Produto (F4)
         </button>
 
         <div className="tb-cnt">{tableData}</div>
-        {produto.totalPages > 1 ? (
+        {/* {produto.totalPages > 1 ? (
           <div className="page-control">
             <button
               className="btn-page"
@@ -193,7 +173,7 @@ const ProdutoList = (props) => {
           </div>
         ) : (
           <div></div>
-        )}
+        )} */}
       </div>
     </>
   );

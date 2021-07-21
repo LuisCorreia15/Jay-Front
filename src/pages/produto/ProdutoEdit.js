@@ -26,7 +26,8 @@ const ProdutoEdit = () => {
   const [confirmState, setConfirmState] = useState(false);
 
   const doGetById = async () => {
-    const response = await conexao.get(`/api/produto/${idParaEditar}`, produto);
+    const response = await conexao.get(`/produto/${idParaEditar}`);
+    console.log(response.data);
     setProduto(response.data);
   };
 
@@ -35,7 +36,7 @@ const ProdutoEdit = () => {
   }, []);
 
   const doExcluirProduto = async (id, name) => {
-    await conexao.delete(`/api/produto/${id}`);
+    await conexao.delete(`/produto/${id}`);
     tempAlert(name + " excluído!", 5000);
     setConfirmState(false);
     history.push("/produto");
@@ -49,7 +50,7 @@ const ProdutoEdit = () => {
     return (
       <DeleteConfirm
         estado={confirmState}
-        doExlcuir={doExcluirProduto}
+        doExcluir={doExcluirProduto}
         id={idParaEditar}
         nome={produto.nomeDoProduto}
         setConfirmState={setConfirmState}
@@ -58,7 +59,7 @@ const ProdutoEdit = () => {
   };
 
   const doPut = async () => {
-    await conexao.put(`/api/produto/${idParaEditar}`, produto);
+    await conexao.put(`/produto/${idParaEditar}`, produto);
     tempAlert(`${produto.nomeDoProduto} alterado com sucesso!`, 5000);
     history.push("/produto");
   };
