@@ -20,15 +20,24 @@ const ProdutoList = (props) => {
   });
   const [produto, setProduto] = useState([{}]);
 
-  const doGetProduto = async (termoDePesquisa, tipoDosProdutos) => {
+  const firstDoGetProduto = async (termoDePesquisa, tipoDosProdutos) => {
     setLoading(true);
     setTimeout(async () => {
-      const response = await conexao.get(
-        `/produto/?nomeDoProduto=${termoDePesquisa}&tipoDoProduto=${tipoDosProdutos}`
-      );
-      setProduto(response.data);
+      doGetProduto(statusPesquisa.termoDePesquisa, types.typeProdutos);
       setLoading(false);
     }, 1500);
+  };
+
+  useEffect(() => {
+    firstDoGetProduto(statusPesquisa.termoDePesquisa, types.typeProdutos);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const doGetProduto = async (termoDePesquisa, tipoDosProdutos) => {
+    const response = await conexao.get(
+      `/produto/?nomeDoProduto=${termoDePesquisa}&tipoDoProduto=${tipoDosProdutos}`
+    );
+    setProduto(response.data);
   };
 
   const handleSearchInputChange = async (event) => {
@@ -41,11 +50,6 @@ const ProdutoList = (props) => {
 
   useEffect(() => {
     document.addEventListener("keydown", keydownHandler);
-    // doGetProduto(
-    //   statusPesquisa.páginaAtual,
-    //   statusPesquisa.termoDePesquisa,
-    //   types.typeProdutos
-    // );
     doGetProduto(statusPesquisa.termoDePesquisa, types.typeProdutos);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [statusPesquisa.termoDePesquisa, types.typeProdutos, types.typeValores]);
