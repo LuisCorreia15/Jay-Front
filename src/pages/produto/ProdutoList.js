@@ -3,6 +3,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Menu from "components/menu/menu";
 import LoadingScreen from "components/loader/Loading";
+import SkeletonLoader from "components/loader/SkeletonLoader";
 
 const ProdutoList = (props) => {
   const conexao = axios.create({
@@ -10,6 +11,8 @@ const ProdutoList = (props) => {
     baseURL: "http://localhost:8080",
   });
   const { statusPesquisa, setStatusPesquisa } = props;
+  const loadingProdutos = new Array(10);
+  const [loading, setLoading] = useState(false);
   const history = useHistory();
   const [types, setTypes] = useState({
     typeProdutos: "",
@@ -18,10 +21,14 @@ const ProdutoList = (props) => {
   const [produto, setProduto] = useState([{}]);
 
   const doGetProduto = async (termoDePesquisa, tipoDosProdutos) => {
-    const response = await conexao.get(
-      `/produto/?nomeDoProduto=${termoDePesquisa}&tipoDoProduto=${tipoDosProdutos}`
-    );
-    setProduto(response.data);
+    setLoading(true);
+    setTimeout(async () => {
+      const response = await conexao.get(
+        `/produto/?nomeDoProduto=${termoDePesquisa}&tipoDoProduto=${tipoDosProdutos}`
+      );
+      setProduto(response.data);
+      setLoading(false);
+    }, 1500);
   };
 
   const handleSearchInputChange = async (event) => {
@@ -151,7 +158,18 @@ const ProdutoList = (props) => {
           Novo Produto (F4)
         </button>
 
-        <div className="tb-cnt">{tableData}</div>
+        {loading ? (
+          loadingProdutos.fill(10).map((item) => {
+            return (
+              <div className="tb-cnt">
+                <SkeletonLoader></SkeletonLoader>
+              </div>
+            );
+          })
+        ) : (
+          <div className="tb-cnt">{tableData}</div>
+        )}
+
         {/* {produto.totalPages > 1 ? (
           <div className="page-control">
             <button

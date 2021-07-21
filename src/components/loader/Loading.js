@@ -4,8 +4,8 @@ import $ from "jquery";
 
 const LoadingScreen = () => {
   useEffect(() => {
-    $("#loading-screen .loading-bar").delay(500).fadeOut("slow");
-    $("#loading-screen").delay(500).fadeOut("slow");
+    $("#loading-screen .loading-bar").delay(1000).fadeOut("slow");
+    $("#loading-screen").delay(1000).fadeOut("slow");
   }, []);
   return (
     <div>
