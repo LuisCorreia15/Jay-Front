@@ -66,11 +66,11 @@ const ProdutoList = (props) => {
     produto.length === 0 ? (
       <p>Nada encontrado!</p>
     ) : (
-      produto.map((row) => {
+      produto.map((row, i) => {
         return (
           <div
             className="tb"
-            key={row._id}
+            key={i}
             onClick={() => history.push(`/produto/editar/${row._id}`)}
           >
             <div className="tb-title">
@@ -162,17 +162,20 @@ const ProdutoList = (props) => {
           Novo Produto (F4)
         </button>
 
-        {loading ? (
-          loadingProdutos.fill(10).map((item) => {
-            return (
-              <div className="tb-cnt">
-                <SkeletonLoader></SkeletonLoader>
-              </div>
-            );
-          })
-        ) : (
-          <div className="tb-cnt">{tableData}</div>
-        )}
+        <div className="tb-cnt">
+          {loading ? (
+            loadingProdutos.fill(10).map((row, i) => {
+              return (
+                <SkeletonLoader
+                  key={i}
+                  onLoad={() => console.log(i)}
+                ></SkeletonLoader>
+              );
+            })
+          ) : (
+            <div>{tableData}</div>
+          )}
+        </div>
 
         {/* {produto.totalPages > 1 ? (
           <div className="page-control">
