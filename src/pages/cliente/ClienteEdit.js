@@ -11,6 +11,10 @@ import InputMask from "react-input-mask";
 import ButtonForm from "components/button/ButtonForm";
 
 const ClienteEdit = () => {
+  const conexao = axios.create({
+    // baseURL: "https://jay-assistant-api.herokuapp.com/",
+    baseURL: "http://localhost:8080",
+  });
   const history = useHistory();
   const { idParaEditar } = useParams();
   const [cliente, setCliente] = useState({
@@ -21,7 +25,7 @@ const ClienteEdit = () => {
   const [confirmState, setConfirmState] = useState(false);
 
   const doGetById = async () => {
-    const response = await axios.get(`/api/cliente/${idParaEditar}`, cliente);
+    const response = await conexao.get(`/cliente/${idParaEditar}`);
     setCliente(response.data);
   };
 
@@ -30,7 +34,7 @@ const ClienteEdit = () => {
   }, []);
 
   const doExcluirCliente = async (id, name) => {
-    await axios.delete(`/api/cliente/${id}`);
+    await conexao.delete(`/cliente/${id}`);
     tempAlert(name + " excluído!", 5000);
     setConfirmState(false);
     history.push("/cliente");
@@ -53,7 +57,7 @@ const ClienteEdit = () => {
   };
 
   const doPut = async () => {
-    await axios.put(`/api/cliente/${idParaEditar}`, cliente);
+    await conexao.put(`/cliente/${idParaEditar}`, cliente);
     tempAlert(`${cliente.nomeDoCliente} alterado com sucesso!`, 5000);
     history.push("/cliente");
   };

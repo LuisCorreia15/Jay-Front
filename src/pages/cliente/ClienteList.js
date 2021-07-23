@@ -2,93 +2,72 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Menu from "components/menu/menu";
-import tempAlert from "components/alert/Alert";
 import LoadingScreen from "components/loader/Loading";
 
 const ClienteList = (props) => {
-  const { statusPesquisa, setStatusPesquisa } = props;
-  const history = useHistory();
-  const [cliente, setCliente] = useState({
-    content: [],
-    pageable: { pageNumber: 0 },
-    totalPages: 0,
+  const conexao = axios.create({
+    // baseURL: "https://jay-assistant-api.herokuapp.com/",
+    baseURL: "http://localhost:8080",
   });
+  const { termoDePesquisa, setTermoDePesquisa } = props;
+  const history = useHistory();
+  const [cliente, setCliente] = useState([{}]);
 
-  const doGetCliente = async (páginaRequerida, termoDePesquisa) => {
-    const response = await axios.get(
-      `/api/cliente?termo=${termoDePesquisa}&page=${páginaRequerida}`
+  const doGetCliente = async (termoDePesquisa) => {
+    const response = await conexao.get(
+      `/cliente/?nomeDoCliente=${termoDePesquisa}`
     );
     setCliente(response.data);
   };
 
   useEffect(() => {
     document.addEventListener("keydown", keydownHandler);
-    doGetCliente(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
+    doGetCliente(termoDePesquisa);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSearchInputChange = async (event) => {
-    const novoStatusPesquisa = {
-      ...statusPesquisa,
-      termoDePesquisa: event.target.value,
-    };
-    setStatusPesquisa(novoStatusPesquisa);
+    setTermoDePesquisa(event.target.value);
+    console.log(termoDePesquisa);
   };
 
   useEffect(() => {
-    doGetCliente(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
+    doGetCliente(termoDePesquisa);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [statusPesquisa.termoDePesquisa]);
-
-  const doGerarCliente = async () => {
-    await axios.post(`/api/cliente/gerar`);
-    tempAlert("10 Clientes gerados!", 5000);
-    doGetCliente(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
-  };
-
-  const handleGerar = () => {
-    doGerarCliente();
-  };
-
-  const doExcluirTodosCliente = async () => {
-    await axios.delete(`/api/cliente/excluir-todos`);
-    tempAlert("Todos Clientes excluídos!", 5000);
-    doGetCliente(statusPesquisa.páginaAtual, statusPesquisa.termoDePesquisa);
-  };
-
-  const handleExcluirTodos = () => {
-    doExcluirTodosCliente();
-  };
+  }, [termoDePesquisa]);
 
   const tableData =
-    cliente.content.length === 0 ? (
+    cliente.length === 0 ? (
       <p>Nada encontrado!</p>
     ) : (
-      cliente.content.map((row) => {
+      cliente.map((row, i) => {
         return (
           <div
             className="tb"
-            key={row.id}
-            onClick={() => history.push(`/cliente/editar/${row.id}`)}
+            key={i}
+            onClick={() => history.push(`/cliente/editar/${row._id}`)}
           >
             <div className="tb-title">
               <p>{row.celular}</p>
               <h2>{row.nomeDoCliente}</h2>
+            </div>
+            <div className="tb-price">
+              <h2>{row.logradouro}</h2>
             </div>
           </div>
         );
       })
     );
 
-  const requestPage = (requestedPage) => {
-    if (requestedPage <= 0) {
-      requestedPage = 0;
-    }
-    if (requestedPage >= cliente.totalPages) {
-      requestedPage = cliente.totalPages - 1;
-    }
-    doGetCliente(requestedPage, statusPesquisa.termoDePesquisa);
-  };
+  // const requestPage = (requestedPage) => {
+  //   if (requestedPage <= 0) {
+  //     requestedPage = 0;
+  //   }
+  //   if (requestedPage >= cliente.totalPages) {
+  //     requestedPage = cliente.totalPages - 1;
+  //   }
+  //   doGetCliente(requestedPage, statusPesquisa.termoDePesquisa);
+  // };
 
   function keydownHandler(e) {
     if (e.keyCode === 115) {
@@ -104,27 +83,22 @@ const ClienteList = (props) => {
         <form className="pd campo-busca">
           <input
             type="text"
-            value={statusPesquisa.termoDePesquisa}
+            value={termoDePesquisa}
             placeholder="O que deseja buscar?"
             autoFocus
             onChange={handleSearchInputChange}
           />
         </form>
-        <button className="btn-page" onClick={handleGerar}>
-          Gerar 10 Clientes
-        </button>
+
         <button
           className="btn-page novo"
           onClick={() => history.push("/cliente/novo")}
         >
-          Novo Cliente
-        </button>
-        <button className="btn-page lixo" onClick={handleExcluirTodos}>
-          Excluir Todos
+          Novo Cliente (F4)
         </button>
 
         <div className="tb-cnt">{tableData}</div>
-        {cliente.totalPages > 1 ? (
+        {/* {cliente.totalPages > 1 ? (
           <div className="page-control">
             <button
               className="btn-page"
@@ -146,7 +120,7 @@ const ClienteList = (props) => {
           </div>
         ) : (
           <div></div>
-        )}
+        )} */}
       </div>
     </>
   );

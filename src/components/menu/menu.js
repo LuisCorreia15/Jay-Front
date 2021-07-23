@@ -24,14 +24,14 @@ const Menu = (props) => {
         <Link to="/produto" id="produto">
           <li>Produtos</li>
         </Link>
+        <Link to="/cliente" id="cliente">
+          <li>Clientes </li>
+        </Link>
         <Link to="/pedido" id="pedido">
           <li>Pedidos</li>
         </Link>
         <Link to="/inspecao" id="inspecao">
           <li>Inspeções</li>
-        </Link>
-        <Link to="/cliente" id="cliente">
-          <li>Clientes  </li>
         </Link>
       </ul>
     </div>

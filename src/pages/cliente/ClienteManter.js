@@ -5,18 +5,15 @@ import ClienteList from "./ClienteList";
 import ClienteNew from "./ClienteNew";
 
 const ClienteManter = () => {
-  const [statusPesquisa, setStatusPesquisa] = useState({
-    páginaAtual: 0,
-    termoDePesquisa: "",
-  });
+  const [termoDePesquisa, setTermoDePesquisa] = useState("");
 
   return (
     <>
       <Switch>
         <Route exact path="/cliente">
           <ClienteList
-            statusPesquisa={statusPesquisa}
-            setStatusPesquisa={setStatusPesquisa}
+            termoDePesquisa={termoDePesquisa}
+            setTermoDePesquisa={setTermoDePesquisa}
           ></ClienteList>
         </Route>
         <Route path="/cliente/novo" component={ClienteNew}></Route>

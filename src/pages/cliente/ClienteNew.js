@@ -11,6 +11,10 @@ import ButtonForm from "components/button/ButtonForm";
 /* rafc  - comando para criar um component arrow*/
 
 const ClienteNew = () => {
+  const conexao = axios.create({
+    // baseURL: "https://jay-assistant-api.herokuapp.com/",
+    baseURL: "http://localhost:8080",
+  });
   const history = useHistory();
   const [cliente, setCliente] = useState({
     nomeDoCliente: "",
@@ -20,7 +24,7 @@ const ClienteNew = () => {
 
   // nfn - comando para criar função anonima
   const doPost = async () => {
-    await axios.post("/api/cliente", cliente);
+    await conexao.post("/cliente", cliente);
     tempAlert(`Cliente adicionado com sucesso!`, 5000);
     history.push("/cliente");
   };
