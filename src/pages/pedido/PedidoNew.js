@@ -28,8 +28,8 @@ const PedidoNew = () => {
   const [addModal, setAddModal] = useState(false);
 
   const doGetClientes = async () => {
-    const response = await conexao.get(`/cliente`);
-    setClientes(response.data.content);
+    const response = await conexao.get(`/cliente/`);
+    setClientes(response.data);
   };
 
   useEffect(() => {
@@ -63,11 +63,11 @@ const PedidoNew = () => {
     productList.length === 0 ? (
       <p>Nada encontrado!</p>
     ) : (
-      productList.map((row) => {
+      productList.map((row, i) => {
         return (
           <div
             className="pd-tb"
-            key={row.id}
+            key={i}
             // onClick={() => history.push(`/produto/editar/${row.id}`)}
           >
             <div className="pd-tb-name">
@@ -118,6 +118,7 @@ const PedidoNew = () => {
               mask="99/99/9999  99:99"
               placeholder="__/__/____ __:__"
               onChange={handleChange}
+              // PROBLEMA ESTÁ NESSE INPUT!
               required
               type="text"
               name="dataEntrega"

@@ -3,8 +3,9 @@
 ## Bugs
 
 - [x] Produto List Price (tofixed(2)) not working
-- [ ] Ver em video como lidar com o key={row.\_id} não funcionando
+- [x] Ver em video como lidar com o key={row.\_id} não funcionando
 - [ ] Paginação no working
+- [ ] Strict Mode Input Mask Warning!
 
 ## ShorTerm
 

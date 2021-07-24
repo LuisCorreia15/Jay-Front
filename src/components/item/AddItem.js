@@ -18,40 +18,29 @@ const AddItem = (props) => {
     tipoDoProduto: "",
     vendidoPor: "",
   });
-  const [statusPesquisa, setStatusPesquisa] = useState({
-    páginaAtual: 0,
-    termoDePesquisa: "",
-  });
+  const [termoDePesquisa, setTermoDePesquisa] = useState("");
   const [selectModal, setSelecttModal] = useState(false);
   const [addInput, setAddInput] = useState({
     valorUnitario: 0,
     quantidade: 0,
   });
 
-  const doGetProduto = async (
-    páginaRequerida,
-    termoDePesquisa,
-    tipoDosProdutos
-  ) => {
+  const doGetProduto = async (termoDePesquisa, tipoDosProdutos) => {
     const response = await conexao.get(
-      `/api/produto?termo=${termoDePesquisa}&page=${páginaRequerida}&tipo=${tipoDosProdutos}`
+      `/produto/?nomeDoProduto=${termoDePesquisa}&tipoDoProduto=${tipoDosProdutos}`
     );
     setProduto(response.data);
   };
 
   const doGetById = async (id) => {
-    const response = await axios.get(`/api/produto/${id}`);
+    const response = await axios.get(`/produto/${id}`);
     setSelectedProduto(response.data);
   };
 
   useEffect(() => {
-    doGetProduto(
-      statusPesquisa.páginaAtual,
-      statusPesquisa.termoDePesquisa,
-      types.typeProdutos
-    );
+    doGetProduto(termoDePesquisa, types.typeProdutos);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [statusPesquisa.termoDePesquisa, types.typeProdutos, types.typeValores]);
+  }, [termoDePesquisa, types.typeProdutos, types.typeValores]);
 
   useEffect(() => {
     if (estadoDoModal) {
@@ -68,21 +57,31 @@ const AddItem = (props) => {
     produto.length === 0 ? (
       <p className="add-nothing">Nada encontrado!</p>
     ) : (
-      produto.map((row) => {
+      produto.map((row, i) => {
         return (
           <div
             className="add-tb flex"
-            key={row.id}
-            onClick={() => showSelectModal(row.id)}
+            key={i}
+            onClick={() => showSelectModal(row._id)}
           >
             <div className="add-tb-title">
               <h2>{row.nomeDoProduto}</h2>
             </div>
             <div className="add-tb-price flex">
               {types.typeValores === "Vitrine" ? (
-                <h2>R$ {row.precoVitrine.toFixed(2)}</h2>
+                <h2>
+                  R${" "}
+                  {row.precoVitrine
+                    ? row.precoVitrine.toFixed(2)
+                    : row.precoVitrine}
+                </h2>
               ) : (
-                <h2>R$ {row.precoEncomenda.toFixed(2)}</h2>
+                <h2>
+                  R${" "}
+                  {row.precoEncomenda
+                    ? row.precoEncomenda.toFixed(2)
+                    : row.precoEncomenda}
+                </h2>
               )}
               <p>{row.vendidoPor}</p>
             </div>
@@ -107,11 +106,7 @@ const AddItem = (props) => {
   };
 
   const handleSearchInputChange = async (event) => {
-    const novoStatusPesquisa = {
-      ...statusPesquisa,
-      termoDePesquisa: event.target.value,
-    };
-    setStatusPesquisa(novoStatusPesquisa);
+    setTermoDePesquisa(event.target.value);
   };
 
   const handleSearchSelectChange = (event) => {
@@ -169,7 +164,7 @@ const AddItem = (props) => {
             </div>
             <input
               type="text"
-              value={statusPesquisa.termoDePesquisa}
+              value={termoDePesquisa}
               id="input-search-item"
               placeholder="O que deseja buscar?"
               autoFocus

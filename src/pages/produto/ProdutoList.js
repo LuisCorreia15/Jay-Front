@@ -20,7 +20,7 @@ const ProdutoList = (props) => {
   });
   const [produto, setProduto] = useState([{}]);
 
-  const firstDoGetProduto = async (termoDePesquisa, tipoDosProdutos) => {
+  const firstDoGetProduto = async () => {
     setLoading(true);
     setTimeout(async () => {
       doGetProduto(statusPesquisa.termoDePesquisa, types.typeProdutos);
@@ -29,7 +29,7 @@ const ProdutoList = (props) => {
   };
 
   useEffect(() => {
-    firstDoGetProduto(statusPesquisa.termoDePesquisa, types.typeProdutos);
+    firstDoGetProduto();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
