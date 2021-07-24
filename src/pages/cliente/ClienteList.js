@@ -5,10 +5,7 @@ import Menu from "components/menu/menu";
 import LoadingScreen from "components/loader/Loading";
 
 const ClienteList = (props) => {
-  const conexao = axios.create({
-    // baseURL: "https://jay-assistant-api.herokuapp.com/",
-    baseURL: "http://localhost:8080",
-  });
+  const conexao = axios.create({ baseURL: process.env.REACT_APP_PORT });
   const { termoDePesquisa, setTermoDePesquisa } = props;
   const history = useHistory();
   const [cliente, setCliente] = useState([{}]);

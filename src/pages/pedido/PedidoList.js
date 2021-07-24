@@ -6,7 +6,7 @@ import LoadingScreen from "components/loader/Loading";
 
 const PedidoList = (props) => {
   const conexao = axios.create({
-    baseURL: "http://localhost:8080",
+    baseURL: process.env.REACT_APP_PORT,
   });
   const { statusPesquisa, setStatusPesquisa } = props;
   const history = useHistory();

@@ -12,6 +12,9 @@ import AddItem from "components/item/AddItem";
 import LoadingScreen from "components/loader/Loading";
 
 const PedidoNew = () => {
+  const conexao = axios.create({
+    baseURL: process.env.REACT_APP_PORT,
+  });
   const history = useHistory();
   const [clientes, setClientes] = useState([{}]);
   const [pedido, setPedido] = useState({
@@ -25,7 +28,7 @@ const PedidoNew = () => {
   const [addModal, setAddModal] = useState(false);
 
   const doGetClientes = async () => {
-    const response = await axios.get(`/api/cliente`);
+    const response = await conexao.get(`/cliente`);
     setClientes(response.data.content);
   };
 
@@ -36,7 +39,7 @@ const PedidoNew = () => {
   }, []);
 
   const doPost = async () => {
-    await axios.post("/api/pedido", pedido);
+    await conexao.post("/pedido", pedido);
     tempAlert(`Pedido adicionado com sucesso!`, 5000);
     history.push("/pedido");
   };

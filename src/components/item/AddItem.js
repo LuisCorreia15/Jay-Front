@@ -3,16 +3,13 @@ import axios from "axios";
 import "./AddItem.css";
 
 const AddItem = (props) => {
+  const conexao = axios.create({ baseURL: process.env.REACT_APP_PORT });
   const { pedido, setPedido, estadoDoModal, setEstadoDoModal } = props;
   const [types, setTypes] = useState({
     typeProdutos: "",
     typeValores: "Vitrine",
   });
-  const [produto, setProduto] = useState({
-    content: [],
-    pageable: { pageNumber: 0 },
-    totalPages: 0,
-  });
+  const [produto, setProduto] = useState([{}]);
   const [selectedProduto, setSelectedProduto] = useState({
     nomeDoProduto: "",
     precoEncomenda: 0.0,
@@ -36,7 +33,7 @@ const AddItem = (props) => {
     termoDePesquisa,
     tipoDosProdutos
   ) => {
-    const response = await axios.get(
+    const response = await conexao.get(
       `/api/produto?termo=${termoDePesquisa}&page=${páginaRequerida}&tipo=${tipoDosProdutos}`
     );
     setProduto(response.data);
@@ -68,10 +65,10 @@ const AddItem = (props) => {
   }, [estadoDoModal]);
 
   const produtoData =
-    produto.content.length === 0 ? (
+    produto.length === 0 ? (
       <p className="add-nothing">Nada encontrado!</p>
     ) : (
-      produto.content.map((row) => {
+      produto.map((row) => {
         return (
           <div
             className="add-tb flex"

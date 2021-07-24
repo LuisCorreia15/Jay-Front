@@ -10,7 +10,7 @@ import ButtonForm from "components/button/ButtonForm";
 
 const PedidoEdit = () => {
   const conexao = axios.create({
-    baseURL: "http://localhost:8080",
+    baseURL: process.env.REACT_APP_PORT,
   });
   const history = useHistory();
   const { idParaEditar } = useParams();

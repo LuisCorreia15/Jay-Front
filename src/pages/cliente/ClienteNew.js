@@ -12,8 +12,7 @@ import ButtonForm from "components/button/ButtonForm";
 
 const ClienteNew = () => {
   const conexao = axios.create({
-    // baseURL: "https://jay-assistant-api.herokuapp.com/",
-    baseURL: "http://localhost:8080",
+    baseURL: process.env.REACT_APP_PORT,
   });
   const history = useHistory();
   const [cliente, setCliente] = useState({
