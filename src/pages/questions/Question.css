@@ -1,5 +1,25 @@
 .q-title h1 {
-  font-size: 36px;
+  font-size: 42px;
   color: var(--comment);
-  margin-top: 10px;
+  margin: 10px;
+}
+.q-passo {
+  color: var(--comment);
+}
+.q-passo h1 {
+  margin-bottom: 0;
+}
+.q-passo p {
+  margin: 0;
+  font-size: 18px;
+}
+.q-passo span {
+  color: var(--light);
+  font-weight: 400;
+  margin: 0;
+  padding: 5px;
+}
+.q-passo span:hover {
+  color: var(--comment);
+  cursor: default;
 }
