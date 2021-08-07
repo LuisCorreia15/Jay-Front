@@ -6,7 +6,7 @@ import PedidoManter from "pages/pedido/PedidoManter";
 import ProdutoManter from "pages/produto/ProdutoManter";
 import LandingPage from "./pages/landing/LadingPage";
 import ClienteManter from "pages/cliente/ClienteManter";
-import HelpPage from "pages/help/HelpPage";
+import HelpRoutes from "pages/help/HelpRoutes";
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
             <Route path="/produto" component={ProdutoManter}></Route>
             <Route path="/pedido" component={PedidoManter}></Route>
             <Route path="/cliente" component={ClienteManter}></Route>
-            <Route path="/help" component={HelpPage}></Route>
+            <Route path="/help" component={HelpRoutes}></Route>
           </Switch>
         </Router>
       </header>

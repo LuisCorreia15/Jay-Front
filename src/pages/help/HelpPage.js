@@ -19,7 +19,7 @@ const HelpPage = () => {
             className="tb"
             key={i}
             onClick={() => {
-              history.push(`/help/${row.id}`);
+              history.push(`/help/question/${row.id}`);
             }}
           >
             <div className="tb-title">
