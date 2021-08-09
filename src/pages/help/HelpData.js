@@ -5,7 +5,7 @@ export const HelpData = [
   },
   {
     id: "002",
-    titulo: "Como fazer um aditivo?",
+    titulo: "Como fazer uma venda?",
   },
   {
     id: "003",
