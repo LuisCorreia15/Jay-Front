@@ -7,6 +7,12 @@
 - [ ] Paginação no working
 - [ ] Strict Mode Input Mask Warning!
 
+## Questions
+
+# Q2
+
+- [ ] Adicionar como fazer CPF Na Nota ou cancelar venda
+
 ## ShorTerm
 
 - [x] Adicionar Tipos nos produtos
@@ -17,6 +23,7 @@
 - [x] Adicionar filtro a busca "Doces/Bolos/Salgados/Outros"
 - [x] Mostrar o page control somente quando tiver paginas
 - [x] Preco Encomenda implementado
+- [ ] AOS on Page
 - [ ] Add Medida por FATIA e Categorias: Presentes/Caixas e Bolos/Tortas
 - [ ] Add Loading to Request
 - [ ] Fix/produto-edit-delete
@@ -24,7 +31,6 @@
 - [ ] Validação de produto repetido
 - [ ] Validação dos campos input
 - [ ] Finalizar front do Pedido com os itens funcionando
-- [ ] Colocar o locale do faker para 'pt-BR'
 
 ## LongTerm
 

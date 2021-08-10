@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useEffect } from "react";
+import React from "react";
 import BackToTop from "img/toTop.png";
 import $ from "jquery";
 

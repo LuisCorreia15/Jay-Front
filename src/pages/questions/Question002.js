@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from "react";
 import Menu from "components/menu/menu";
 import { Topper } from "components/topper/Topper";

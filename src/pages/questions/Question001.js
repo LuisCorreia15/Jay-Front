@@ -2,8 +2,7 @@ import React from "react";
 import Menu from "components/menu/menu";
 import LoadingScreen from "components/loader/Loading";
 import ButtonBack from "components/button/ButtonBack";
-// @ts-ignore
-import solucao from "img/Solucao.png";
+import solucao from "img/solucao.png";
 import "./Question.css";
 
 const Question001 = () => {
