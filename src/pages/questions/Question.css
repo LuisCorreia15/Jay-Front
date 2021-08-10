@@ -5,10 +5,11 @@
 .q-title h1 {
   font-size: 42px;
   color: var(--comment);
-  margin: 0;
+  margin: -15px 0 50px 0;
 }
 .q-passo {
   color: var(--comment);
+  margin-bottom: 50px;
 }
 .q-passo h1 {
   margin-bottom: 0;
@@ -23,6 +24,9 @@
   font-weight: 400;
   margin: 0;
   padding: 5px;
+}
+.q-passo img {
+  margin-bottom: 25px;
 }
 .q-passo span:hover {
   color: var(--comment);

@@ -2,13 +2,11 @@ import React from "react";
 import Menu from "components/menu/menu";
 import LoadingScreen from "components/loader/Loading";
 import ButtonBack from "components/button/ButtonBack";
-import solucao from "img/solucao.png";
+// @ts-ignore
+import solucao from "img/Solucao.png";
 import "./Question.css";
-import { useHistory } from "react-router-dom";
 
 const Question001 = () => {
-  const history = useHistory();
-
   return (
     <>
       <LoadingScreen></LoadingScreen>
