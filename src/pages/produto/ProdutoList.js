@@ -7,8 +7,7 @@ import SkeletonLoader from "components/loader/SkeletonLoader";
 
 const ProdutoList = (props) => {
   const conexao = axios.create({
-    // baseURL: "https://jay-assistant-api.herokuapp.com/",
-    baseURL: "http://localhost:8080",
+    baseURL: process.env.REACT_APP_PORT,
   });
   const { statusPesquisa, setStatusPesquisa } = props;
   const loadingProdutos = new Array(10);

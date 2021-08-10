@@ -1,6 +1,7 @@
 import React from "react";
 import Menu from "components/menu/menu";
 import LoadingScreen from "components/loader/Loading";
+import ButtonBack from "components/button/ButtonBack";
 
 const Question002 = () => {
   return (
@@ -8,6 +9,7 @@ const Question002 = () => {
       <LoadingScreen></LoadingScreen>
       <Menu ativo=""></Menu>
       <div className="container">
+        <ButtonBack></ButtonBack>
         <div className="q-title">
           <h1>Como fazer uma venda?</h1>
         </div>

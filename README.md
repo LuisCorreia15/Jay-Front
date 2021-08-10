@@ -18,6 +18,7 @@
 - [x] Mostrar o page control somente quando tiver paginas
 - [x] Preco Encomenda implementado
 - [ ] Add Medida por FATIA e Categorias: Presentes/Caixas e Bolos/Tortas
+- [ ] Add Loading to Request
 - [ ] Fix/produto-edit-delete
 - [ ] Produto Edit não trazendo as categorias para edição!
 - [ ] Validação de produto repetido

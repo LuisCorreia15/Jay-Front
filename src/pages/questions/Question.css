@@ -1,7 +1,11 @@
+.container {
+  padding: 20px 40px;
+}
+
 .q-title h1 {
   font-size: 42px;
   color: var(--comment);
-  margin: 10px;
+  margin: 0;
 }
 .q-passo {
   color: var(--comment);

@@ -3,12 +3,29 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Menu from "components/menu/menu";
 import LoadingScreen from "components/loader/Loading";
+import SkeletonLoader from "components/loader/SkeletonLoader";
 
 const ClienteList = (props) => {
   const conexao = axios.create({ baseURL: process.env.REACT_APP_PORT });
   const { termoDePesquisa, setTermoDePesquisa } = props;
+  const loadingProdutos = new Array(10);
   const history = useHistory();
+  const [loading, setLoading] = useState(false);
+
   const [cliente, setCliente] = useState([{}]);
+
+  const firstDoGetCliente = async () => {
+    setLoading(true);
+    setTimeout(async () => {
+      doGetCliente(termoDePesquisa);
+      setLoading(false);
+    }, 1500);
+  };
+
+  useEffect(() => {
+    firstDoGetCliente();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const doGetCliente = async (termoDePesquisa) => {
     const response = await conexao.get(
@@ -94,7 +111,20 @@ const ClienteList = (props) => {
           Novo Cliente (F4)
         </button>
 
-        <div className="tb-cnt">{tableData}</div>
+        <div className="tb-cnt">
+          {loading ? (
+            loadingProdutos.fill(10).map((row, i) => {
+              return (
+                <SkeletonLoader
+                  key={i}
+                  onLoad={() => console.log(i)}
+                ></SkeletonLoader>
+              );
+            })
+          ) : (
+            <div>{tableData}</div>
+          )}
+        </div>
         {/* {cliente.totalPages > 1 ? (
           <div className="page-control">
             <button
