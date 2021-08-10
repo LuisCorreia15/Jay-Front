@@ -7,7 +7,11 @@ const Question004 = () => {
     <>
       <LoadingScreen></LoadingScreen>
       <Menu ativo=""></Menu>
-      <div className="container">Question001</div>
+      <div className="container">
+        <div className="q-passo">
+          <h1>Em Criação</h1>
+        </div>
+      </div>
     </>
   );
 };
