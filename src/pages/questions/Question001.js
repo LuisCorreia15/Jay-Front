@@ -1,6 +1,7 @@
 import React from "react";
 import Menu from "components/menu/menu";
 import LoadingScreen from "components/loader/Loading";
+import solucao from "img/solucao.png";
 import "./Question.css";
 
 const Question001 = () => {
@@ -31,6 +32,18 @@ const Question001 = () => {
             - Se for pouca quantidade cobrar preço da vitrine.
             <span>(2 de cada por exemplo)</span>
           </p>
+        </div>
+        <div className="q-passo">
+          <h1>3. Entrar no sistema Solução Empresarial</h1>
+          <p>
+            - <img src={solucao} alt="" />
+          </p>
+          <p>- Usuário: lorena</p>
+          <p>- Senha: chocolate</p>
+        </div>
+        <div className="q-passo">
+          <h1>4. Adicionar o cliente ao sistema</h1>
+          <p></p>
         </div>
       </div>
     </>
