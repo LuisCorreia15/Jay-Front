@@ -19,6 +19,16 @@
   margin: 0;
   font-size: 18px;
 }
+.q-passo a {
+  color: var(--comment);
+
+  font-weight: 700;
+  margin-left: 10px;
+  text-decoration: none;
+}
+.q-passo a:hover {
+  color: var(--light);
+}
 .q-passo span {
   color: var(--light);
   font-weight: 400;

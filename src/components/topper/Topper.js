@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React from "react";
-import BackToTop from "img/toTop.png";
+import BackToTop from "img/Icons/toTop.png";
 import $ from "jquery";
 
 import "./Topper.css";

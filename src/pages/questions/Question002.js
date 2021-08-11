@@ -3,17 +3,17 @@ import Menu from "components/menu/menu";
 import { Topper } from "components/topper/Topper";
 import LoadingScreen from "components/loader/Loading";
 import ButtonBack from "components/button/ButtonBack";
-import pdv_open from "img/pdv_open.jpeg";
-import pdv_login from "img/pdv_login.jpeg";
-import pdv_entrada from "img/pdv_entrada.jpeg";
-import pdv_createVenda from "img/pdv_createVenda.jpeg";
-import pdv_venda from "img/pdv_venda.jpeg";
-import pdv_produtos from "img/pdv_produtos.jpeg";
-import pdv_produtoValue from "img/pdv_produtoValue.jpeg";
-import pdv_produtoEdit from "img/pdv_produtoEdit.jpeg";
-import pdv_finalizando from "img/pdv_finalizando.jpeg";
-import pdv_nota from "img/pdv_nota.jpeg";
-import pdv_dav from "img/pdv_dav.jpeg";
+import pdv_open from "img/Question002/pdv_open.jpeg";
+import pdv_login from "img/Question002/pdv_login.jpeg";
+import pdv_entrada from "img/Question002/pdv_entrada.jpeg";
+import pdv_createVenda from "img/Question002/pdv_createVenda.jpeg";
+import pdv_venda from "img/Question002/pdv_venda.jpeg";
+import pdv_produtos from "img/Question002/pdv_produtos.jpeg";
+import pdv_produtoValue from "img/Question002/pdv_produtoValue.jpeg";
+import pdv_produtoEdit from "img/Question002/pdv_produtoEdit.jpeg";
+import pdv_finalizando from "img/Question002/pdv_finalizando.jpeg";
+import pdv_nota from "img/Question002/pdv_nota.jpeg";
+import pdv_dav from "img/Question002/pdv_dav.jpeg";
 
 const Question002 = () => {
   return (
