@@ -8,13 +8,13 @@ export const HelpData = [
     titulo: "Como fazer uma venda?",
   },
   {
-     id: "003",
+    id: "003",
     titulo: "Como adicionar um cliente?",
- },
-  // {
-  //   id: "004",
-  //   titulo: "Como conferir os pedidos?",
-  // },
+  },
+  {
+    id: "004",
+    titulo: "Como fazer um contrato?",
+  },
   // { id: "005", titulo: "Como fazer adicionar produtos?" },
   // { id: "006", titulo: "Como adicionar clientes?" },
   // { id: "007", titulo: "Como cancelar pedidos?" },

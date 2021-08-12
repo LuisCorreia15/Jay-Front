@@ -12,7 +12,6 @@ import ge_orcNovo from "img/Question001/ge_orcNovo.jpeg";
 import ge_orcPrint from "img/Question001/ge_orcPrint.jpeg";
 import ge_orcProd from "img/Question001/ge_orcProd.jpeg";
 import ge_orcSave from "img/Question001/ge_orcSave.jpeg";
-import ge_orcView from "img/Question001/ge_orcView.jpeg";
 
 import "./Question.css";
 

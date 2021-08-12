@@ -16,7 +16,7 @@ export const LandingPage = () => {
           <div className="text-container">
             <h2 className="h2-lnd">Olá, meu nome é</h2>
             <h1 className="h1-lnd">Jay</h1>
-            <p>version 0.20 </p>
+            <p>version 0.22 </p>
             <button
               className="btn-help"
               onClick={() => {
