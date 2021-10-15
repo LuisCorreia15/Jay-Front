@@ -1,39 +1,126 @@
-# TODO for the Jay Assistant
 
-## Bugs
+## Jay
 
-- [x] Produto List Price (tofixed(2)) not working
-- [x] Ver em video como lidar com o key={row.\_id} não funcionando
-- [ ] Paginação no working
-- [ ] Strict Mode Input Mask Warning!
+![image](https://user-images.githubusercontent.com/50970557/137419503-779b90e4-c5c8-4634-97d2-754651e7ad53.png)
 
-## Questions
+<br/>
 
-# Q2
+## Sumário
 
-- [ ] Adicionar como fazer CPF Na Nota ou cancelar venda
+[Instalação](#instalação)
 
-## ShorTerm
+[Packages Usados](#packages-usados)
 
-- [x] Adicionar Tipos nos produtos
-- [x] Adicionar "Vendido por" nos produtos
-- [x] Arrumar o excluir produto ao editar
-- [x] Verificar como fazer a relação de PedidosxProdutos no banco
-- [x] Preco Vitrine implementado
-- [x] Adicionar filtro a busca "Doces/Bolos/Salgados/Outros"
-- [x] Mostrar o page control somente quando tiver paginas
-- [x] Preco Encomenda implementado
-- [ ] AOS on Page
-- [ ] Add Medida por FATIA e Categorias: Presentes/Caixas e Bolos/Tortas
-- [ ] Add Loading to Request
-- [ ] Fix/produto-edit-delete
-- [ ] Produto Edit não trazendo as categorias para edição!
-- [ ] Validação de produto repetido
-- [ ] Validação dos campos input
-- [ ] Finalizar front do Pedido com os itens funcionando
+[Estrutura do projeto](#estrutura-do-projeto)
 
-## LongTerm
+[Change Log](https://github.com/CRIA-Studio/CRIA-Next/blob/main/changelog.md)
 
-- [ ] Colocar Banco de dados (Mongo), API e Spa Online
-- [ ] Estudar e implementar o Redux no projeto
-- [ ] Avaliar possibiidade em migrar a API para Node.js
+[CRIA Back-End](https://github.com/CRIA-Studio/cria-back-end)
+
+<br/>
+
+## Instalação
+
+1 - Clone o repositório na sua máquina.
+
+```
+git clone https://github.com/CRIA-Studio/CRIA-Next.git
+```
+
+2 - Execute na raiz do projeto `npm i` para instalar as dependecias.
+
+3 - Use o comando `npm start` para iniciar o projeto.
+
+<br/>
+
+## Packages Usados
+
+```
+Materia UI
+Acorn
+Axios
+Bootstrap
+Dotenv
+Image To Base 64
+Jquery
+Merge Images
+Next
+Next Redux Wrapper
+React Debounce Input
+React Dom
+React File Base 64
+React Loader Spinner
+React Redux
+React Routes
+React Zoom Pan Pinch
+Redux
+Redux Persist
+Redux Saga
+Styled Components
+Throttle Debounce
+```
+<br/>
+
+## Estrutura do projeto
+
+```
+📦public
+ ┣ 📂favicon_io
+ ┣ 📂img
+ ┗ 📜favicon.ico
+📦src
+ ┣ 📂components
+ ┃ ┣ 📂Alert
+ ┃ ┣ 📂Header
+ ┃ ┣ 📂LoadingPage
+ ┃ ┣ 📂PageInfo
+ ┃ ┣ 📂_Home
+ ┃ ┃ ┣ 📂Filters
+ ┃ ┃ ┗ 📂StudiesList
+ ┃ ┣ 📂_Study
+ ┃ ┃ ┣ 📂Description
+ ┃ ┃ ┣ 📂DragableLayers
+ ┃ ┃ ┣ 📂EditableTexts
+ ┃ ┃ ┣ 📂ImageCanvas
+ ┃ ┃ ┣ 📂InputTags
+ ┃ ┃ ┣ 📂Items
+ ┃ ┃ ┣ 📂MoveableBall
+ ┃ ┃ ┣ 📂PageInfo
+ ┃ ┃ ┣ 📂StudyHeader
+ ┃ ┃ ┣ 📂StudyLoading
+ ┃ ┃ ┗ 📂TopButtons
+ ┃ ┣ 📂_Workspace
+ ┃ ┃ ┣ 📂EditableTexts
+ ┃ ┃ ┣ 📂Info
+ ┃ ┃ ┣ 📂InfoText
+ ┃ ┃ ┣ 📂InputTags
+ ┃ ┃ ┣ 📂Project
+ ┃ ┃ ┣ 📂ProjectsList
+ ┃ ┃ ┣ 📂Studies
+ ┃ ┃ ┗ 📂TopButtons
+ ┃ ┗ 📜globalStyle.js
+ ┣ 📂connection
+ ┣ 📂functions
+ ┣ 📂pages
+ ┃ ┣ 📂home
+ ┃ ┣ 📂study
+ ┃ ┣ 📂workspace
+ ┃ ┣ 📜_app.js
+ ┣ 📂store
+ ┃ ┣ 📂login
+ ┃ ┣ 📂project
+ ┃ ┣ 📂study
+ ┃ ┣ 📂users
+ ┃ ┣ 📂workspace
+ ┃ ┣ 📜index.js
+ ┃ ┣ 📜reducers.js
+ ┃ ┣ 📜sagas.js
+ ┃ ┗ 📜types.js
+ ┗ 📂styles
+ ┃ ┣ 📜bootstrap.css
+ ┃ ┣ 📜Home.js
+ ┃ ┣ 📜Login.js
+ ┃ ┣ 📜Study.js
+ ┃ ┗ 📜Workspace.js
+```
+
