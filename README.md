@@ -10,9 +10,6 @@
 
 [Estrutura do projeto](#estrutura-do-projeto)
 
-[Change Log](https://github.com/CRIA-Studio/CRIA-Next/blob/main/changelog.md)
-
-[CRIA Back-End](https://github.com/CRIA-Studio/cria-back-end)
 
 <br/>
 
@@ -21,7 +18,7 @@
 1 - Clone o repositório na sua máquina.
 
 ```
-git clone https://github.com/CRIA-Studio/CRIA-Next.git
+git clone https://github.com/jordaoqualho/Jay-Front.git
 ```
 
 2 - Execute na raiz do projeto `npm i` para instalar as dependecias.
