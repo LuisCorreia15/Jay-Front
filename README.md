@@ -35,11 +35,7 @@ Acorn
 Axios
 Bootstrap
 Dotenv
-Image To Base 64
 Jquery
-Merge Images
-Next
-Next Redux Wrapper
 React Debounce Input
 React Dom
 React File Base 64
@@ -47,9 +43,6 @@ React Loader Spinner
 React Redux
 React Routes
 React Zoom Pan Pinch
-Redux
-Redux Persist
-Redux Saga
 Styled Components
 Throttle Debounce
 ```
