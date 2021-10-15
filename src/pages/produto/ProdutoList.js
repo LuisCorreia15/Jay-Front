@@ -21,10 +21,7 @@ const ProdutoList = (props) => {
 
   const firstDoGetProduto = async () => {
     setLoading(true);
-    setTimeout(async () => {
-      doGetProduto(statusPesquisa.termoDePesquisa, types.typeProdutos);
-      setLoading(false);
-    }, 1500);
+    doGetProduto(statusPesquisa.termoDePesquisa, types.typeProdutos);
   };
 
   useEffect(() => {
@@ -33,9 +30,11 @@ const ProdutoList = (props) => {
   }, []);
 
   const doGetProduto = async (termoDePesquisa, tipoDosProdutos) => {
-    const response = await conexao.get(
-      `/produto/?nomeDoProduto=${termoDePesquisa}&tipoDoProduto=${tipoDosProdutos}`
-    );
+    const response = await conexao
+      .get(
+        `/produto/?nomeDoProduto=${termoDePesquisa}&tipoDoProduto=${tipoDosProdutos}`
+      )
+      .then(setLoading(false));
     setProduto(response.data);
   };
 

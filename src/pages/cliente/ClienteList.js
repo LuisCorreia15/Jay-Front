@@ -16,10 +16,7 @@ const ClienteList = (props) => {
 
   const firstDoGetCliente = async () => {
     setLoading(true);
-    setTimeout(async () => {
-      doGetCliente(termoDePesquisa);
-      setLoading(false);
-    }, 1500);
+    doGetCliente(termoDePesquisa);
   };
 
   useEffect(() => {
@@ -28,9 +25,9 @@ const ClienteList = (props) => {
   }, []);
 
   const doGetCliente = async (termoDePesquisa) => {
-    const response = await conexao.get(
-      `/cliente/?nomeDoCliente=${termoDePesquisa}`
-    );
+    const response = await conexao
+      .get(`/cliente/?nomeDoCliente=${termoDePesquisa}`)
+      .then(setLoading(false));
     setCliente(response.data);
   };
 
