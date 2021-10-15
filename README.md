@@ -1,6 +1,3 @@
-
-## Jay
-
 ![image](https://user-images.githubusercontent.com/50970557/137419503-779b90e4-c5c8-4634-97d2-754651e7ad53.png)
 
 <br/>
@@ -64,63 +61,56 @@ Throttle Debounce
 ## Estrutura do projeto
 
 ```
-📦public
- ┣ 📂favicon_io
- ┣ 📂img
- ┗ 📜favicon.ico
 📦src
  ┣ 📂components
- ┃ ┣ 📂Alert
- ┃ ┣ 📂Header
- ┃ ┣ 📂LoadingPage
- ┃ ┣ 📂PageInfo
- ┃ ┣ 📂_Home
- ┃ ┃ ┣ 📂Filters
- ┃ ┃ ┗ 📂StudiesList
- ┃ ┣ 📂_Study
- ┃ ┃ ┣ 📂Description
- ┃ ┃ ┣ 📂DragableLayers
- ┃ ┃ ┣ 📂EditableTexts
- ┃ ┃ ┣ 📂ImageCanvas
- ┃ ┃ ┣ 📂InputTags
- ┃ ┃ ┣ 📂Items
- ┃ ┃ ┣ 📂MoveableBall
- ┃ ┃ ┣ 📂PageInfo
- ┃ ┃ ┣ 📂StudyHeader
- ┃ ┃ ┣ 📂StudyLoading
- ┃ ┃ ┗ 📂TopButtons
- ┃ ┣ 📂_Workspace
- ┃ ┃ ┣ 📂EditableTexts
- ┃ ┃ ┣ 📂Info
- ┃ ┃ ┣ 📂InfoText
- ┃ ┃ ┣ 📂InputTags
- ┃ ┃ ┣ 📂Project
- ┃ ┃ ┣ 📂ProjectsList
- ┃ ┃ ┣ 📂Studies
- ┃ ┃ ┗ 📂TopButtons
- ┃ ┗ 📜globalStyle.js
- ┣ 📂connection
- ┣ 📂functions
+ ┃ ┣ 📂alert
+ ┃ ┣ 📂button
+ ┃ ┣ 📂item
+ ┃ ┣ 📂loader
+ ┃ ┣ 📂menu
+ ┃ ┗ 📂topper
+ ┣ 📂img
+ ┃ ┣ 📂Icons
+ ┃ ┣ 📂Question001
+ ┃ ┣ 📂Question002
+ ┃ ┣ 📂Question003
+ ┃ ┗ 📂Question004
  ┣ 📂pages
- ┃ ┣ 📂home
- ┃ ┣ 📂study
- ┃ ┣ 📂workspace
- ┃ ┣ 📜_app.js
- ┣ 📂store
- ┃ ┣ 📂login
- ┃ ┣ 📂project
- ┃ ┣ 📂study
- ┃ ┣ 📂users
- ┃ ┣ 📂workspace
- ┃ ┣ 📜index.js
- ┃ ┣ 📜reducers.js
- ┃ ┣ 📜sagas.js
- ┃ ┗ 📜types.js
- ┗ 📂styles
- ┃ ┣ 📜bootstrap.css
- ┃ ┣ 📜Home.js
- ┃ ┣ 📜Login.js
- ┃ ┣ 📜Study.js
- ┃ ┗ 📜Workspace.js
+ ┃ ┣ 📂cliente
+ ┃ ┃ ┣ 📜Cliente.css
+ ┃ ┃ ┣ 📜ClienteEdit.js
+ ┃ ┃ ┣ 📜ClienteList.js
+ ┃ ┃ ┣ 📜ClienteManter.js
+ ┃ ┃ ┗ 📜ClienteNew.js
+ ┃ ┣ 📂help
+ ┃ ┃ ┣ 📜HelpData.js
+ ┃ ┃ ┣ 📜HelpPage.css
+ ┃ ┃ ┣ 📜HelpPage.js
+ ┃ ┃ ┗ 📜HelpRoutes.js
+ ┃ ┣ 📂inspecao
+ ┃ ┃ ┣ 📜InspecaoEdit.js
+ ┃ ┃ ┣ 📜InspecaoList.js
+ ┃ ┃ ┣ 📜InspecaoManter.js
+ ┃ ┃ ┗ 📜InspecaoNew.js
+ ┃ ┣ 📂landing
+ ┃ ┃ ┣ 📜LadingPage.js
+ ┃ ┃ ┗ 📜Landing.css
+ ┃ ┣ 📂pedido
+ ┃ ┃ ┣ 📜Pedido.css
+ ┃ ┃ ┣ 📜PedidoEdit.js
+ ┃ ┃ ┣ 📜PedidoList.js
+ ┃ ┃ ┣ 📜PedidoManter.js
+ ┃ ┃ ┗ 📜PedidoNew.js
+ ┃ ┣ 📂produto
+ ┃ ┃ ┣ 📜Produto.css
+ ┃ ┃ ┣ 📜ProdutoEdit.js
+ ┃ ┃ ┣ 📜ProdutoList.js
+ ┃ ┃ ┣ 📜ProdutoManter.js
+ ┃ ┃ ┗ 📜ProdutoNew.js
+ ┃ ┗ 📂questions
+ ┣ 📜App.css
+ ┣ 📜App.js
+ ┣ 📜index.css
+ ┣ 📜index.js
 ```
 
