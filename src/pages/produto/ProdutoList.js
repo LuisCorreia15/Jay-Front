@@ -17,25 +17,21 @@ const ProdutoList = (props) => {
     typeProdutos: "",
     typeValores: "Vitrine",
   });
-  const [produto, setProduto] = useState([{}]);
-
-  const firstDoGetProduto = async () => {
-    setLoading(true);
-    doGetProduto(statusPesquisa.termoDePesquisa, types.typeProdutos);
-  };
+  const [produto, setProduto] = useState([]);
 
   useEffect(() => {
-    firstDoGetProduto();
+    document.addEventListener("keydown", keydownHandler);
+    doGetProduto(statusPesquisa.termoDePesquisa, types.typeProdutos);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [statusPesquisa.termoDePesquisa, types.typeProdutos, types.typeValores]);
 
   const doGetProduto = async (termoDePesquisa, tipoDosProdutos) => {
-    const response = await conexao
-      .get(
-        `/produto/?nomeDoProduto=${termoDePesquisa}&tipoDoProduto=${tipoDosProdutos}`
-      )
-      .then(setLoading(false));
+    setLoading(true);
+    const response = await conexao.get(
+      `/produto/?nomeDoProduto=${termoDePesquisa}&tipoDoProduto=${tipoDosProdutos}`
+    );
     setProduto(response.data);
+    setLoading(false);
   };
 
   const handleSearchInputChange = async (event) => {
@@ -46,12 +42,6 @@ const ProdutoList = (props) => {
     setStatusPesquisa(novoStatusPesquisa);
   };
 
-  useEffect(() => {
-    document.addEventListener("keydown", keydownHandler);
-    doGetProduto(statusPesquisa.termoDePesquisa, types.typeProdutos);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [statusPesquisa.termoDePesquisa, types.typeProdutos, types.typeValores]);
-
   const handleSearchSelectChange = (event) => {
     const typeChaged = {
       ...types,
@@ -59,46 +49,6 @@ const ProdutoList = (props) => {
     };
     setTypes(typeChaged);
   };
-
-  const tableData =
-    produto.length === 0 ? (
-      <p>Nada encontrado!</p>
-    ) : (
-      produto.map((row, i) => {
-        return (
-          <div
-            className="tb"
-            key={i}
-            onClick={() => history.push(`/produto/editar/${row._id}`)}
-          >
-            <div className="tb-title">
-              <p>{row.tipoDoProduto}</p>
-              <h2>{row.nomeDoProduto}</h2>
-            </div>
-            <div className="tb-price">
-              {types.typeValores === "Vitrine" ? (
-                <h2>R$ {row.precoVitrine ? row.precoVitrine.toFixed(2) : 0}</h2>
-              ) : (
-                <h2>
-                  R$ {row.precoEncomenda ? row.precoEncomenda.toFixed(2) : 0}
-                </h2>
-              )}
-              <p>{row.vendidoPor}</p>
-            </div>
-          </div>
-        );
-      })
-    );
-
-  // const requestPage = (requestedPage) => {
-  //   if (requestedPage <= 0) {
-  //     requestedPage = 0;
-  //   }
-  //   if (requestedPage >= produto.totalPages) {
-  //     requestedPage = produto.totalPages - 1;
-  //   }
-  //   doGetProduto(requestedPage, statusPesquisa.termoDePesquisa);
-  // };
 
   function keydownHandler(e) {
     if (e.keyCode === 115) {
@@ -112,7 +62,7 @@ const ProdutoList = (props) => {
 
   return (
     <>
-      <LoadingScreen></LoadingScreen>
+      <LoadingScreen />
       <Menu ativo="produto"></Menu>
       <div className="container">
         <form className="pd campo-busca">
@@ -163,41 +113,47 @@ const ProdutoList = (props) => {
         <div className="tb-cnt">
           {loading ? (
             loadingProdutos.fill(10).map((row, i) => {
-              return (
-                <SkeletonLoader
-                  key={i}
-                  onLoad={() => console.log(i)}
-                ></SkeletonLoader>
-              );
+              return <SkeletonLoader key={i} onLoad={() => console.log(i)} />;
             })
           ) : (
-            <div>{tableData}</div>
+            <div>
+              {produto.length === 0 ? (
+                <p>Nada encontrado!</p>
+              ) : (
+                produto.map((row, i) => {
+                  return (
+                    <div
+                      className="tb"
+                      key={i}
+                      onClick={() => history.push(`/produto/editar/${row._id}`)}
+                    >
+                      <div className="tb-title">
+                        <p>{row.tipoDoProduto}</p>
+                        <h2>{row.nomeDoProduto}</h2>
+                      </div>
+                      <div className="tb-price">
+                        {types.typeValores === "Vitrine" ? (
+                          <h2>
+                            R$
+                            {row.precoVitrine ? row.precoVitrine.toFixed(2) : 0}
+                          </h2>
+                        ) : (
+                          <h2>
+                            R${" "}
+                            {row.precoEncomenda
+                              ? row.precoEncomenda.toFixed(2)
+                              : 0}
+                          </h2>
+                        )}
+                        <p>{row.vendidoPor}</p>
+                      </div>
+                    </div>
+                  );
+                })
+              )}
+            </div>
           )}
         </div>
-
-        {/* {produto.totalPages > 1 ? (
-          <div className="page-control">
-            <button
-              className="btn-page"
-              onClick={() => requestPage(produto.pageable.pageNumber - 1)}
-            >
-              {"<"}
-            </button>
-            <span>
-              Página{" "}
-              {produto.totalPages > 0 ? produto.pageable.pageNumber + 1 : 0} de{" "}
-              {produto.totalPages}
-            </span>
-            <button
-              className="btn-page"
-              onClick={() => requestPage(produto.pageable.pageNumber + 1)}
-            >
-              {">"}
-            </button>
-          </div>
-        ) : (
-          <div></div>
-        )} */}
       </div>
     </>
   );

@@ -11,25 +11,12 @@ const ClienteList = (props) => {
   const loadingProdutos = new Array(10);
   const history = useHistory();
   const [loading, setLoading] = useState(false);
-
-  const [cliente, setCliente] = useState([{}]);
-
-  const firstDoGetCliente = async () => {
-    setLoading(true);
-    doGetCliente(termoDePesquisa);
-  };
+  const [cliente, setCliente] = useState([]);
 
   useEffect(() => {
-    firstDoGetCliente();
+    doGetCliente(termoDePesquisa);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const doGetCliente = async (termoDePesquisa) => {
-    const response = await conexao
-      .get(`/cliente/?nomeDoCliente=${termoDePesquisa}`)
-      .then(setLoading(false));
-    setCliente(response.data);
-  };
+  }, [termoDePesquisa]);
 
   useEffect(() => {
     document.addEventListener("keydown", keydownHandler);
@@ -37,48 +24,19 @@ const ClienteList = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const doGetCliente = async (termoDePesquisa) => {
+    setLoading(true);
+    const response = await conexao.get(
+      `/cliente/?nomeDoCliente=${termoDePesquisa}`
+    );
+    setCliente(response.data);
+    setLoading(false);
+  };
+
   const handleSearchInputChange = async (event) => {
     setTermoDePesquisa(event.target.value);
     console.log(termoDePesquisa);
   };
-
-  useEffect(() => {
-    doGetCliente(termoDePesquisa);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [termoDePesquisa]);
-
-  const tableData =
-    cliente.length === 0 ? (
-      <p>Nada encontrado!</p>
-    ) : (
-      cliente.map((row, i) => {
-        return (
-          <div
-            className="tb"
-            key={i}
-            onClick={() => history.push(`/cliente/editar/${row._id}`)}
-          >
-            <div className="tb-title">
-              <p>{row.celular}</p>
-              <h2>{row.nomeDoCliente}</h2>
-            </div>
-            <div className="tb-price">
-              <h2>{row.logradouro}</h2>
-            </div>
-          </div>
-        );
-      })
-    );
-
-  // const requestPage = (requestedPage) => {
-  //   if (requestedPage <= 0) {
-  //     requestedPage = 0;
-  //   }
-  //   if (requestedPage >= cliente.totalPages) {
-  //     requestedPage = cliente.totalPages - 1;
-  //   }
-  //   doGetCliente(requestedPage, statusPesquisa.termoDePesquisa);
-  // };
 
   function keydownHandler(e) {
     if (e.keyCode === 115) {
@@ -88,8 +46,8 @@ const ClienteList = (props) => {
 
   return (
     <>
-      <LoadingScreen></LoadingScreen>
-      <Menu ativo="cliente"></Menu>
+      <LoadingScreen />
+      <Menu ativo="cliente" />
       <div className="container">
         <form className="pd campo-busca">
           <input
@@ -111,40 +69,34 @@ const ClienteList = (props) => {
         <div className="tb-cnt">
           {loading ? (
             loadingProdutos.fill(10).map((row, i) => {
-              return (
-                <SkeletonLoader
-                  key={i}
-                  onLoad={() => console.log(i)}
-                ></SkeletonLoader>
-              );
+              return <SkeletonLoader key={i} onLoad={() => console.log(i)} />;
             })
           ) : (
-            <div>{tableData}</div>
+            <div>
+              {cliente.length === 0 ? (
+                <p>Nada encontrado!</p>
+              ) : (
+                cliente.map((row, i) => {
+                  return (
+                    <div
+                      className="tb"
+                      key={i}
+                      onClick={() => history.push(`/cliente/editar/${row._id}`)}
+                    >
+                      <div className="tb-title">
+                        <p>{row.celular}</p>
+                        <h2>{row.nomeDoCliente}</h2>
+                      </div>
+                      <div className="tb-price">
+                        <h2>{row.logradouro}</h2>
+                      </div>
+                    </div>
+                  );
+                })
+              )}
+            </div>
           )}
         </div>
-        {/* {cliente.totalPages > 1 ? (
-          <div className="page-control">
-            <button
-              className="btn-page"
-              onClick={() => requestPage(cliente.pageable.pageNumber - 1)}
-            >
-              {"<"}
-            </button>
-            <span>
-              Página{" "}
-              {cliente.totalPages > 0 ? cliente.pageable.pageNumber + 1 : 0} de{" "}
-              {cliente.totalPages}
-            </span>
-            <button
-              className="btn-page"
-              onClick={() => requestPage(cliente.pageable.pageNumber + 1)}
-            >
-              {">"}
-            </button>
-          </div>
-        ) : (
-          <div></div>
-        )} */}
       </div>
     </>
   );
