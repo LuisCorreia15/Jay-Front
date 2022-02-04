@@ -1,11 +1,10 @@
 import api from "./index";
 import tempAlert from "components/alert/Alert";
 
-export const doGetProduto = async (
+export const buscarTodosProdutos = async (
   termoDePesquisa,
   tipoDosProdutos,
   setProduto,
-  setLoading,
   localDoArquivo
 ) => {
   return await api
@@ -14,19 +13,18 @@ export const doGetProduto = async (
     )
     .then((res) => {
       setProduto(res.data.produtos);
-      setLoading(false);
     })
     .catch((error) =>
       console.log(
         "Error: " +
           error.message +
           "\n" +
-          `Local: ${localDoArquivo} => doGetProduto()`
+          `Local: ${localDoArquivo} => buscarTodosProdutos()`
       )
     );
 };
 
-export const doGetProdutoById = async (
+export const buscarProdutoPeloId = async (
   idDoProduto,
   setProduto,
   localDoArquivo
@@ -41,7 +39,7 @@ export const doGetProdutoById = async (
         "Error: " +
           error.message +
           "\n" +
-          `Local: ${localDoArquivo} => doGetProdutoById()`
+          `Local: ${localDoArquivo} => buscarProdutoPeloId()`
       )
     );
 };

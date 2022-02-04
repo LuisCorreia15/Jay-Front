@@ -1,61 +1,58 @@
-import axios from "axios";
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import tempAlert from "components/alert/Alert";
-import Menu from "components/menu/menu";
-import { Typeahead } from "react-bootstrap-typeahead";
-import InputMask from "react-input-mask";
-import "react-bootstrap-typeahead/css/Typeahead.css";
-import "./Pedido.css";
 import ButtonForm from "components/button/ButtonForm";
 import AddItem from "components/item/AddItem";
 import LoadingScreen from "components/loader/Loading";
+import Menu from "components/menu/menu";
+import { buscarTodosClientes } from "connection/clienteReq";
+import { criarNovoPedido } from "connection/pedidoReq";
+import React, { useEffect, useState } from "react";
+import { Typeahead } from "react-bootstrap-typeahead";
+import "react-bootstrap-typeahead/css/Typeahead.css";
+import InputMask from "react-input-mask";
+import { useHistory } from "react-router-dom";
+import { procurarPosicaoPeloId, getDataAtualFormatada } from "lib/functions";
+import "./Pedido.css";
 
 const PedidoNew = () => {
-  const conexao = axios.create({
-    baseURL: process.env.REACT_APP_PORT,
-  });
   const history = useHistory();
+  const localDoArquivo = "/pages/pedido/PedidoNew.js";
   const [clientes, setClientes] = useState([{}]);
   const [pedido, setPedido] = useState({
     nomeDoCliente: "",
     valorTotal: 0,
     clienteId: 0,
     situaçãoPedido: "Aberto",
+    enderecoDeEntrega: "",
     dataEntrega: "",
   });
   const [productList, setProductList] = useState([{}]);
   const [addModal, setAddModal] = useState(false);
 
-  const doGetClientes = async () => {
-    const response = await conexao.get(`/cliente/`);
-    setClientes(response.data);
-  };
-
   useEffect(() => {
-    doGetClientes();
+    buscarTodosClientes("", setClientes, localDoArquivo);
     setProductList([{}]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const doPost = async () => {
-    await conexao.post("/pedido", pedido);
-    tempAlert(`Pedido adicionado com sucesso!`, 5000);
-    history.push("/pedido");
-  };
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    doPost();
+    await criarNovoPedido(pedido, localDoArquivo);
+    history.push("/pedido");
   };
 
   const handleChange = (event) => {
     const novoPedido = { ...pedido, [event.target.name]: event.target.value };
+    console.log(event.target.value);
     setPedido(novoPedido);
   };
 
   const handleChangeTh = (event) => {
-    const novoPedido = { ...pedido, clienteId: event[0].id };
+    const novoPedido = {
+      ...pedido,
+      clienteId: event[0] ? event[0].id : "",
+      enderecoDeEntrega: event[0]
+        ? clientes[procurarPosicaoPeloId(clientes, event[0].id)].logradouro
+        : "",
+    };
     setPedido(novoPedido);
   };
 
@@ -85,14 +82,14 @@ const PedidoNew = () => {
 
   return (
     <>
-      <LoadingScreen></LoadingScreen>
-      <Menu ativo="pedido"></Menu>
-      <AddItem
+      <LoadingScreen />
+      <Menu ativo="pedido" />
+      {/* <AddItem
         estadoDoModal={addModal}
         setEstadoDoModal={setAddModal}
         pedido={pedido}
         setPedido={setPedido}
-      ></AddItem>
+      /> */}
       <div className="container">
         <h3 className="pg-title">Cadastro de Pedido</h3>
         <form onSubmit={handleSubmit} className="pg-form">
@@ -113,6 +110,18 @@ const PedidoNew = () => {
             />
           </div>
           <div>
+            Endereço de Entrega
+            <input
+              type="text"
+              name="enderecoDeEntrega"
+              className="pg-input"
+              placeholder="Digite o endereço de entrega"
+              required
+              onChange={handleChange}
+              value={pedido.enderecoDeEntrega}
+            />
+          </div>
+          <div>
             Data e Hora de Entrega
             <InputMask
               mask="99/99/9999  99:99"
@@ -123,7 +132,12 @@ const PedidoNew = () => {
               type="text"
               name="dataEntrega"
               className="pg-input"
-            ></InputMask>
+              value={
+                pedido.dataEntrega
+                  ? pedido.dataEntrega
+                  : getDataAtualFormatada()
+              }
+            />
           </div>
           <div className="lp-container">
             Lista de Produtos
@@ -135,7 +149,7 @@ const PedidoNew = () => {
               <button>Excluir item</button>
             </div>
           </div>
-          <ButtonForm exitPath="/pedido"></ButtonForm>
+          <ButtonForm exitPath="/pedido" />
         </form>
       </div>
     </>

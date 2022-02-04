@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import "./AddItem.css";
+import {
+  buscarProdutoPeloId,
+  buscarTodosProdutos,
+} from "connection/produtoReq";
 
 const AddItem = (props) => {
-  const conexao = axios.create({ baseURL: process.env.REACT_APP_PORT });
   const { pedido, setPedido, estadoDoModal, setEstadoDoModal } = props;
+  const localDoArquivo = "components/item/AddItem.js";
+
   const [types, setTypes] = useState({
     typeProdutos: "",
     typeValores: "Vitrine",
   });
-  const [produto, setProduto] = useState([{}]);
-  const [selectedProduto, setSelectedProduto] = useState({
+  const [produtos, setProdutos] = useState([{}]);
+  const [produtoSelecionado, setProdutoSelecionado] = useState({
     nomeDoProduto: "",
     precoEncomenda: 0.0,
     precoVitrine: 0.0,
@@ -25,20 +29,13 @@ const AddItem = (props) => {
     quantidade: 0,
   });
 
-  const doGetProduto = async (termoDePesquisa, tipoDosProdutos) => {
-    const response = await conexao.get(
-      `/produto/?nomeDoProduto=${termoDePesquisa}&tipoDoProduto=${tipoDosProdutos}`
-    );
-    setProduto(response.data);
-  };
-
-  const doGetById = async (id) => {
-    const response = await axios.get(`/produto/${id}`);
-    setSelectedProduto(response.data);
-  };
-
   useEffect(() => {
-    doGetProduto(termoDePesquisa, types.typeProdutos);
+    buscarTodosProdutos(
+      termoDePesquisa,
+      types.typeProdutos,
+      setProdutos,
+      localDoArquivo
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [termoDePesquisa, types.typeProdutos, types.typeValores]);
 
@@ -54,10 +51,10 @@ const AddItem = (props) => {
   }, [estadoDoModal]);
 
   const produtoData =
-    produto.length === 0 ? (
+    produtos.length === 0 ? (
       <p className="add-nothing">Nada encontrado!</p>
     ) : (
-      produto.map((row, i) => {
+      produtos.map((row, i) => {
         return (
           <div
             className="add-tb flex"
@@ -91,7 +88,7 @@ const AddItem = (props) => {
     );
 
   const showSelectModal = async (id) => {
-    await doGetById(id);
+    await buscarProdutoPeloId(id, setProdutoSelecionado, localDoArquivo);
     if (!selectModal) {
       document.getElementById("add-select-container").style.right = "0 ";
       setTimeout(function () {
@@ -184,7 +181,7 @@ const AddItem = (props) => {
         <div className="add-select-container" id="add-select-container">
           <div className="add-select" id="add-select">
             <form className="add-sl-form">
-              <h1>{selectedProduto.nomeDoProduto}</h1>
+              <h1>{produtoSelecionado.nomeDoProduto}</h1>
               <div className="flex-column">
                 Quantidade
                 <input
@@ -204,7 +201,7 @@ const AddItem = (props) => {
                   name="valorUnitario"
                   required
                   onChange={handleChange}
-                  defaultValue={selectedProduto.precoEncomenda}
+                  defaultValue={produtoSelecionado.precoEncomenda}
                 ></input>
               </div>
               <div className="flex-column">

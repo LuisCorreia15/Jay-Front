@@ -5,7 +5,6 @@ import { criarNovoCliente } from "connection/clienteReq";
 import React, { useState } from "react";
 import InputMask from "react-input-mask";
 import { useHistory } from "react-router-dom";
-import "./Cliente.css";
 
 const ClienteNew = () => {
   const history = useHistory();
@@ -64,7 +63,7 @@ const ClienteNew = () => {
               className="pg-input"
               required
               onChange={handleChange}
-            ></input>
+            />
           </div>
           <ButtonForm exitPath="/cliente" />
         </form>

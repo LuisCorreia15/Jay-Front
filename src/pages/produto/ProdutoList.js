@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import Menu from "components/menu/menu";
 import LoadingScreen from "components/loader/Loading";
 import SkeletonLoader from "components/loader/SkeletonLoader";
-import { doGetProduto } from "connection/produtoReq";
+import { buscarTodosProdutos } from "connection/produtoReq";
 import { DebounceInput } from "react-debounce-input";
 
 const ProdutoList = (props) => {
@@ -20,13 +20,13 @@ const ProdutoList = (props) => {
 
   useEffect(() => {
     document.addEventListener("keydown", keydownHandler);
-    doGetProduto(
+    buscarTodosProdutos(
       statusPesquisa.termoDePesquisa,
       types.typeProdutos,
       setProduto,
-      setLoading,
       localDoArquivo
     );
+    setLoading(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [statusPesquisa.termoDePesquisa, types.typeProdutos, types.typeValores]);
 

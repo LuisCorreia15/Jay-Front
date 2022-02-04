@@ -7,7 +7,7 @@ import DeleteConfirm from "components/alert/DeleteConfirm";
 import LoadingScreen from "components/loader/Loading";
 import ButtonForm from "components/button/ButtonForm";
 import {
-  doGetProdutoById,
+  buscarProdutoPeloId,
   doPutProduto,
   doExcluirProduto,
 } from "connection/produtoReq";
@@ -27,7 +27,7 @@ const ProdutoEdit = () => {
   const [mostrarConfirmacao, setMostrarConfirmacao] = useState(false);
 
   useEffect(() => {
-    doGetProdutoById(idDoProduto, setProduto, localDoArquivo);
+    buscarProdutoPeloId(idDoProduto, setProduto, localDoArquivo);
   }, []);
 
   const handleExcluirProdutos = async (idDoProduto, nomeDoProduto) => {
