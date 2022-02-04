@@ -14,10 +14,10 @@ const ClienteManter = () => {
           <ClienteList
             termoDePesquisa={termoDePesquisa}
             setTermoDePesquisa={setTermoDePesquisa}
-          ></ClienteList>
+          />
         </Route>
-        <Route path="/cliente/novo" component={ClienteNew}></Route>
-        <Route path="/cliente/editar/:idParaEditar" component={ClienteEdit} />
+        <Route path="/cliente/novo" component={ClienteNew} />
+        <Route path="/cliente/editar/:idDoCliente" component={ClienteEdit} />
       </Switch>
     </>
   );

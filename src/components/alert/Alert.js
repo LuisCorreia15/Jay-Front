@@ -1,4 +1,6 @@
-export function tempAlert(msg, duration) {
+export function tempAlert(msg, time) {
+  const duration = time ? time : 3000;
+
   var el = document.createElement("div");
   el.setAttribute(
     "style",

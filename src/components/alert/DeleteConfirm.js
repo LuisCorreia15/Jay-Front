@@ -2,25 +2,20 @@ import React from "react";
 import "./DeleteConfirm.css";
 
 const DeleteConfirm = (props) => {
-  const {
-    setMostrarConfirmacao,
-    handleExcluirProdutos,
-    idDoProduto,
-    nomeDoProduto,
-  } = props;
+  const { setMostrarConfirmacao, handleExcluir, id, nome } = props;
 
   return (
     <>
-      <div className="confirm" idDoProduto="box">
+      <div className="confirm" id="box">
         <div className="al-container">
           <div className="al-title">
-            Deseja realmente excluir <span>{nomeDoProduto}</span>?
+            Deseja realmente excluir <span>{nome}</span>?
           </div>
           <div className="al-buttons">
             <button
               className="cnf"
               onClick={() => {
-                handleExcluirProdutos(idDoProduto, nomeDoProduto);
+                handleExcluir(id, nome);
               }}
             >
               Confirmar

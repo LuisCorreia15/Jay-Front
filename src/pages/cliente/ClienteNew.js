@@ -1,19 +1,13 @@
-import axios from "axios";
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import tempAlert from "components/alert/Alert";
-import Menu from "components/menu/menu";
-import "./Cliente.css";
-import LoadingScreen from "components/loader/Loading";
-import InputMask from "react-input-mask";
 import ButtonForm from "components/button/ButtonForm";
-
-/* rafc  - comando para criar um component arrow*/
+import LoadingScreen from "components/loader/Loading";
+import Menu from "components/menu/menu";
+import { criarNovoCliente } from "connection/clienteReq";
+import React, { useState } from "react";
+import InputMask from "react-input-mask";
+import { useHistory } from "react-router-dom";
+import "./Cliente.css";
 
 const ClienteNew = () => {
-  const conexao = axios.create({
-    baseURL: process.env.REACT_APP_PORT,
-  });
   const history = useHistory();
   const [cliente, setCliente] = useState({
     nomeDoCliente: "",
@@ -21,16 +15,10 @@ const ClienteNew = () => {
     logradouro: "",
   });
 
-  // nfn - comando para criar função anonima
-  const doPost = async () => {
-    await conexao.post("/cliente", cliente);
-    tempAlert(`Cliente adicionado com sucesso!`, 5000);
-    history.push("/cliente");
-  };
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    doPost();
+    await criarNovoCliente(cliente);
+    history.push("/cliente");
   };
 
   const handleChange = (event) => {
@@ -40,8 +28,8 @@ const ClienteNew = () => {
 
   return (
     <>
-      <LoadingScreen></LoadingScreen>
-      <Menu ativo="cliente"></Menu>
+      <LoadingScreen />
+      <Menu ativo="cliente" />
       <div className="container">
         <h3 className="pg-title">Cadastro de Cliente</h3>
         <form onSubmit={handleSubmit} className="pg-form">
@@ -78,8 +66,7 @@ const ClienteNew = () => {
               onChange={handleChange}
             ></input>
           </div>
-
-          <ButtonForm exitPath="/cliente"></ButtonForm>
+          <ButtonForm exitPath="/cliente" />
         </form>
       </div>
     </>

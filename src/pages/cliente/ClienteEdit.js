@@ -1,69 +1,43 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 // @ts-nocheck
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { useHistory, useParams } from "react-router-dom";
-import tempAlert from "../../components/alert/Alert";
-import Menu from "components/menu/menu";
 import DeleteConfirm from "components/alert/DeleteConfirm";
-import LoadingScreen from "components/loader/Loading";
-import InputMask from "react-input-mask";
 import ButtonForm from "components/button/ButtonForm";
+import LoadingScreen from "components/loader/Loading";
+import Menu from "components/menu/menu";
+import {
+  deletarClientePeloId,
+  buscarClientePeloId,
+  editarClientePeloId,
+} from "connection/clienteReq";
+import React, { useEffect, useState } from "react";
+import InputMask from "react-input-mask";
+import { useHistory, useParams } from "react-router-dom";
 
 const ClienteEdit = () => {
-  const conexao = axios.create({
-    baseURL: process.env.REACT_APP_PORT,
-  });
   const history = useHistory();
-  const { idParaEditar } = useParams();
+  const localDoArquivo = "pages/cliente/ClienteEdit.js";
+  const { idDoCliente } = useParams();
   const [cliente, setCliente] = useState({
     nomeDoCliente: "",
     celular: "",
     logradouro: "",
   });
-  const [confirmState, setConfirmState] = useState(false);
-
-  const doGetById = async () => {
-    const response = await conexao.get(`/cliente/${idParaEditar}`);
-    setCliente(response.data);
-  };
+  const [mostrarConfirmacao, setMostrarConfirmacao] = useState(false);
 
   useEffect(() => {
-    doGetById();
+    buscarClientePeloId(idDoCliente, setCliente, localDoArquivo);
   }, []);
 
-  const doExcluirCliente = async (id, name) => {
-    await conexao.delete(`/cliente/${id}`);
-    tempAlert(name + " excluído!", 5000);
-    setConfirmState(false);
+  const doExcluirCliente = async (id, nome) => {
+    await deletarClientePeloId(id, nome, localDoArquivo);
+    setMostrarConfirmacao(false);
     history.push("/cliente");
   };
 
-  const handleExcluir = () => {
-    setConfirmState(true);
-  };
-
-  const renderConfirmDelete = () => {
-    return (
-      <DeleteConfirm
-        estado={confirmState}
-        doExcluir={doExcluirCliente}
-        id={idParaEditar}
-        nome={cliente.nomeDoCliente}
-        setConfirmState={setConfirmState}
-      ></DeleteConfirm>
-    );
-  };
-
-  const doPut = async () => {
-    await conexao.put(`/cliente/${idParaEditar}`, cliente);
-    tempAlert(`${cliente.nomeDoCliente} alterado com sucesso!`, 5000);
-    history.push("/cliente");
-  };
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    doPut();
+    await editarClientePeloId(idDoCliente, cliente, localDoArquivo);
+    history.push("/cliente");
   };
 
   const handleChange = (event) => {
@@ -73,12 +47,22 @@ const ClienteEdit = () => {
 
   return (
     <>
-      <LoadingScreen></LoadingScreen>
-      <Menu ativo="cliente"></Menu>
-      {renderConfirmDelete()}
+      <LoadingScreen />
+      <Menu ativo="cliente" />
+      {mostrarConfirmacao && (
+        <DeleteConfirm
+          setMostrarConfirmacao={setMostrarConfirmacao}
+          handleExcluir={doExcluirCliente}
+          id={idDoCliente}
+          nome={cliente.nomeDoCliente}
+        />
+      )}
       <div className="container">
         <h2 className="pg-title">Edição de Cliente</h2>
-        <button className="pg-excluir" onClick={() => handleExcluir()}>
+        <button
+          className="pg-excluir"
+          onClick={() => setMostrarConfirmacao(true)}
+        >
           excluir cliente
         </button>
         <form onSubmit={handleSubmit} className="pg-form">
@@ -92,7 +76,7 @@ const ClienteEdit = () => {
               required
               onChange={handleChange}
               value={cliente.nomeDoCliente}
-            ></input>
+            />
           </div>
           <div className="flex-column">
             Celular
@@ -105,7 +89,7 @@ const ClienteEdit = () => {
               name="celular"
               className="pg-input"
               value={cliente.celular}
-            ></InputMask>
+            />
           </div>
           <div className="flex-column">
             Logradouro
@@ -118,7 +102,7 @@ const ClienteEdit = () => {
               value={cliente.logradouro}
             ></input>
           </div>
-          <ButtonForm exitPath="/cliente"></ButtonForm>
+          <ButtonForm exitPath="/cliente" />
         </form>
       </div>
     </>

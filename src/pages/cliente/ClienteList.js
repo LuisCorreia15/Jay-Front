@@ -1,7 +1,7 @@
 import LoadingScreen from "components/loader/Loading";
 import SkeletonLoader from "components/loader/SkeletonLoader";
 import Menu from "components/menu/menu";
-import { doGetClientes } from "connection/clienteReq";
+import { buscarTodosClientes } from "connection/clienteReq";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { DebounceInput } from "react-debounce-input";
@@ -16,9 +16,11 @@ const ClienteList = (props) => {
 
   useEffect(() => {
     setLoading(true);
-    doGetClientes(termoDePesquisa, setClientes, localDoArquivo).then(() => {
-      setLoading(false);
-    });
+    buscarTodosClientes(termoDePesquisa, setClientes, localDoArquivo).then(
+      () => {
+        setLoading(false);
+      }
+    );
   }, [termoDePesquisa]);
 
   useEffect(() => {
