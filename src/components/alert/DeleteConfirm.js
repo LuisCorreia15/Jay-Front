@@ -1,40 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./DeleteConfirm.css";
 
 const DeleteConfirm = (props) => {
-  const { estado, doExcluir, setConfirmState, id, nome } = props;
-  const [open, setOpen] = useState(true);
-
-  useEffect(() => {
-    if (estado) {
-      mostrarConfirmação();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [estado]);
-
-  function mostrarConfirmação() {
-    if (open) {
-      document.getElementById("box").style.display = "block ";
-      setOpen(false);
-    } else {
-      document.getElementById("box").style.display = "none";
-      setOpen(true);
-    }
-  }
+  const {
+    setMostrarConfirmacao,
+    handleExcluirProdutos,
+    idDoProduto,
+    nomeDoProduto,
+  } = props;
 
   return (
     <>
-      <div className="confirm" id="box">
+      <div className="confirm" idDoProduto="box">
         <div className="al-container">
           <div className="al-title">
-            Deseja realmente excluir <span>{nome}</span>?
+            Deseja realmente excluir <span>{nomeDoProduto}</span>?
           </div>
-          <div className="al-buttons" >
+          <div className="al-buttons">
             <button
               className="cnf"
               onClick={() => {
-                mostrarConfirmação();
-                doExcluir(id, nome);
+                handleExcluirProdutos(idDoProduto, nomeDoProduto);
               }}
             >
               Confirmar
@@ -42,8 +28,7 @@ const DeleteConfirm = (props) => {
             <button
               className="can"
               onClick={() => {
-                mostrarConfirmação();
-                setConfirmState(false);
+                setMostrarConfirmacao(false);
               }}
             >
               Cancelar

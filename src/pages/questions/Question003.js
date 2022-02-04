@@ -12,7 +12,7 @@ const Question003 = () => {
   return (
     <>
       <LoadingScreen></LoadingScreen>
-      <Menu ativo=""></Menu>
+      <Menu ativo="help"></Menu>
       <div className="container">
         <ButtonBack></ButtonBack>
         <div className="q-title">

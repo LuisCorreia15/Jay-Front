@@ -16,17 +16,17 @@ const HelpRoutes = () => {
     <>
       <Switch>
         <Route exact path="/help">
-          <HelpPage></HelpPage>
+          <HelpPage />
         </Route>
-        <Route path="/help/question/001" component={Question001}></Route>
-        <Route path="/help/question/002" component={Question002}></Route>
-        <Route path="/help/question/003" component={Question003}></Route>
-        <Route path="/help/question/004" component={Question004}></Route>
-        <Route path="/help/question/005" component={Question005}></Route>
-        <Route path="/help/question/006" component={Question006}></Route>
-        <Route path="/help/question/007" component={Question007}></Route>
-        <Route path="/help/question/008" component={Question008}></Route>
-        <Route path="/help/question/009" component={Question009}></Route>
+        <Route path="/help/question/001" component={Question001} />
+        <Route path="/help/question/002" component={Question002} />
+        <Route path="/help/question/003" component={Question003} />
+        <Route path="/help/question/004" component={Question004} />
+        <Route path="/help/question/005" component={Question005} />
+        <Route path="/help/question/006" component={Question006} />
+        <Route path="/help/question/007" component={Question007} />
+        <Route path="/help/question/008" component={Question008} />
+        <Route path="/help/question/009" component={Question009} />
       </Switch>
     </>
   );

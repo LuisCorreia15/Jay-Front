@@ -1,13 +1,25 @@
-function tempAlert(msg, duration) {
+export function tempAlert(msg, duration) {
   var el = document.createElement("div");
   el.setAttribute(
     "style",
-    "position:fixed;top:0%;left:50%;padding: 15px 20px;  font-weight: 300;border-radius: 5px;margin-top: 100px;transform: translate(-50%); background-color: #ffff;font-size: 20px;  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);color:#555;z-index:1000;"
+    "position:fixed; opacity: 0 ;transition: 0.5s ease; transform: translate(-50%); top:-10%;left:50%;  padding: 15px 30px; font-weight: 500; backdrop-filter: blur(28px);   box-shadow: var(--basicShadow);  border-radius: 10px;  margin: 20px; border: none;   background-color: var(--comment);  font-size: 18px;  color:var(--bg);  z-index:10005;"
   );
   el.innerHTML = msg;
+
+  setTimeout(function () {
+    el.style.top = "6%";
+    el.style.opacity = "1";
+  }, 100);
+
+  setTimeout(function () {
+    el.style.opacity = "0";
+    el.style.top = "-15%";
+  }, duration);
+
   setTimeout(function () {
     el.parentNode.removeChild(el);
-  }, duration);
+  }, duration * 1.5);
+
   document.body.appendChild(el);
 }
 

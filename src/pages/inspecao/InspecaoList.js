@@ -20,10 +20,7 @@ const InspecaoList = (props) => {
   const [tempId, setTempId] = useState("");
 
   const doGetInspecao = async (páginaRequerida, termoDePesquisa) => {
-    const response = await axios.get(
-      `/api/inspecao?termo=${termoDePesquisa}&page=${páginaRequerida}`
-    );
-    setInspecao(response.data);
+    setInspecao("");
   };
 
   useEffect(() => {
@@ -175,8 +172,8 @@ const InspecaoList = (props) => {
             </button>
             <span>
               Página{" "}
-              {inspecao.totalPages > 0 ? inspecao.pageable.pageNumber + 1 : 0} de{" "}
-              {inspecao.totalPages}
+              {inspecao.totalPages > 0 ? inspecao.pageable.pageNumber + 1 : 0}{" "}
+              de {inspecao.totalPages}
             </span>
             <button
               className="btn-page"

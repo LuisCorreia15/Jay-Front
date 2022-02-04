@@ -1,19 +1,13 @@
-import axios from "axios";
+import ButtonForm from "components/button/ButtonForm";
+import LoadingScreen from "components/loader/Loading";
+import Menu from "components/menu/menu";
+import { doPostNovoProduto } from "connection/produtoReq";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import tempAlert from "components/alert/Alert";
-import Menu from "components/menu/menu";
 import "./Produto.css";
-import LoadingScreen from "components/loader/Loading";
-import ButtonForm from "components/button/ButtonForm";
-
-/* rafc  - comando para criar um component arrow*/
-
 const ProdutoNew = () => {
-  const conexao = axios.create({
-    baseURL: process.env.REACT_APP_PORT,
-  });
   const history = useHistory();
+  const localDoArquivo = "pages/produto/ProdutoNew.js";
   const [produto, setProduto] = useState({
     nomeDoProduto: "",
     precoEncomenda: 4.0,
@@ -23,16 +17,9 @@ const ProdutoNew = () => {
     vendidoPor: "/un",
   });
 
-  // nfn - comando para criar função anonima
-  const doPost = async () => {
-    await conexao.post("/produto", produto);
-    tempAlert(`Produto adicionado com sucesso!`, 5000);
-    history.push("/produto");
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
-    doPost();
+    doPostNovoProduto(produto, history, localDoArquivo);
   };
 
   const handleChange = (event) => {
@@ -42,8 +29,8 @@ const ProdutoNew = () => {
 
   return (
     <>
-      <LoadingScreen></LoadingScreen>
-      <Menu ativo="produto"></Menu>
+      <LoadingScreen />
+      <Menu ativo="produto" />
       <div className="container">
         <h3 className="pg-title">Cadastro de Produto</h3>
         <form onSubmit={handleSubmit} className="pg-form">
@@ -117,7 +104,7 @@ const ProdutoNew = () => {
               value={produto.precoVitrine}
             ></input>
           </div>
-          <ButtonForm exitPath="/produto"></ButtonForm>
+          <ButtonForm exitPath="/produto" />
         </form>
       </div>
     </>

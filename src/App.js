@@ -15,13 +15,13 @@ function App() {
         <Router>
           <Switch>
             <Route exact path="/">
-              <LandingPage></LandingPage>
+              <LandingPage />
             </Route>
-            <Route path="/inspecao" component={InspecaoManter}></Route>
-            <Route path="/produto" component={ProdutoManter}></Route>
-            <Route path="/pedido" component={PedidoManter}></Route>
-            <Route path="/cliente" component={ClienteManter}></Route>
-            <Route path="/help" component={HelpRoutes}></Route>
+            <Route path="/inspecao" component={InspecaoManter} />
+            <Route path="/produto" component={ProdutoManter} />
+            <Route path="/pedido" component={PedidoManter} />
+            <Route path="/cliente" component={ClienteManter} />
+            <Route path="/help" component={HelpRoutes} />
           </Switch>
         </Router>
       </header>

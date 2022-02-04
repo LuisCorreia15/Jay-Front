@@ -19,7 +19,7 @@ const Question002 = () => {
   return (
     <>
       <LoadingScreen></LoadingScreen>
-      <Menu ativo=""></Menu>
+      <Menu ativo="help"></Menu>
       <Topper></Topper>
       <div className="container">
         <ButtonBack></ButtonBack>

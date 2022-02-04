@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Menu from "components/menu/menu";
 import LoadingScreen from "components/loader/Loading";
 import SkeletonLoader from "components/loader/SkeletonLoader";
+import { doGetProduto } from "connection/produtoReq";
+import { DebounceInput } from "react-debounce-input";
 
 const ProdutoList = (props) => {
-  const conexao = axios.create({
-    baseURL: process.env.REACT_APP_PORT,
-  });
+  const localDoArquivo = "/pages/produto/ProdutoList.js";
   const { statusPesquisa, setStatusPesquisa } = props;
   const loadingProdutos = new Array(10);
   const [loading, setLoading] = useState(false);
@@ -21,18 +20,15 @@ const ProdutoList = (props) => {
 
   useEffect(() => {
     document.addEventListener("keydown", keydownHandler);
-    doGetProduto(statusPesquisa.termoDePesquisa, types.typeProdutos);
+    doGetProduto(
+      statusPesquisa.termoDePesquisa,
+      types.typeProdutos,
+      setProduto,
+      setLoading,
+      localDoArquivo
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [statusPesquisa.termoDePesquisa, types.typeProdutos, types.typeValores]);
-
-  const doGetProduto = async (termoDePesquisa, tipoDosProdutos) => {
-    setLoading(true);
-    const response = await conexao.get(
-      `/produto/?nomeDoProduto=${termoDePesquisa}&tipoDoProduto=${tipoDosProdutos}`
-    );
-    setProduto(response.data);
-    setLoading(false);
-  };
 
   const handleSearchInputChange = async (event) => {
     const novoStatusPesquisa = {
@@ -63,7 +59,7 @@ const ProdutoList = (props) => {
   return (
     <>
       <LoadingScreen />
-      <Menu ativo="produto"></Menu>
+      <Menu ativo="produto" />
       <div className="container">
         <form className="pd campo-busca">
           <div className="sl-search">
@@ -94,8 +90,10 @@ const ProdutoList = (props) => {
               <option value="Ingrediente">Ingrediente</option>
             </select>
           </div>
-          <input
+          <DebounceInput
             type="text"
+            debounceTimeout={500}
+            autoComplete="off"
             value={statusPesquisa.termoDePesquisa}
             placeholder="O que deseja buscar?"
             autoFocus
@@ -120,36 +118,42 @@ const ProdutoList = (props) => {
               {produto.length === 0 ? (
                 <p>Nada encontrado!</p>
               ) : (
-                produto.map((row, i) => {
-                  return (
-                    <div
-                      className="tb"
-                      key={i}
-                      onClick={() => history.push(`/produto/editar/${row._id}`)}
-                    >
-                      <div className="tb-title">
-                        <p>{row.tipoDoProduto}</p>
-                        <h2>{row.nomeDoProduto}</h2>
+                produto
+                  .sort((a, b) => (a.nomeDoProduto > b.nomeDoProduto ? 1 : -1))
+                  .map((row, i) => {
+                    return (
+                      <div
+                        className="tb"
+                        key={i}
+                        onClick={() =>
+                          history.push(`/produto/editar/${row._id}`)
+                        }
+                      >
+                        <div className="tb-title">
+                          <p>{row.tipoDoProduto}</p>
+                          <h2>{row.nomeDoProduto}</h2>
+                        </div>
+                        <div className="tb-price">
+                          {types.typeValores === "Vitrine" ? (
+                            <h2>
+                              R$
+                              {row.precoVitrine
+                                ? row.precoVitrine.toFixed(2)
+                                : 0}
+                            </h2>
+                          ) : (
+                            <h2>
+                              R$
+                              {row.precoEncomenda
+                                ? row.precoEncomenda.toFixed(2)
+                                : 0}
+                            </h2>
+                          )}
+                          <p>{row.vendidoPor}</p>
+                        </div>
                       </div>
-                      <div className="tb-price">
-                        {types.typeValores === "Vitrine" ? (
-                          <h2>
-                            R$
-                            {row.precoVitrine ? row.precoVitrine.toFixed(2) : 0}
-                          </h2>
-                        ) : (
-                          <h2>
-                            R${" "}
-                            {row.precoEncomenda
-                              ? row.precoEncomenda.toFixed(2)
-                              : 0}
-                          </h2>
-                        )}
-                        <p>{row.vendidoPor}</p>
-                      </div>
-                    </div>
-                  );
-                })
+                    );
+                  })
               )}
             </div>
           )}

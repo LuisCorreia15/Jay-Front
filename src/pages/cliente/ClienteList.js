@@ -1,41 +1,33 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { useHistory } from "react-router-dom";
-import Menu from "components/menu/menu";
 import LoadingScreen from "components/loader/Loading";
 import SkeletonLoader from "components/loader/SkeletonLoader";
+import Menu from "components/menu/menu";
+import { doGetClientes } from "connection/clienteReq";
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { DebounceInput } from "react-debounce-input";
 
 const ClienteList = (props) => {
-  const conexao = axios.create({ baseURL: process.env.REACT_APP_PORT });
   const { termoDePesquisa, setTermoDePesquisa } = props;
   const loadingProdutos = new Array(10);
   const history = useHistory();
+  const localDoArquivo = "pages/cliente/ClienteList.js";
   const [loading, setLoading] = useState(false);
-  const [cliente, setCliente] = useState([]);
+  const [clientes, setClientes] = useState([]);
 
   useEffect(() => {
-    doGetCliente(termoDePesquisa);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    setLoading(true);
+    doGetClientes(termoDePesquisa, setClientes, localDoArquivo).then(() => {
+      setLoading(false);
+    });
   }, [termoDePesquisa]);
 
   useEffect(() => {
     document.addEventListener("keydown", keydownHandler);
-    doGetCliente(termoDePesquisa);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const doGetCliente = async (termoDePesquisa) => {
-    setLoading(true);
-    const response = await conexao.get(
-      `/cliente/?nomeDoCliente=${termoDePesquisa}`
-    );
-    setCliente(response.data);
-    setLoading(false);
-  };
-
   const handleSearchInputChange = async (event) => {
     setTermoDePesquisa(event.target.value);
-    console.log(termoDePesquisa);
   };
 
   function keydownHandler(e) {
@@ -50,9 +42,11 @@ const ClienteList = (props) => {
       <Menu ativo="cliente" />
       <div className="container">
         <form className="pd campo-busca">
-          <input
+          <DebounceInput
             type="text"
             value={termoDePesquisa}
+            debounceTimeout={500}
+            autoComplete="off"
             placeholder="O que deseja buscar?"
             autoFocus
             onChange={handleSearchInputChange}
@@ -73,26 +67,30 @@ const ClienteList = (props) => {
             })
           ) : (
             <div>
-              {cliente.length === 0 ? (
+              {clientes.length === 0 ? (
                 <p>Nada encontrado!</p>
               ) : (
-                cliente.map((row, i) => {
-                  return (
-                    <div
-                      className="tb"
-                      key={i}
-                      onClick={() => history.push(`/cliente/editar/${row._id}`)}
-                    >
-                      <div className="tb-title">
-                        <p>{row.celular}</p>
-                        <h2>{row.nomeDoCliente}</h2>
+                clientes
+                  .sort((a, b) => (a.nomeDoCliente > b.nomeDoCliente ? 1 : -1))
+                  .map((row, i) => {
+                    return (
+                      <div
+                        className="tb"
+                        key={i}
+                        onClick={() =>
+                          history.push(`/cliente/editar/${row._id}`)
+                        }
+                      >
+                        <div className="tb-title">
+                          <p>{row.celular}</p>
+                          <h2>{row.nomeDoCliente}</h2>
+                        </div>
+                        <div className="tb-price">
+                          <h2>{row.logradouro}</h2>
+                        </div>
                       </div>
-                      <div className="tb-price">
-                        <h2>{row.logradouro}</h2>
-                      </div>
-                    </div>
-                  );
-                })
+                    );
+                  })
               )}
             </div>
           )}

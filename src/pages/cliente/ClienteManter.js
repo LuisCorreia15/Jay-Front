@@ -17,10 +17,7 @@ const ClienteManter = () => {
           ></ClienteList>
         </Route>
         <Route path="/cliente/novo" component={ClienteNew}></Route>
-        <Route
-          path="/cliente/editar/:idParaEditar"
-          component={ClienteEdit}
-        ></Route>
+        <Route path="/cliente/editar/:idParaEditar" component={ClienteEdit} />
       </Switch>
     </>
   );

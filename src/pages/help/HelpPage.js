@@ -9,27 +9,6 @@ const HelpPage = () => {
   const [termoDePesquisa, settermoDePesquisa] = useState("");
   const [data, setData] = useState([{}]);
 
-  const helpData =
-    data.length === 0 ? (
-      <p>Nada encontrado!</p>
-    ) : (
-      data.map((row, i) => {
-        return (
-          <div
-            className="tb"
-            key={i}
-            onClick={() => {
-              history.push(`/help/question/${row.id}`);
-            }}
-          >
-            <div className="tb-title">
-              <h1>{row.titulo}</h1>
-            </div>
-          </div>
-        );
-      })
-    );
-
   const doGetHelp = (termo) => {
     let arrayX = new Array(HelpData.length);
     if (termo === "") {
@@ -56,8 +35,8 @@ const HelpPage = () => {
 
   return (
     <>
-      <LoadingScreen></LoadingScreen>
-      <Menu ativo=""></Menu>
+      <LoadingScreen />
+      <Menu ativo="help" />
       <div className="container">
         <form className="pd campo-busca">
           <input
@@ -68,7 +47,25 @@ const HelpPage = () => {
             onChange={handleSearchInputChange}
           />
         </form>
-        {helpData}
+        {data.length === 0 ? (
+          <p>Nada encontrado!</p>
+        ) : (
+          data.map((row, i) => {
+            return (
+              <div
+                className="tb"
+                key={i}
+                onClick={() => {
+                  history.push(`/help/question/${row.id}`);
+                }}
+              >
+                <div className="tb-title">
+                  <h1>{row.titulo}</h1>
+                </div>
+              </div>
+            );
+          })
+        )}
       </div>
     </>
   );

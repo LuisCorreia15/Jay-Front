@@ -6,7 +6,7 @@ const Question006 = () => {
   return (
     <>
       <LoadingScreen></LoadingScreen>
-      <Menu ativo=""></Menu>
+      <Menu ativo="help"></Menu>
       <div className="container">
         <div className="q-passo">
           <h1>Em Criação</h1>

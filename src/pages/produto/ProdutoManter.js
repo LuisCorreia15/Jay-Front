@@ -19,11 +19,8 @@ const ProdutoManter = () => {
             setStatusPesquisa={setStatusPesquisa}
           ></ProdutoList>
         </Route>
-        <Route path="/produto/novo" component={ProdutoNew}></Route>
-        <Route
-          path="/produto/editar/:idParaEditar"
-          component={ProdutoEdit}
-        ></Route>
+        <Route path="/produto/novo" component={ProdutoNew} />
+        <Route path="/produto/editar/:idDoProduto" component={ProdutoEdit} />
       </Switch>
     </>
   );

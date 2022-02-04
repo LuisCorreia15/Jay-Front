@@ -1,20 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 // @ts-nocheck
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useHistory, useParams } from "react-router-dom";
-import tempAlert from "../../components/alert/Alert";
 import Menu from "components/menu/menu";
 import DeleteConfirm from "components/alert/DeleteConfirm";
 import LoadingScreen from "components/loader/Loading";
 import ButtonForm from "components/button/ButtonForm";
+import {
+  doGetProdutoById,
+  doPutProduto,
+  doExcluirProduto,
+} from "connection/produtoReq";
 
 const ProdutoEdit = () => {
-  const conexao = axios.create({
-    baseURL: process.env.REACT_APP_PORT,
-  });
   const history = useHistory();
-  const { idParaEditar } = useParams();
+  const { idDoProduto } = useParams();
+  const localDoArquivo = "/pages/produto/ProdutoEdit.js";
   const [produto, setProduto] = useState({
     nomeDoProduto: "",
     precoEncomenda: 0.0,
@@ -23,50 +24,20 @@ const ProdutoEdit = () => {
     tipoDoProduto: "",
     vendidoPor: "",
   });
-  const [confirmState, setConfirmState] = useState(false);
-
-  const doGetById = async () => {
-    const response = await conexao.get(`/produto/${idParaEditar}`);
-    console.log(response.data);
-    setProduto(response.data);
-  };
+  const [mostrarConfirmacao, setMostrarConfirmacao] = useState(false);
 
   useEffect(() => {
-    doGetById();
+    doGetProdutoById(idDoProduto, setProduto, localDoArquivo);
   }, []);
 
-  const doExcluirProduto = async (id, name) => {
-    await conexao.delete(`/produto/${id}`);
-    tempAlert(name + " excluído!", 5000);
-    setConfirmState(false);
-    history.push("/produto");
-  };
-
-  const handleExcluir = () => {
-    setConfirmState(true);
-  };
-
-  const renderConfirmDelete = () => {
-    return (
-      <DeleteConfirm
-        estado={confirmState}
-        doExcluir={doExcluirProduto}
-        id={idParaEditar}
-        nome={produto.nomeDoProduto}
-        setConfirmState={setConfirmState}
-      ></DeleteConfirm>
-    );
-  };
-
-  const doPut = async () => {
-    await conexao.put(`/produto/${idParaEditar}`, produto);
-    tempAlert(`${produto.nomeDoProduto} alterado com sucesso!`, 5000);
-    history.push("/produto");
+  const handleExcluirProdutos = async (idDoProduto, nomeDoProduto) => {
+    doExcluirProduto(idDoProduto, nomeDoProduto, history, localDoArquivo);
+    setMostrarConfirmacao(false);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    doPut();
+    doPutProduto(idDoProduto, produto, history, localDoArquivo);
   };
 
   const handleChange = (event) => {
@@ -76,12 +47,22 @@ const ProdutoEdit = () => {
 
   return (
     <>
-      <LoadingScreen></LoadingScreen>
-      <Menu ativo="produto"></Menu>
-      {renderConfirmDelete()}
+      <LoadingScreen />
+      <Menu ativo="produto" />
+      {mostrarConfirmacao && (
+        <DeleteConfirm
+          setMostrarConfirmacao={setMostrarConfirmacao}
+          handleExcluirProdutos={handleExcluirProdutos}
+          nomeDoProduto={produto.nomeDoProduto}
+          idDoProduto={idDoProduto}
+        />
+      )}
       <div className="container">
         <h2 className="pg-title">Edição de Produto</h2>
-        <button className="pg-excluir" onClick={() => handleExcluir()}>
+        <button
+          className="pg-excluir"
+          onClick={() => setMostrarConfirmacao(true)}
+        >
           excluir produto
         </button>
         <form onSubmit={handleSubmit} className="pg-form">
@@ -95,7 +76,7 @@ const ProdutoEdit = () => {
               autoFocus
               onChange={handleChange}
               value={produto.nomeDoProduto}
-            ></input>
+            />
           </div>
           <div className="sl-icon flex-column">
             Tipo do Produto
@@ -146,7 +127,7 @@ const ProdutoEdit = () => {
               onChange={handleChange}
               value={produto.precoVitrine}
               className="pg-input"
-            ></input>
+            />
           </div>
           <div className="flex-column">
             Quantidade vendida
@@ -157,9 +138,9 @@ const ProdutoEdit = () => {
               required
               onChange={handleChange}
               value={produto.vendidos}
-            ></input>
+            />
           </div>
-          <ButtonForm exitPath="/produto"></ButtonForm>
+          <ButtonForm exitPath="/produto" />
         </form>
       </div>
     </>
